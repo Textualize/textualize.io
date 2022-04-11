@@ -6,19 +6,5 @@ export const AppConfig = {
             twitter: "https://twitter.com/textualizeio",
             github: "https://github.com/Textualize",
         },
-        projects: {
-            "rich": {
-                code: "https://github.com/Textualize/rich",
-                docs: "https://rich.readthedocs.io/en/latest/",
-            },
-            "textual": {
-                code: "https://github.com/Textualize/textual",
-                docs: null,
-            },
-            "rich-cli": {
-                code: "https://github.com/Textualize/rich-cli",
-                docs: null,
-            },
-        },
     },
 }

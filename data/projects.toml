@@ -1,0 +1,20 @@
+[[projects]]
+headline = "Textual"
+stars = "9k"
+desc = "Build amazing TUIs (Text User Interfaces) with this innovative Python framework"
+code = "https://github.com/Textualize/textual"
+# no online docs yet
+
+[[projects]]
+headline = "Rich"
+stars = "36k"
+desc = "A Python framework for rich text and beautiful formatting in the terminal"
+code = "https://github.com/Textualize/rich"
+docs = "https://rich.readthedocs.io/en/latest/"
+
+[[projects]]
+headline = "Rich CLI"
+stars = "1.5k"
+desc = "Syntax highlighting, markdown, JSON, and more, at the command prompt."
+code = "https://github.com/Textualize/rich-cli"
+# no online docs yet

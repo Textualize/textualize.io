@@ -14,7 +14,7 @@ interface ButtonData {
 }
 
 export const Project = (props: Props) => {
-    const { headline, stars, desc, tabName, codeUrl, docsUrl, nth } = props
+    const { headline, stars, desc, codeUrl, docsUrl, nth } = props
 
     const buttons: ButtonData[] = [
         {
@@ -35,8 +35,8 @@ export const Project = (props: Props) => {
         <section className="container project">
             <div className="project__editor-wrapper">
                 <div className="project__editor-back-layout-wrapper">
-                    <div className={"project__back-layout project__back-layout-" + nth} />
-                    <Editor tabName={tabName} />
+                    <div className={`project__back-layout project__back-layout-${nth}`} />
+                    <Editor tabName={headline} />
                 </div>
             </div>
             <div className="project__text-wrapper">
