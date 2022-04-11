@@ -1,0 +1,204 @@
+$color-dark: #ffffff;
+$color-dark--hover: darken($color-dark, 20%);
+$color-light: #282828;
+$color-light--hover: lighten($color-light, 20%);
+
+$input-border-color-dark: #ffffff;
+$input-border-color-dark--hover: darken($input-border-color-dark, 5%);
+$input-border-color-light: #bababa;
+$input-border-color-light--hover: darken($input-border-color-light, 5%);
+$button-lilac-bg: #754aba;
+$button-lilac-bg--hover: darken($button-lilac-bg, 5%);
+$button-lilac-bg--active: darken($button-lilac-bg, 15%);
+$button-blue-bg: #4970bb;
+$button-blue-bg--hover: darken($button-blue-bg, 5%);
+$button-blue-bg--active: darken($button-blue-bg, 15%);
+
+$button-hero-dark-1: #8652db;
+$button-hero-dark-1--hover: darken($button-hero-dark-1, 5%);
+$button-hero-dark-1--active: darken($button-hero-dark-1, 15%);
+$button-hero-dark-2: #b157bf;
+$button-hero-dark-2--hover: darken($button-hero-dark-2, 5%);
+$button-hero-dark-2--active: darken($button-hero-dark-2, 15%);
+$button-hero-light-1: #7a37e6;
+$button-hero-light-1--hover: darken($button-hero-light-1, 5%);
+$button-hero-light-1--active: darken($button-hero-light-1, 15%);
+$button-hero-light-2: #c581d0;
+$button-hero-light-2--hover: darken($button-hero-light-2, 5%);
+$button-hero-light-2--active: darken($button-hero-light-2, 15%);
+
+:root {
+  --color: #{$color-dark};
+  --color--hover: #{$color-dark--hover};
+  --bg: #24262c;
+
+  --ellipsis-bg: linear-gradient(
+    93.48deg,
+    #667eea 1.13%,
+    rgba(118, 75, 162, 0) 100.68%
+  );
+  --ellipsis-opacity: 0.3;
+
+  --hero-headline-cursor-color: #b169dd;
+  --hero-headline-color: linear-gradient(
+    92.83deg,
+    #9f76e2 2.36%,
+    #b169dd 91.55%
+  );
+  --hero-back-layout-color: linear-gradient(
+    119.48deg,
+    rgba(102, 126, 234, 0.7) 5.17%,
+    rgba(118, 75, 162, 0) 78.44%
+  );
+
+  --mail-list-bg: #2a2c2f;
+  --mail-list-border-color: #464646;
+  --mail-list-hint-color: #c1c1c1;
+  --mail-list-box-shadow: none;
+
+  --projects-bg-gradient: linear-gradient(
+    93.48deg,
+    #667eea 1.13%,
+    rgba(118, 75, 162, 0) 100.68%
+  );
+  --projects-bg-opacity: 0.3;
+  --projects-divider-color: linear-gradient(
+    90deg,
+    rgba(84, 44, 144, 0) 0%,
+    #542c91 52.08%,
+    rgba(84, 44, 144, 0) 100%
+  );
+
+  --project-headline-color: linear-gradient(
+    92.83deg,
+    #9f76e2 2.36%,
+    #b169dd 91.55%
+  );
+  --project-back-layout-color-1: linear-gradient(
+    90deg,
+    rgba(151, 149, 240, 0.7) 0%,
+    rgba(251, 200, 212, 0.7) 100%
+  );
+  --project-back-layout-color-2: linear-gradient(
+    90deg,
+    rgba(73, 150, 196, 0.7) 0%,
+    rgba(128, 208, 199, 0.7) 100%
+  );
+  --project-back-layout-color-3: linear-gradient(
+    90deg,
+    rgba(236, 119, 171, 0.7) 0%,
+    rgba(120, 115, 245, 0.7) 100%
+  );
+
+  --input-border-color: #{$input-border-color-dark};
+  --input-border-color--hover: #{$input-border-color-dark--hover};
+  --badge-label-color: #ffffff;
+  --button-lilac-bg: #{$button-lilac-bg};
+  --button-lilac-bg--hover: #{$button-lilac-bg--hover};
+  --button-lilac-bg--active: #{$button-lilac-bg--active};
+  --button-blue-bg: #{$button-blue-bg};
+  --button-blue-bg--hover: #{$button-blue-bg--hover};
+  --button-blue-bg--active: #{$button-blue-bg--active};
+  --button-hero-bg: linear-gradient(
+    91.54deg,
+    #{$button-hero-dark-1} 0.98%,
+    #{$button-hero-dark-2} 99.04%
+  );
+  --button-hero-bg--hover: linear-gradient(
+    91.54deg,
+    #{$button-hero-dark-1--hover} 0.98%,
+    #{$button-hero-dark-2--hover} 99.04%
+  );
+  --button-hero-bg--active: linear-gradient(
+    91.54deg,
+    #{$button-hero-dark-1--active} 0.98%,
+    #{$button-hero-dark-2--active} 99.04%
+  );
+  --button-ghost-hover-color: rgba(255, 255, 255, 0.04);
+  --button-ghost-active-color: rgba(255, 255, 255, 0.06);
+}
+
+:root[light] {
+  --color: #{$color-light};
+  --color--hover: #{$color-light--hover};
+  --bg: #ffffff;
+
+  --ellipsis-bg: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
+  --ellipsis-opacity: 0.95;
+
+  --hero-headline-cursor-color: #9c4ecc;
+  --hero-headline-color: linear-gradient(
+    92.83deg,
+    #7d5ab7 2.36%,
+    #9c4ecc 91.55%
+  );
+  --hero-back-layout-color: linear-gradient(
+    93.48deg,
+    #667eea 1.13%,
+    rgba(118, 75, 162, 0.4) 100.68%
+  );
+
+  --mail-list-bg: #fbfbfb;
+  --mail-list-border-color: #f1f1f1;
+  --mail-list-hint-color: #8f8f8f;
+  --mail-list-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.05);
+
+  --projects-bg-gradient: linear-gradient(
+    93.48deg,
+    #667eea 1.13%,
+    #764ba2 100.68%
+  );
+  --projects-bg-opacity: 0.95;
+  --projects-divider-color: linear-gradient(
+    90deg,
+    rgba(236, 229, 248, 0) 0%,
+    #dbc4ff 52.08%,
+    rgba(236, 229, 248, 0) 100%
+  );
+
+  --project-headline-color: linear-gradient(
+    92.83deg,
+    #7d5ab7 2.36%,
+    #9c4ecc 91.55%
+  );
+  --project-back-layout-color-1: linear-gradient(
+    90deg,
+    #9795f0 0%,
+    #fbc8d4 100%
+  );
+  --project-back-layout-color-2: linear-gradient(
+    90deg,
+    #4996c4 0%,
+    #80d0c7 100%
+  );
+  --project-back-layout-color-3: linear-gradient(
+    90deg,
+    #ec77ab 0%,
+    #7873f5 100%
+  );
+
+  --input-border-color: #{$input-border-color-light};
+  --input-border-color--hover: #{$input-border-color-light--hover};
+  --badge-label-color: #754aba;
+  --button-lilac-bg: #{$button-lilac-bg};
+  --button-lilac-bg--hover: #{$button-lilac-bg--hover};
+  --button-blue-bg: #{$button-blue-bg};
+  --button-blue-bg--hover: #{$button-blue-bg--hover};
+  --button-hero-bg: linear-gradient(
+    91.54deg,
+    #{$button-hero-light-1} 0.98%,
+    #{$button-hero-light-2} 99.04%
+  );
+  --button-hero-bg--hover: linear-gradient(
+    91.54deg,
+    #{$button-hero-light-1--hover} 0.98%,
+    #{$button-hero-light-2--hover} 99.04%
+  );
+  --button-hero-bg--active: linear-gradient(
+    91.54deg,
+    #{$button-hero-light-1--active} 0.98%,
+    #{$button-hero-light-2--active} 99.04%
+  );
+  --button-ghost-hover-color: rgba(0, 0, 0, 0.04);
+  --button-ghost-active-color: rgba(0, 0, 0, 0.06);
+}

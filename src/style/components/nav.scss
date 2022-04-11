@@ -1,0 +1,140 @@
+body.light {
+  .nav__logo--black {
+    display: block;
+  }
+  .nav__logo--white {
+    display: none;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+
+  @media (min-width: $breakpoint-tablet) {
+    height: 90px;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    position: relative;
+    height: 100px;
+  }
+
+  &__logo {
+    width: 121px;
+    height: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 259px;
+      height: 43px;
+    }
+
+    &--black {
+      display: none;
+    }
+  }
+
+  &__links {
+    display: flex;
+    color: #ffffff;
+  }
+
+  &__ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: $space-2;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-3;
+    }
+  }
+
+  &__divider {
+    margin: $space-3;
+    border-left: 1px solid currentColor;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin: $space-3 $space-6;
+    }
+  }
+
+  .button--ghost {
+    width: $space-10;
+    height: $space-10;
+    padding: 10px;
+
+    svg {
+      width: 95%;
+      height: 95%;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      width: $space-11;
+      height: $space-11;
+    }
+  }
+
+  &__icon--moon {
+    display: none;
+
+    :root[light] & {
+      display: block;
+    }
+  }
+
+  &__icon--sun {
+    display: block;
+
+    :root[light] & {
+      display: none;
+    }
+  }
+
+  &__ellipsis-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    height: 100px;
+    width: 300px;
+    z-index: -1;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 460px;
+      height: 140px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      overflow: visible;
+    }
+  }
+
+  &__ellipsis {
+    position: absolute;
+    top: -70px;
+    right: -400px;
+    width: 630px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--ellipsis-bg);
+    opacity: var(--ellipsis-opacity);
+
+    @media (min-width: $breakpoint-tablet) {
+      top: -290px;
+      right: -700px;
+      width: 1192px;
+      height: 423px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      top: -218px;
+      right: -196px;
+      width: 623px;
+      height: 323px;
+    }
+  }
+}

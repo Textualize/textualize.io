@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+@import "./variables.scss";
+@import "./root.scss";
+@import "./css-reset.scss";
+@import "./base.scss";
+// components
+@import "./components/input.scss";
+@import "./components/badge.scss";
+@import "./components/button.scss";
+@import "./components/container.scss";
+@import "./components/editor.scss";
+@import "./components/video.scss";
+@import "./components/nav.scss";
+@import "./components/logo.scss";
+
+// modules
+@import "./sections/hero.scss";
+@import "./sections/mail-list.scss";
+@import "./sections/projects.scss";
+@import "./sections/project.scss";
+@import "./sections/footer.scss";
+
+// utilities
+@import "./utilities/common.scss";

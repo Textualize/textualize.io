@@ -1,0 +1,58 @@
+body {
+  color: var(--color);
+  background: var(--bg);
+  font-size: $font-16;
+  font-family: "Poppins", Verdana, sans-serif; // https://dev.to/masakudamatsu/which-fallback-fonts-should-we-choose-to-make-fout-less-jarring-3d8d
+  overflow-x: hidden;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-18;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    font-size: $font-20;
+  }
+}
+
+main {
+  min-height: 60vh;
+  margin-top: $space-16;
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-top: $space-20;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    margin-top: 100px;
+  }
+}
+
+h1 {
+  margin-bottom: 0.5em;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+p {
+  margin-bottom: 0.5em;
+}
+
+ol,
+ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--color);
+
+  &:hover {
+    color: var(--color--hover);
+  }
+}

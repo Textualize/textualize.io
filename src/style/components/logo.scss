@@ -1,0 +1,27 @@
+:root[light] {
+  .nav .logo__black {
+    display: block;
+  }
+  .nav .logo__white {
+    display: none;
+  }
+}
+
+.logo {
+  width: 121px;
+  height: 20px;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 259px;
+    height: 43px;
+  }
+
+  &--footer {
+    width: 192px;
+    height: 32px;
+  }
+
+  &__black {
+    display: none;
+  }
+}

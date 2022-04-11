@@ -1,0 +1,175 @@
+$editor-width: 589px;
+
+.project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-15;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row-reverse;
+    gap: 70px;
+
+    &:nth-of-type(even) {
+      flex-direction: row;
+
+      .project__editor-back-layout-wrapper--visible {
+        .project__back-layout {
+          transform: rotate(5deg);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    gap: 140px;
+  }
+
+  &__editor-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 363px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: $editor-width;
+    }
+  }
+
+  &__editor-back-layout-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+
+    @media (min-width: $breakpoint-tablet) {
+      max-width: none;
+      width: 363px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: $editor-width * 0.666; // because of 1.5 scale
+      transform: scale(1.5);
+    }
+
+    &--visible {
+      .project__back-layout {
+        transform: rotate(-5deg);
+      }
+    }
+  }
+
+  &__back-layout {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease-in-out 0.3s;
+    z-index: -1;
+    border-radius: 15px;
+    opacity: 0.7;
+
+    &-1 {
+      background: var(--project-back-layout-color-1);
+    }
+
+    &-2 {
+      background: var(--project-back-layout-color-2);
+    }
+
+    &-3 {
+      background: var(--project-back-layout-color-3);
+    }
+  }
+
+  &__text-wrapper {
+    @media (min-width: $breakpoint-tablet) {
+      max-width: 450px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      max-width: none;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: $space-6;
+    line-height: 1.2;
+    margin-bottom: $space-4;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-bottom: $space-6;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      margin-bottom: $space-5;
+      gap: $space-10;
+    }
+  }
+
+  &__headline {
+    background-image: var(--project-headline-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: $font-28;
+    font-weight: 700;
+    color: #7d5ab7;
+    margin: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-40;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      font-size: $font-50;
+    }
+  }
+
+  &__desc {
+    font-size: $font-20;
+    margin-bottom: $space-6;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-bottom: $space-8;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      font-size: $font-26;
+      margin-bottom: $space-10;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    gap: $space-5;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-6;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      gap: $space-10;
+    }
+  }
+
+  .button {
+    gap: $space-3;
+    padding-inline: 1em;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-20;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      font-size: $font-22;
+      padding-inline: 1.3em;
+    }
+  }
+}
