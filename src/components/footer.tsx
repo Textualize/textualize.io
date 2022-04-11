@@ -3,10 +3,12 @@ import React from "react"
 import { AppConfig } from "../config"
 import { Logo } from "./logo"
 
+const DISPLAY_SCROLL_HINT = false // set to `true` to re-enable the floating down arrow
+
 export const Footer = () => (
     <div className="footer__wrapper">
         <footer className="footer">
-            <div className="footer__scroll-hint" />
+            {DISPLAY_SCROLL_HINT ? <div className="footer__scroll-hint" /> : null}
             <div className="footer__container container">
                 <div className="footer__links">
                     <div className="footer__link_row">
