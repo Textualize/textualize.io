@@ -1,8 +1,8 @@
-import React from "react"
 import Link from "next/link"
+import React from "react"
 import { FiMoon, FiSun } from "react-icons/fi"
-import { Logo } from "./logo"
 import { AppConfig } from "../config"
+import { Logo } from "./logo"
 
 export const Nav = () => {
     return (

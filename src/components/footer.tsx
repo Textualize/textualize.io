@@ -1,7 +1,7 @@
-import React from "react"
 import Link from "next/link"
-import { Logo } from "./logo"
+import React from "react"
 import { AppConfig } from "../config"
+import { Logo } from "./logo"
 
 export const Footer = () => (
     <div className="footer__wrapper">

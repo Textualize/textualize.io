@@ -17,6 +17,7 @@
         "react-icons": "^4.3.1"
     },
     "devDependencies": {
+        "@trivago/prettier-plugin-sort-imports": "^3.2.0",
         "@types/node": "^17.0.23",
         "@types/react": "^17.0.43",
         "eslint": "8.13.0",

@@ -1,6 +1,6 @@
 import React from "react"
-import { Editor } from "./editor"
 import { AppConfig } from "../config"
+import { Editor } from "./editor"
 
 export const Hero = () => {
     return (
