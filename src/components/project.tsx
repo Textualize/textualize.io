@@ -1,16 +1,35 @@
 import React from "react"
+import { ProjectData } from "../domain"
 import { Editor } from "./editor"
 
-interface Props {
-    headline: string
-    stars: string
-    desc: string
-    tabName: string
+interface Props extends ProjectData {
     nth: number
 }
 
+interface ButtonData {
+    text: string
+    url: string | null
+    color: "lilac" | "blue"
+    xlinkHref: string
+}
+
 export const Project = (props: Props) => {
-    const { headline, stars, desc, tabName, nth } = props
+    const { headline, stars, desc, tabName, codeUrl, docsUrl, nth } = props
+
+    const buttons: ButtonData[] = [
+        {
+            text: "Code",
+            url: codeUrl,
+            color: "lilac",
+            xlinkHref: "#icon-github",
+        },
+        {
+            text: "Docs",
+            url: docsUrl,
+            color: "blue",
+            xlinkHref: "#icon-doc",
+        },
+    ]
 
     return (
         <section className="container project">
@@ -32,18 +51,25 @@ export const Project = (props: Props) => {
                 </div>
                 <p className="project__desc">{desc}</p>
                 <div className="project__btns">
-                    <a href="#" className="button button--lilac u-fx-no-shrink">
-                        <svg height="1em" width="1em">
-                            <use xlinkHref="#icon-github" />
-                        </svg>
-                        Code
-                    </a>
-                    <a href="#" className="button button--blue u-fx-no-shrink">
-                        <svg height="1em" width="1em">
-                            <use xlinkHref="#icon-doc" />
-                        </svg>
-                        Docs
-                    </a>
+                    {buttons.map((buttonData) => {
+                        if (!buttonData.url) {
+                            return null
+                        }
+                        return (
+                            <a
+                                href={buttonData.url}
+                                className={`button button--${buttonData.color} u-fx-no-shrink`}
+                                target="_blank"
+                                rel="noreferrer"
+                                key={buttonData.text}
+                            >
+                                <svg height="1em" width="1em">
+                                    <use xlinkHref={buttonData.xlinkHref} />
+                                </svg>
+                                {buttonData.text}
+                            </a>
+                        )
+                    })}
                 </div>
             </div>
         </section>
