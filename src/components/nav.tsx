@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { FiMoon, FiSun } from "react-icons/fi"
 import { Logo } from "./logo"
+import { AppConfig } from "../config"
 
 export const Nav = () => {
     return (
@@ -15,14 +16,26 @@ export const Nav = () => {
                 <div className="nav__links">
                     <ul className="nav__ul">
                         <li>
-                            <a href="#" className="button button--ghost" aria-label="TODO: add label">
+                            <a
+                                href={AppConfig.textualize.urls.twitter}
+                                className="button button--ghost"
+                                aria-label="Twitter"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 <svg>
                                     <use xlinkHref="#icon-twitter" />
                                 </svg>
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="button button--ghost" aria-label="TODO: add label">
+                            <a
+                                href={AppConfig.textualize.urls.github}
+                                className="button button--ghost"
+                                aria-label="GitHub"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 <svg>
                                     <use xlinkHref="#icon-github" />
                                 </svg>

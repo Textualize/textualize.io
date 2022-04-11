@@ -1,17 +1,20 @@
 $border: 1px solid #505050;
-$editor-body-color: #323232;
+$editor-body-color: #2d2c2d;
+$editor-head-color: $editor-body-color;
+$editor-body-radius: 10px;
+$editor-tab-body-radius: 8px;
 
 .editor {
     width: 100%;
-    border-radius: 15px;
+    border-radius: $editor-body-radius;
     overflow: hidden;
 
     &__head {
         display: flex;
         gap: $space-8;
         align-items: center;
-        height: $space-11;
-        background-color: #404040;
+        height: $space-7;
+        background-color: $editor-head-color;
         padding: 0 $space-4;
     }
 
@@ -49,7 +52,7 @@ $editor-body-color: #323232;
         background-color: $editor-body-color;
         border: $border;
         border-bottom: none;
-        border-radius: 10px 10px 0 0;
+        border-radius: $editor-tab-body-radius $editor-tab-body-radius 0 0;
         color: #ffffff;
         &::after {
             content: "";

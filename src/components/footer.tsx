@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { Logo } from "./logo"
+import { AppConfig } from "../config"
 
 export const Footer = () => (
     <div className="footer__wrapper">
@@ -32,12 +33,24 @@ export const Footer = () => (
                         <Logo isFooter />
                     </div>
                     <div className="footer__social-links">
-                        <a href="#" aria-label="TODO: add label" className="footer__social-link">
+                        <a
+                            href={AppConfig.textualize.urls.twitter}
+                            aria-label="Twitter"
+                            className="footer__social-link"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <svg className="footer__social-link-icon">
                                 <use xlinkHref="#icon-twitter" />
                             </svg>
                         </a>
-                        <a href="#" aria-label="TODO: add label" className="footer__social-link">
+                        <a
+                            href={AppConfig.textualize.urls.github}
+                            aria-label="GitHub"
+                            className="footer__social-link"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <svg className="footer__social-link-icon">
                                 <use xlinkHref="#icon-github" />
                             </svg>

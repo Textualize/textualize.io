@@ -1,5 +1,6 @@
 $terminal-width: 532px;
 $terminal-animation-props: 0.7s ease-in 1s forwards;
+$terminal-back-layout-border-radius: 15px;
 
 .hero {
     display: flex;
@@ -137,7 +138,7 @@ $terminal-animation-props: 0.7s ease-in 1s forwards;
         &-back-layout {
             position: absolute;
             inset: -10px;
-            border-radius: 22px;
+            border-radius: $terminal-back-layout-border-radius;
             background-image: var(--hero-back-layout-color);
             transform-origin: left center;
             z-index: -1;
