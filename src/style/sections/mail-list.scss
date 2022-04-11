@@ -56,9 +56,6 @@ $terminal-font-family: "fira mono", monospace;
         overflow: visible;
         width: 2ch;
     }
-    &__terminal__email-input-with-content {
-        width: 16ch;
-    }
 
     &__hint {
         font-size: $font-10;

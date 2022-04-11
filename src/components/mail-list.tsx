@@ -7,6 +7,8 @@ export const MailList = () => {
     const [emailWasFocused, setEmailWasFocused] = React.useState<boolean>(false)
     const emailInputRef = React.useRef<HTMLInputElement | null>()
 
+    const emailInputWidth = email ? `${email.length}.3ch` : "2ch"
+
     const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value.trim())
         setEmailWasFocused(true)
@@ -57,6 +59,7 @@ export const MailList = () => {
                             className={["mail-list__terminal__email-input", emailInputAdditionalClass].join(" ")}
                             value={email}
                             onChange={onEmailChange}
+                            style={{ width: emailInputWidth }}
                             ref={emailInputRef}
                         />
                         <span style={{ color: "#a9dc76", textShadow: "0px 0px 16px #a9dc76" }}>&quot;</span>

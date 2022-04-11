@@ -1,6 +1,8 @@
 $color-dark: #ffffff;
+$bg-dark: #24262c;
 $color-dark--hover: darken($color-dark, 20%);
 $color-light: #282828;
+$bg-light: #ffffff;
 $color-light--hover: lighten($color-light, 20%);
 
 $input-border-color-dark: #ffffff;
@@ -30,7 +32,7 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
 :root {
     --color: #{$color-dark};
     --color--hover: #{$color-dark--hover};
-    --bg: #24262c;
+    --bg: #{$bg-dark};
 
     --ellipsis-bg: linear-gradient(93.48deg, #667eea 1.13%, rgba(118, 75, 162, 0) 100.68%);
     --ellipsis-opacity: 0.3;
@@ -85,7 +87,7 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
 :root[light] {
     --color: #{$color-light};
     --color--hover: #{$color-light--hover};
-    --bg: #ffffff;
+    --bg: #{$bg-light};
 
     --ellipsis-bg: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
     --ellipsis-opacity: 0.95;
@@ -94,10 +96,11 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     --hero-headline-color: linear-gradient(92.83deg, #7d5ab7 2.36%, #9c4ecc 91.55%);
     --hero-back-layout-color: linear-gradient(93.48deg, #667eea 1.13%, rgba(118, 75, 162, 0.4) 100.68%);
 
-    --mail-list-bg: #fbfbfb;
-    --mail-list-border-color: #f1f1f1;
-    --mail-list-hint-color: #8f8f8f;
-    --mail-list-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.05);
+    // N.B. "mail list" block is _always_ in dark mode
+    --mail-list-bg: #2a2c2f;
+    --mail-list-border-color: #464646;
+    --mail-list-hint-color: #c1c1c1;
+    --mail-list-box-shadow: none;
 
     --projects-bg-gradient: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
     --projects-bg-opacity: 0.95;
