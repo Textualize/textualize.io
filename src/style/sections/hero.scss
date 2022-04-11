@@ -2,179 +2,179 @@ $terminal-width: 532px;
 $terminal-animation-props: 0.7s ease-in 1s forwards;
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: $space-10;
-  margin-top: $space-16;
-
-  @media (min-width: $breakpoint-tablet) {
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: $space-13;
-    margin-top: $space-20;
-  }
-
-  @media (min-width: $breakpoint-desktop) {
-    gap: $space-23;
-    margin-top: 100px;
-  }
-
-  &__text {
-    @media (min-width: $breakpoint-tablet) {
-      max-width: 480px;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      max-width: none;
-    }
-  }
-
-  &__headline {
-    background-image: var(--hero-headline-color);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-size: $font-28;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: $space-5;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-36;
-      margin-bottom: $space-6;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-50;
-      margin-bottom: $space-7;
-    }
-  }
-
-  &__cursor {
-    display: inline-block;
-    background: var(--hero-headline-cursor-color);
-    width: 0.55em;
-    height: 1.2em;
-    margin-bottom: -0.2em;
-    line-height: 0;
-    animation: pulse 1.2s linear infinite alternate;
-  }
-
-  &__desc {
-    font-size: $font-20;
-    font-weight: 500;
-    margin-bottom: $space-5;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-22;
-      margin-bottom: $space-7;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-32;
-      margin-bottom: $space-13;
-    }
-  }
-
-  .button {
-    font-family: Menlo, monospace;
-    font-size: $font-14;
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 36px;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-20;
-      line-height: 45px;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-20;
-      line-height: 49px;
-    }
-  }
-
-  &__terminal-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex-shrink: 0;
-    width: 100%;
-    max-width: 450px;
-    padding: 10px;
-    perspective: 750px;
-    perspective-origin: 89% 100%;
+    justify-content: center;
+    gap: $space-10;
+    margin-top: $space-16;
 
     @media (min-width: $breakpoint-tablet) {
-      width: 365px;
-      max-width: none;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: $space-13;
+        margin-top: $space-20;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      width: $terminal-width;
-    }
-  }
-
-  &__terminal-animation {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    animation: terminal $terminal-animation-props;
-  }
-
-  &__terminal {
-    position: relative;
-    width: 100%;
-
-    @media (min-width: $breakpoint-desktop) {
-      width: $terminal-width * 0.666; // because of 1.5 scale
-      transform: scale(1.5);
+        gap: $space-23;
+        margin-top: 100px;
     }
 
-    &-back-layout {
-      position: absolute;
-      inset: -10px;
-      border-radius: 22px;
-      background-image: var(--hero-back-layout-color);
-      transform-origin: left center;
-      z-index: -1;
-      animation: terminal-back-layout $terminal-animation-props;
+    &__text {
+        @media (min-width: $breakpoint-tablet) {
+            max-width: 480px;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            max-width: none;
+        }
     }
-  }
+
+    &__headline {
+        background-image: var(--hero-headline-color);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        font-size: $font-28;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: $space-5;
+
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-36;
+            margin-bottom: $space-6;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-50;
+            margin-bottom: $space-7;
+        }
+    }
+
+    &__cursor {
+        display: inline-block;
+        background: var(--hero-headline-cursor-color);
+        width: 0.55em;
+        height: 1.2em;
+        margin-bottom: -0.2em;
+        line-height: 0;
+        animation: pulse 1.2s linear infinite alternate;
+    }
+
+    &__desc {
+        font-size: $font-20;
+        font-weight: 500;
+        margin-bottom: $space-5;
+
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-22;
+            margin-bottom: $space-7;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-32;
+            margin-bottom: $space-13;
+        }
+    }
+
+    .button {
+        font-family: Menlo, monospace;
+        font-size: $font-14;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 36px;
+
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-20;
+            line-height: 45px;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-20;
+            line-height: 49px;
+        }
+    }
+
+    &__terminal-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 450px;
+        padding: 10px;
+        perspective: 750px;
+        perspective-origin: 89% 100%;
+
+        @media (min-width: $breakpoint-tablet) {
+            width: 365px;
+            max-width: none;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            width: $terminal-width;
+        }
+    }
+
+    &__terminal-animation {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        animation: terminal $terminal-animation-props;
+    }
+
+    &__terminal {
+        position: relative;
+        width: 100%;
+
+        @media (min-width: $breakpoint-desktop) {
+            width: $terminal-width * 0.666; // because of 1.5 scale
+            transform: scale(1.5);
+        }
+
+        &-back-layout {
+            position: absolute;
+            inset: -10px;
+            border-radius: 22px;
+            background-image: var(--hero-back-layout-color);
+            transform-origin: left center;
+            z-index: -1;
+            animation: terminal-back-layout $terminal-animation-props;
+        }
+    }
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  60% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
+    0% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes terminal {
-  0% {
-    transform: rotateY(0deg) translateX(0px);
-  }
-  100% {
-    transform: rotateY(15deg) translateX(20px);
-  }
+    0% {
+        transform: rotateY(0deg) translateX(0px);
+    }
+    100% {
+        transform: rotateY(15deg) translateX(20px);
+    }
 }
 
 @keyframes terminal-back-layout {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0.92);
-  }
+    0% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0.92);
+    }
 }

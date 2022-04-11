@@ -1,14 +1,14 @@
 .video {
-  position: relative;
+    position: relative;
 
-  &::before {
-    content: "";
-    display: block;
-    padding-top: 100% * (9/16);
-  }
+    &::before {
+        content: "";
+        display: block;
+        padding-top: 100% * (9/16);
+    }
 
-  &__content {
-    position: absolute;
-    inset: 0;
-  }
+    &__content {
+        position: absolute;
+        inset: 0;
+    }
 }

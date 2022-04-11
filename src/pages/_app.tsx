@@ -1,16 +1,16 @@
-import Head from "next/head";
-import React from "react";
-import "../src/style/index.scss";
+import Head from "next/head"
+import React from "react"
+import "../style/index.scss"
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <title>Textualize</title>
-        <link rel="icon" href="/favicon.ico" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+    return (
+        <>
+            <Head>
+                <title>Textualize</title>
+                <link rel="icon" href="/textualize-logo.svg" />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
             (function() {
               try {
                 var theme = localStorage.getItem('theme');
@@ -26,14 +26,14 @@ function MyApp({ Component, pageProps }) {
               }
             })();
           `,
-          }}
-        />
-      </Head>
+                    }}
+                />
+            </Head>
 
-      <Component {...pageProps} />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+            <Component {...pageProps} />
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
             (function() {
               // theme toggler listener
               var themeToggler = document.getElementById('theme-toggler');
@@ -80,10 +80,10 @@ function MyApp({ Component, pageProps }) {
               
             })();
           `,
-        }}
-      />
-    </>
-  );
+                }}
+            />
+        </>
+    )
 }
 
-export default MyApp;
+export default MyApp

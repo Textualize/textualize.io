@@ -1,77 +1,76 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  border-radius: 10px;
-  font-weight: 600;
-  padding: 0.375em 0.75em;
-  border: none;
-  outline: none;
-  white-space: nowrap;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow;
-  transition-duration: 200ms;
-  cursor: pointer;
-  text-decoration: none;
-
-  &:hover {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: #ffffff;
-  }
-
-  &:active,
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
-  }
-
-  &--lilac {
-    background: var(--button-lilac-bg);
-
-    &:hover {
-      background-color: var(--button-lilac-bg--hover);
-    }
-
-    &:active {
-      background-color: var(--button-lilac-bg--active);
-    }
-  }
-
-  &--blue {
-    background: var(--button-blue-bg);
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 0.375em 0.75em;
+    border: none;
+    outline: none;
+    white-space: nowrap;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+    transition-duration: 200ms;
+    cursor: pointer;
+    text-decoration: none;
 
     &:hover {
-      background-color: var(--button-blue-bg--hover);
-    }
-
-    &:active {
-      background-color: var(--button-blue-bg--active);
-    }
-  }
-
-  &--hero {
-    background: var(--button-hero-bg);
-
-    &:hover {
-      background: var(--button-hero-bg--hover);
+        color: #ffffff;
     }
 
     &:active,
     &:focus {
-      background: var(--button-hero-bg--active);
-    }
-  }
-
-  &--ghost {
-    background: none;
-
-    &:hover {
-      color: inherit;
-      background-color: var(--button-ghost-hover-color);
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
     }
 
-    &:active,
-    &:focus {
-      background-color: var(--button-ghost-active-color);
+    &--lilac {
+        background: var(--button-lilac-bg);
+
+        &:hover {
+            background-color: var(--button-lilac-bg--hover);
+        }
+
+        &:active {
+            background-color: var(--button-lilac-bg--active);
+        }
     }
-  }
+
+    &--blue {
+        background: var(--button-blue-bg);
+
+        &:hover {
+            background-color: var(--button-blue-bg--hover);
+        }
+
+        &:active {
+            background-color: var(--button-blue-bg--active);
+        }
+    }
+
+    &--hero {
+        background: var(--button-hero-bg);
+
+        &:hover {
+            background: var(--button-hero-bg--hover);
+        }
+
+        &:active,
+        &:focus {
+            background: var(--button-hero-bg--active);
+        }
+    }
+
+    &--ghost {
+        background: none;
+
+        &:hover {
+            color: inherit;
+            background-color: var(--button-ghost-hover-color);
+        }
+
+        &:active,
+        &:focus {
+            background-color: var(--button-ghost-active-color);
+        }
+    }
 }

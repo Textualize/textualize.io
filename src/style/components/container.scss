@@ -1,16 +1,16 @@
 .container {
-  width: 95%;
-  max-width: $breakpoint-desktop;
-  margin-left: auto;
-  margin-right: auto;
+    width: 95%;
+    max-width: $breakpoint-desktop;
+    margin-left: auto;
+    margin-right: auto;
 
-  &--text {
-    @media (min-width: $breakpoint-tablet) {
-      max-width: 80%;
-    }
+    &--text {
+        @media (min-width: $breakpoint-tablet) {
+            max-width: 80%;
+        }
 
-    @media (min-width: $breakpoint-desktop) {
-      max-width: 830px;
+        @media (min-width: $breakpoint-desktop) {
+            max-width: 830px;
+        }
     }
-  }
 }

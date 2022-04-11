@@ -1,100 +1,100 @@
 .mail-list {
-  background: var(--mail-list-bg);
-  border: 2px solid var(--mail-list-border-color);
-  border-radius: 15px;
-  margin: 66px auto 0;
-  padding: $space-5 $space-3 $space-3;
-  box-shadow: var(--mail-list-box-shadow);
-
-  @media (min-width: $breakpoint-tablet) {
-    max-width: 689px;
-    margin-top: 102px;
-    padding: $space-8 $space-7 $space-5;
-  }
-
-  @media (min-width: $breakpoint-desktop) {
-    max-width: 991px;
-    margin-top: 200px;
-    padding: $space-8 $space-10 $space-6;
-  }
-
-  &__headline {
-    font-size: $font-22;
-    font-weight: 600;
-    text-align: center;
-    margin: 0;
+    background: var(--mail-list-bg);
+    border: 2px solid var(--mail-list-border-color);
+    border-radius: 15px;
+    margin: 66px auto 0;
+    padding: $space-5 $space-3 $space-3;
+    box-shadow: var(--mail-list-box-shadow);
 
     @media (min-width: $breakpoint-tablet) {
-      font-size: $font-24;
+        max-width: 689px;
+        margin-top: 102px;
+        padding: $space-8 $space-7 $space-5;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      font-size: $font-36;
-    }
-  }
-
-  &__desc {
-    font-size: $font-20;
-    text-align: center;
-    margin-bottom: $space-6;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-22;
-      margin-bottom: $space-8;
+        max-width: 991px;
+        margin-top: 200px;
+        padding: $space-8 $space-10 $space-6;
     }
 
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-32;
-      margin-bottom: $space-12;
-    }
-  }
+    &__headline {
+        font-size: $font-22;
+        font-weight: 600;
+        text-align: center;
+        margin: 0;
 
-  &__form {
-    display: flex;
-    gap: $space-2;
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-24;
+        }
 
-    @media (min-width: $breakpoint-tablet) {
-      gap: $space-4;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      gap: $space-6;
-    }
-  }
-
-  input,
-  button {
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-20;
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-36;
+        }
     }
 
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-22;
-    }
-  }
+    &__desc {
+        font-size: $font-20;
+        text-align: center;
+        margin-bottom: $space-6;
 
-  button {
-    @media (min-width: $breakpoint-tablet) {
-      padding-inline: $space-5;
-    }
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-22;
+            margin-bottom: $space-8;
+        }
 
-    @media (min-width: $breakpoint-desktop) {
-      padding-inline: $space-9;
-    }
-  }
-
-  &__hint {
-    font-size: $font-10;
-    font-weight: 600;
-    color: var(--mail-list-hint-color);
-    margin: $space-3 0 0;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: $font-12;
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-32;
+            margin-bottom: $space-12;
+        }
     }
 
-    @media (min-width: $breakpoint-desktop) {
-      font-size: $font-14;
+    &__form {
+        display: flex;
+        gap: $space-2;
+
+        @media (min-width: $breakpoint-tablet) {
+            gap: $space-4;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            gap: $space-6;
+        }
     }
-  }
+
+    input,
+    button {
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-20;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-22;
+        }
+    }
+
+    button {
+        @media (min-width: $breakpoint-tablet) {
+            padding-inline: $space-5;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            padding-inline: $space-9;
+        }
+    }
+
+    &__hint {
+        font-size: $font-10;
+        font-weight: 600;
+        color: var(--mail-list-hint-color);
+        margin: $space-3 0 0;
+
+        @media (min-width: $breakpoint-tablet) {
+            font-size: $font-12;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-14;
+        }
+    }
 }

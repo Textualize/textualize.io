@@ -1,15 +1,15 @@
 .u-fx {
-  display: flex;
+    display: flex;
 
-  &-grow {
-    flex-grow: 1;
-  }
+    &-grow {
+        flex-grow: 1;
+    }
 
-  &-no-shrink {
-    flex-shrink: 0;
-  }
+    &-no-shrink {
+        flex-shrink: 0;
+    }
 }
 
 .u-no-wrap {
-  white-space: nowrap;
+    white-space: nowrap;
 }

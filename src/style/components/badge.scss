@@ -1,34 +1,34 @@
 .badge {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: $space-2;
-  border: 1px solid currentColor;
-  border-radius: 10px;
-  height: 26px;
-  padding: 0 $space-2;
-  font-size: $font-12;
-  font-weight: 700;
-  color: #754aba;
-
-  &__icon {
     flex-shrink: 0;
-  }
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    border: 1px solid currentColor;
+    border-radius: 10px;
+    height: 26px;
+    padding: 0 $space-2;
+    font-size: $font-12;
+    font-weight: 700;
+    color: #754aba;
 
-  &__label {
-    color: var(--badge-label-color);
-    margin-bottom: -2px;
-  }
+    &__icon {
+        flex-shrink: 0;
+    }
 
-  @media (min-width: $breakpoint-tablet) {
-    height: $space-8;
-    font-size: $font-14;
-    gap: $space-3;
-  }
+    &__label {
+        color: var(--badge-label-color);
+        margin-bottom: -2px;
+    }
 
-  @media (min-width: $breakpoint-desktop) {
-    height: $space-10;
-    font-size: $font-18;
-    padding: 0 $space-3;
-  }
+    @media (min-width: $breakpoint-tablet) {
+        height: $space-8;
+        font-size: $font-14;
+        gap: $space-3;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+        height: $space-10;
+        font-size: $font-18;
+        padding: 0 $space-3;
+    }
 }
