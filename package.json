@@ -11,13 +11,12 @@
     },
     "dependencies": {
         "framer-motion": "^6.2.8",
-        "next": "latest",
+        "next": "^12.1.4",
         "react": "17.0.2",
         "react-dom": "17.0.2",
         "react-icons": "^4.3.1"
     },
     "devDependencies": {
-        "@typescript-eslint/typescript-estree": "^5.18.0",
         "@types/node": "^17.0.23",
         "@types/react": "^17.0.43",
         "eslint": "8.13.0",
