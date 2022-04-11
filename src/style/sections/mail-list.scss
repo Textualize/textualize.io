@@ -1,3 +1,7 @@
+$terminal-green: #a9dc76;
+$terminal-yellow: #ffd866;
+$terminal-font-family: "fira mono", monospace;
+
 .mail-list {
     background: var(--mail-list-bg);
     border: 2px solid var(--mail-list-border-color);
@@ -33,54 +37,27 @@
         }
     }
 
-    &__desc {
-        font-size: $font-20;
-        text-align: center;
-        margin-bottom: $space-6;
-
-        @media (min-width: $breakpoint-tablet) {
-            font-size: $font-22;
-            margin-bottom: $space-8;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            font-size: $font-32;
-            margin-bottom: $space-12;
-        }
+    .prompt {
+        color: $terminal-yellow;
+        text-shadow: 0 0 16px $terminal-yellow;
     }
 
-    &__form {
-        display: flex;
-        gap: $space-2;
-
-        @media (min-width: $breakpoint-tablet) {
-            gap: $space-4;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            gap: $space-6;
-        }
+    &__terminal {
+        font-family: $terminal-font-family;
     }
-
-    input,
-    button {
-        @media (min-width: $breakpoint-tablet) {
-            font-size: $font-20;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            font-size: $font-22;
-        }
+    &__terminal__email-input {
+        background-color: transparent;
+        font-family: $terminal-font-family;
+        font-size: $font-18;
+        line-height: $font-18;
+        border: none;
+        outline: none;
+        color: $terminal-green;
+        overflow: visible;
+        width: 2ch;
     }
-
-    button {
-        @media (min-width: $breakpoint-tablet) {
-            padding-inline: $space-5;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            padding-inline: $space-9;
-        }
+    &__terminal__email-input-with-content {
+        width: 16ch;
     }
 
     &__hint {

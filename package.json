@@ -6,7 +6,8 @@
         "start": "next start",
         "lint": "next lint",
         "format:check": "prettier --check --ignore-path .gitignore .",
-        "format:fix": "prettier --write --ignore-path .gitignore ."
+        "format:fix": "prettier --write --ignore-path .gitignore .",
+        "ci:check": "npm run lint && npm run format:check"
     },
     "dependencies": {
         "framer-motion": "^6.2.8",

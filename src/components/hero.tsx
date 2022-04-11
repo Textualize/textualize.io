@@ -1,5 +1,6 @@
 import React from "react"
 import { Editor } from "./editor"
+import { AppConfig } from "../config"
 
 export const Hero = () => {
     return (
@@ -16,7 +17,7 @@ export const Hero = () => {
                     At Textualize, we are working on making terminals more <strong>beautiful</strong> and{" "}
                     <strong>powerful</strong> than ever before.{" "}
                 </p>
-                <a href="#" className="button button--hero">
+                <a href={AppConfig.hiringUrl} className="button button--hero" target="_blank" rel="noreferrer">
                     &gt; We&apos;re&nbsp;<b> hiring</b>!_
                 </a>
             </div>
