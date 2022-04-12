@@ -56,19 +56,6 @@ export async function projectsWithCurrentStarsCounts(): Promise<ProjectData[]> {
     })
 }
 
-//
-// const githubStatsForRepo = (
-//     projectsStatistics: GitHubRepoStatistics[],
-//     repo: RepoId
-// ): GitHubRepoStatistics | null => {
-//     for (const projectStats of projectsStatistics) {
-//         if (projectStats.repoId.owner === repo.owner && projectStats.repoId.repo === repo.repo) {
-//             return projectStats
-//         }
-//     }
-//     return null
-// }
-
 export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatistics> {
     const targetEndpointUrl = repoDataApiEndpointUrl(repoId)
     console.debug("Fetching GitHub repo stats for repo ", repoId, "...")
