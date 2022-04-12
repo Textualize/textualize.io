@@ -1,5 +1,14 @@
 import React from "react"
 
+const TEXTUALIZE_LOGO_COLORS = {
+    blueLight: "#4a34a8",
+    blue: "#3636bd",
+    blueDarker: "#001e97",
+    pinkLight: "#bd6bbd",
+    pink: "#9d4dbd",
+    pinkBlue: "#6f4abd",
+}
+
 export const Icons = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -88,9 +97,10 @@ export const Icons = () => (
                     y2="10.4494"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#F18F34" />
-                    <stop offset="0.61" stopColor="#E95F32" />
-                    <stop offset="1" stopColor="#E3312D" />
+                    {/* the top left branch of the X */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.blueLight} />
+                    <stop offset="0.61" stopColor={TEXTUALIZE_LOGO_COLORS.blue} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.blueDarker} />
                 </linearGradient>
                 <linearGradient
                     id="paint2_linear_277_67"
@@ -100,12 +110,10 @@ export const Icons = () => (
                     y2="10.4493"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#FFEF26" />
-                    <stop offset="0.02" stopColor="#FFEA21" />
-                    <stop offset="0.14" stopColor="#FED70F" />
-                    <stop offset="0.25" stopColor="#FDCC04" />
-                    <stop offset="0.38" stopColor="#FDC800" />
-                    <stop offset="1" stopColor="#F18F34" />
+                    {/* the bottom left branch of the X */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
+                    <stop offset="0.38" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkBlue} />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_277_67"
@@ -115,12 +123,9 @@ export const Icons = () => (
                     y2="312.163"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#FFEF26" />
-                    <stop offset="0.02" stopColor="#FFEA21" />
-                    <stop offset="0.14" stopColor="#FED70F" />
-                    <stop offset="0.25" stopColor="#FDCC04" />
-                    <stop offset="0.38" stopColor="#FDC800" />
-                    <stop offset="1" stopColor="#F18F34" />
+                    {/* the underscore below the X and the T */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
                 </linearGradient>
             </defs>
         </symbol>
@@ -207,9 +212,10 @@ export const Icons = () => (
                     y2="10.4285"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#F18F34" />
-                    <stop offset="0.61" stopColor="#E95F32" />
-                    <stop offset="1" stopColor="#E3312D" />
+                    {/* the top left branch of the X */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.blueLight} />
+                    <stop offset="0.61" stopColor={TEXTUALIZE_LOGO_COLORS.blue} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.blueDarker} />
                 </linearGradient>
                 <linearGradient
                     id="paint2_linear_181_383"
@@ -219,12 +225,10 @@ export const Icons = () => (
                     y2="10.4283"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#FFEF26" />
-                    <stop offset="0.02" stopColor="#FFEA21" />
-                    <stop offset="0.14" stopColor="#FED70F" />
-                    <stop offset="0.25" stopColor="#FDCC04" />
-                    <stop offset="0.38" stopColor="#FDC800" />
-                    <stop offset="1" stopColor="#F18F34" />
+                    {/* the bottom left branch of the X */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
+                    <stop offset="0.38" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkBlue} />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_181_383"
@@ -234,12 +238,9 @@ export const Icons = () => (
                     y2="311.543"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stopColor="#FFEF26" />
-                    <stop offset="0.02" stopColor="#FFEA21" />
-                    <stop offset="0.14" stopColor="#FED70F" />
-                    <stop offset="0.25" stopColor="#FDCC04" />
-                    <stop offset="0.38" stopColor="#FDC800" />
-                    <stop offset="1" stopColor="#F18F34" />
+                    {/* the underscore below the X and the T */}
+                    <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
                 </linearGradient>
             </defs>
         </symbol>
