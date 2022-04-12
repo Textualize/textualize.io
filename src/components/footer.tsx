@@ -5,15 +5,16 @@ import { Logo } from "./logo"
 
 const DISPLAY_SCROLL_HINT = false // set to `true` to re-enable the floating down arrow
 
-let intersectionObserverInitialised: boolean = false
-
 export const Footer = (): JSX.Element => {
-    React.useEffect(() => {
-        if (intersectionObserverInitialised) {
-            return
-        }
-        initIntersectionObserver()
-    })
+    React.useEffect(
+        () => {
+            const oberver = initFooterIntersectionObserver()
+            return function disconnectObserver() {
+                oberver.disconnect()
+            }
+        },
+        [] // only on mount
+    )
 
     return (
         <div className="footer__wrapper">
@@ -83,10 +84,10 @@ export const Footer = (): JSX.Element => {
     )
 }
 
-function initIntersectionObserver(): void {
+function initFooterIntersectionObserver(): IntersectionObserver {
     const footerEl = document.querySelector("footer") as HTMLElement
 
-    const observerProjects = new window.IntersectionObserver(
+    const observerFooter = new window.IntersectionObserver(
         function (entries) {
             entries.forEach(function (item) {
                 footerEl.classList.toggle("footer--visible", item.isIntersecting)
@@ -97,7 +98,7 @@ function initIntersectionObserver(): void {
             threshold: 0.3,
         }
     )
-    observerProjects.observe(footerEl)
+    observerFooter.observe(footerEl)
 
-    intersectionObserverInitialised = true
+    return observerFooter
 }
