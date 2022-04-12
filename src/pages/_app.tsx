@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <>
             <Head>
                 <title>Textualize</title>
+                <meta name="description" content="Because Terminals are here to stay" />
                 <link rel="icon" href="/textualize-logo.svg" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
