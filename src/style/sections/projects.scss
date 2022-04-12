@@ -14,14 +14,14 @@
         --triangle-height: 30px;
 
         @media (min-width: $breakpoint-tablet) {
-            top: -280px;
-            height: 450px;
+            top: -180px;
+            height: 370px;
             --triangle-height: 80px;
         }
 
         @media (min-width: $breakpoint-desktop) {
-            top: -400px;
-            height: 610px;
+            top: -260px;
+            height: 480px;
             --triangle-height: 110px;
         }
 
@@ -51,12 +51,12 @@
 
         @media (min-width: $breakpoint-tablet) {
             font-size: $font-48;
-            margin: 150px 0 164px;
+            margin: 80px 0 164px;
         }
 
         @media (min-width: $breakpoint-desktop) {
             font-size: $font-62;
-            margin: 245px 0;
+            margin: 100px 0 200px 0;
         }
     }
 
