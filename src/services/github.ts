@@ -1,16 +1,13 @@
+import { ProjectData, ProjectUrl, RepoId } from "../domain"
+import { humanizeStargazersCount } from "../helpers/conversion-helpers"
+import * as projectServices from "./projects"
+
 const REPO_URL_REGEX = /^https:\/\/github.com\/(?<owner>[^/]+)\/(?<repo>[^/]+)$/
 const REPO_URL_PATTERN = "https://github.com/{owner}/{repo}"
 const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
 
-export interface RepoData {
-    // N.B. We follow GitHub's own conventions there:
-    // @link https://docs.github.com/en/rest/reference/repos#get-a-repository
-    owner: string
-    repo: string
-}
-
 export interface GitHubRepoStatistics {
-    repo: RepoData
+    repoId: RepoId
     starsCount: number
 }
 
@@ -18,32 +15,96 @@ const gitHubApiHeaders = new Headers({
     Accept: "application/vnd.github.v3+json",
 })
 
-export async function repoStatistics(repo: RepoData): Promise<GitHubRepoStatistics> {
-    const targetEndpointUrl = repoDataApiEndpointUrl(repo)
-    console.debug("Fetching GitHub repo stats for repo ", repo, "...")
+export async function projectsWithCurrentStarsCounts(): Promise<ProjectData[]> {
+    const projectsFromToml = await projectServices.projects()
+
+    // Each promise fetches the GitHub stats for a single repo...
+    const repositoriesStatsPromises = projectsFromToml.map((projectData) => {
+        return repoStatistics(projectData.codeRepoId)
+    })
+    // ...But we launch them in parallel:
+    const repositoriesStatsSettledPromises = await Promise.allSettled(repositoriesStatsPromises)
+
+    // Now we just have to replace the "stars" from the TOML with the ones we got from the GitHub API
+    // (but only for successfully fulfilled Promises)
+    return projectsFromToml.map((projectData, index) => {
+        let stars = projectData.stars // our fallback value, as stored in the TOML file
+
+        const matchingRepositoriesStatsSettledPromise = repositoriesStatsSettledPromises[index]
+        switch (matchingRepositoriesStatsSettledPromise.status) {
+            case "fulfilled":
+                // Replace this value with the dynamically retrieved one:
+                const repoStats = matchingRepositoriesStatsSettledPromise.value
+                stars = humanizeStargazersCount(repoStats.starsCount)
+                break
+            case "rejected":
+                console.error(
+                    "Could not fetch GitHub repo stats for repo ",
+                    projectData.codeRepoId,
+                    ": ",
+                    matchingRepositoriesStatsSettledPromise.reason,
+                    ". Fall back to value from TOML: ",
+                    stars
+                )
+                break
+        }
+
+        return {
+            ...projectData,
+            stars,
+        }
+    })
+}
+
+//
+// const githubStatsForRepo = (
+//     projectsStatistics: GitHubRepoStatistics[],
+//     repo: RepoId
+// ): GitHubRepoStatistics | null => {
+//     for (const projectStats of projectsStatistics) {
+//         if (projectStats.repoId.owner === repo.owner && projectStats.repoId.repo === repo.repo) {
+//             return projectStats
+//         }
+//     }
+//     return null
+// }
+
+export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatistics> {
+    const targetEndpointUrl = repoDataApiEndpointUrl(repoId)
+    console.debug("Fetching GitHub repo stats for repo ", repoId, "...")
     const resp = await fetch(targetEndpointUrl, {
         headers: gitHubApiHeaders,
     })
-    const respData = await resp.json()
+    if (resp.status !== 200) {
+        throw new Error(
+            `GitHub repo stats for repo "${repoId.owner}/${repoId.repo}" failed: status code=${resp.status}`
+        )
+    }
 
+    const respData = await resp.json()
     const stargazersCount = respData["stargazers_count"]
-    console.debug("Stargazers count for repo ", repo, ": ", stargazersCount)
+    console.debug("Stargazers count for repo ", repoId, ": ", stargazersCount)
 
     return {
-        repo,
+        repoId,
         starsCount: stargazersCount,
     }
 }
 
-export function repoFromUrl(repoUrl: string): RepoData {
+export function repoIdFromUrl(repoUrl: string): RepoId {
     const regexMatch = REPO_URL_REGEX.exec(repoUrl)
-    return { owner: regexMatch.groups["owner"], repo: regexMatch.groups["repo"] }
+    if (!regexMatch) {
+        throw new Error(`Can't extract a repoId from repo URL "${repoUrl}"`)
+    }
+    // @ts-ignore
+    const { owner, repo } = regexMatch.groups
+    return { owner, repo }
 }
 
-export function repoUrl(repo: RepoData): string {
-    return REPO_URL_PATTERN.replaceAll("{owner}", repo.owner).replaceAll("{repo}", repo.repo)
+export function repoUrl(repoId: RepoId): string {
+    return REPO_URL_PATTERN.replace("{owner}", repoId.owner).replace("{repo}", repoId.repo)
 }
 
-export function repoDataApiEndpointUrl(repo: RepoData): string {
-    return GET_REPO_API_URL_PATTERN.replaceAll("{owner}", repo.owner).replaceAll("{repo}", repo.repo)
+export function repoDataApiEndpointUrl(repoId: RepoId): string {
+    return GET_REPO_API_URL_PATTERN.replace("{owner}", repoId.owner).replace("{repo}", repoId.repo)
 }

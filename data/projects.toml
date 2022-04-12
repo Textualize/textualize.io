@@ -1,6 +1,6 @@
 [[projects]]
 headline = "Textual"
-stars = "9k"
+stars = "9k" # stars will be replaced with dynamic ones at build time, so this is just a fallback value
 desc = "Build amazing TUIs (Text User Interfaces) with this innovative Python framework"
 code = "https://github.com/Textualize/textual"
 # no online docs yet
