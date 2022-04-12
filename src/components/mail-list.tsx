@@ -2,10 +2,10 @@ import React from "react"
 import type { ChangeEvent, MouseEvent } from "react"
 import { AppConfig } from "../config"
 
-export const MailList = () => {
+export const MailList = (): JSX.Element => {
     const [email, setEmail] = React.useState<string>("")
     const [emailWasFocused, setEmailWasFocused] = React.useState<boolean>(false)
-    const emailInputRef = React.useRef<HTMLInputElement | null>()
+    const emailInputRef = React.useRef<HTMLInputElement>(null)
 
     const emailInputWidth = email ? `${email.length}.3ch` : "2ch"
 
@@ -14,7 +14,7 @@ export const MailList = () => {
         setEmailWasFocused(true)
     }
     const onClick = (e: MouseEvent<HTMLDivElement>) => {
-        if (!emailInputRef) {
+        if (!emailInputRef.current) {
             return
         }
         const clickedElement = e.target as HTMLElement

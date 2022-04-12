@@ -1,10 +1,11 @@
+import type { AppProps } from "next/app"
 import Head from "next/head"
 import React from "react"
 import "../style/index.scss"
 
 /* eslint @next/next/no-page-custom-font: "off" */
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
