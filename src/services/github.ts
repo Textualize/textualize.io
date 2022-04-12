@@ -16,19 +16,19 @@ const gitHubApiHeaders = new Headers({
 })
 
 export async function projectsWithCurrentStarsCounts(): Promise<ProjectData[]> {
-    const projectsFromToml = await projectServices.projects()
+    const projectsFromJson = await projectServices.projects()
 
     // Each promise fetches the GitHub stats for a single repo...
-    const repositoriesStatsPromises = projectsFromToml.map((projectData) => {
+    const repositoriesStatsPromises = projectsFromJson.map((projectData) => {
         return repoStatistics(projectData.codeRepoId)
     })
     // ...But we launch them in parallel:
     const repositoriesStatsSettledPromises = await Promise.allSettled(repositoriesStatsPromises)
 
-    // Now we just have to replace the "stars" from the TOML with the ones we got from the GitHub API
+    // Now we just have to replace the "stars" from the JSON with the ones we got from the GitHub API
     // (but only for successfully fulfilled Promises)
-    return projectsFromToml.map((projectData, index) => {
-        let stars = projectData.stars // our fallback value, as stored in the TOML file
+    return projectsFromJson.map((projectData, index) => {
+        let stars = projectData.stars // our fallback value, as stored in the JSON file
 
         const matchingRepositoriesStatsSettledPromise = repositoriesStatsSettledPromises[index]
         switch (matchingRepositoriesStatsSettledPromise.status) {
@@ -43,7 +43,7 @@ export async function projectsWithCurrentStarsCounts(): Promise<ProjectData[]> {
                     projectData.codeRepoId,
                     ": ",
                     matchingRepositoriesStatsSettledPromise.reason,
-                    ". Fall back to value from TOML: ",
+                    ". Fall back to value from JSON: ",
                     stars
                 )
                 break

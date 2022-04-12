@@ -1,93 +1,31 @@
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import React from "react"
+import * as themeServices from "../services/theme"
 import "../style/index.scss"
 
 /* eslint @next/next/no-page-custom-font: "off" */
 
 function MyApp({ Component, pageProps }: AppProps) {
+    React.useEffect(
+        () => {
+            themeServices.initTheme()
+        },
+        [] // trigger only once, when the component is initialised
+    )
+
     return (
         <>
             <Head>
                 <title>Textualize</title>
+                <meta name="description" content="Because Terminals are here to stay" />
                 <link rel="icon" href="/textualize-logo.svg" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet" />
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-            (function() {
-              try {
-                var theme = localStorage.getItem('theme');
-                if (theme === 'dark') {
-                  return;
-                }
-                
-                if (theme === 'light' || window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-                  document.documentElement.setAttribute('light', true);
-                }
-              } catch (e) {
-                console.error(e);
-              }
-            })();
-          `,
-                    }}
-                />
+                <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;display=swap" rel="stylesheet" />
             </Head>
 
             <Component {...pageProps} />
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-            (function() {
-              // theme toggler listener
-              var themeToggler = document.getElementById('theme-toggler');
-              themeToggler.addEventListener('click', function() {
-                try {
-                  if (document.documentElement.getAttribute('light')) {
-                    localStorage.setItem('theme', 'dark');
-                    document.documentElement.removeAttribute('light');
-                  } else {
-                    localStorage.setItem('theme', 'light');
-                    document.documentElement.setAttribute('light', true);
-                  }
-                } catch (e) {
-                  console.error(e);
-                }
-              });
-
-              // Intersection Observer - Projects
-              document.querySelectorAll('.project__editor-back-layout-wrapper').forEach(function(el) {
-                var observerProjects = new window.IntersectionObserver(function(entries) { 
-                  entries.forEach(function(item) {
-                    if (item.isIntersecting) {
-                      el.classList.add('project__editor-back-layout-wrapper--visible');
-                    }
-                  });
-                }, { 
-                  rootMargin: "0px",
-                  threshold: 1.0,
-                });
-                observerProjects.observe(el);
-              });
-
-              // Intersection Observer - Footer
-              var footerEl = document.querySelector('footer');
-              var observerProjects = new window.IntersectionObserver(function(entries) { 
-                entries.forEach(function(item) {
-                  footerEl.classList.toggle('footer--visible', item.isIntersecting);
-                });
-              }, {
-                rootMargin: "0px",
-                threshold: 0.3,
-              });
-              observerProjects.observe(footerEl);
-              
-            })();
-          `,
-                }}
-            />
         </>
     )
 }
