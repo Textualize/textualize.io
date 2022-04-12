@@ -1,8 +1,11 @@
-$border: 1px solid #505050;
-$editor-body-color: #2d2c2d;
-$editor-head-color: $editor-body-color;
+$editor-head-body-separator: 1px solid #303030;
+$editor-bg-color: #292929;
+$editor-body-bg-color: $editor-bg-color;
+$editor-head-bg-color: $editor-bg-color;
+$editor-tab-text-color: #b4b4b4;
 $editor-body-radius: 10px;
-$editor-tab-body-radius: 8px;
+$editor-dot-size: 12px;
+$editor-dot-gap: 7px;
 
 .editor {
     width: 100%;
@@ -10,23 +13,25 @@ $editor-tab-body-radius: 8px;
     overflow: hidden;
 
     &__head {
-        display: flex;
-        gap: $space-8;
-        align-items: center;
+        position: relative;
         height: $space-7;
-        background-color: $editor-head-color;
+        background-color: $editor-head-bg-color;
         padding: 0 $space-4;
     }
 
     &__dots {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: $space-2 0 0 $space-2;
         display: flex;
-        gap: 7px;
+        gap: $editor-dot-gap;
     }
 
     &__dot {
         flex-shrink: 0;
-        width: 12px;
-        height: 12px;
+        width: $editor-dot-size;
+        height: $editor-dot-size;
         border-radius: 50%;
 
         &--red {
@@ -43,32 +48,18 @@ $editor-tab-body-radius: 8px;
     }
 
     &__tab {
-        position: relative;
-        font-size: $font-14;
+        width: 100%;
+        font-size: $font-12;
         font-weight: 600;
-        padding: $space-2 $space-6 $space-1;
-        align-self: flex-end;
-        margin-bottom: -1px;
-        background-color: $editor-body-color;
-        border: $border;
-        border-bottom: none;
-        border-radius: $editor-tab-body-radius $editor-tab-body-radius 0 0;
-        color: #ffffff;
-        &::after {
-            content: "";
-            left: 0;
-            bottom: -3px;
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 4px;
-            background-color: $editor-body-color;
-        }
+        text-align: center;
+        padding-top: 5px;
+        color: $editor-tab-text-color;
+        font-family: $terminal-font-family;
     }
 
     &__body {
-        border-top: $border;
-        background-color: $editor-body-color;
+        border-top: $editor-head-body-separator;
+        background-color: $editor-body-bg-color;
         padding: $space-1;
         min-height: 150px;
     }
