@@ -14,7 +14,6 @@
         "ci:check": "npm run lint && npm run format:check&& npm run types:check"
     },
     "dependencies": {
-        "@iarna/toml": "^2.2.5",
         "framer-motion": "^6.2.8",
         "humanize-plus": "^1.8.2",
         "next": "^12.1.4",
