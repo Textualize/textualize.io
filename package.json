@@ -1,9 +1,8 @@
 {
     "private": true,
     "engines": {
-        "node": ">=14.0.0"
+        "node": "14.x"
     },
-    "type": "module",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
