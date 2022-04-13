@@ -13,3 +13,17 @@
 .u-no-wrap {
     white-space: nowrap;
 }
+
+.hidden-on-mobile {
+    display: none;
+    @media (min-width: $breakpoint-tablet) {
+        display: inline;
+    }
+}
+
+.hidden-on-mobile-block {
+    display: none;
+    @media (min-width: $breakpoint-tablet) {
+        display: block;
+    }
+}

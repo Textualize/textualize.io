@@ -47,9 +47,14 @@ export const MailList = (): JSX.Element => {
                 >
                     <p className="mail-list__terminal">
                         <span className="prompt">&gt;&gt;&gt;</span>&nbsp;
-                        <span style={{ color: "#ab9df2", textShadow: "0px 0px 16px #ab9df2" }}>textualize.io</span>
+                        <span
+                            className="hidden-on-mobile"
+                            style={{ color: "#ab9df2", textShadow: "0px 0px 16px #ab9df2" }}
+                        >
+                            textualize.io
+                        </span>
                         <span style={{ color: "#78dce8", textShadow: "0px 0px 16px #78dce8" }}>
-                            .email&nbsp;=&nbsp;
+                            <span className="hidden-on-mobile">.</span>email=
                         </span>
                         <span style={{ color: "#a9dc76", textShadow: "0px 0px 16px #a9dc76" }}>&quot;</span>
                         <input

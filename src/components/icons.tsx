@@ -1,12 +1,12 @@
 import React from "react"
 
 const TEXTUALIZE_LOGO_COLORS = {
-    blueLight: "#4a34a8",
-    blue: "#3636bd",
-    blueDarker: "#001e97",
-    pinkLight: "#bd6bbd",
-    pink: "#9d4dbd",
-    pinkBlue: "#6f4abd",
+    blueLight: "#6748bd",
+    blue: "#1d34ba",
+    blueDarker: "#021e93",
+    pinkLight: "#bd6ebd",
+    pink: "#bb50bb",
+    pinkDark: "#6f4abd",
 }
 
 export const Icons = () => (
@@ -112,8 +112,8 @@ export const Icons = () => (
                 >
                     {/* the bottom left branch of the X */}
                     <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
-                    <stop offset="0.38" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
-                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkBlue} />
+                    <stop offset="0.4" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkDark} />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_277_67"
@@ -125,7 +125,7 @@ export const Icons = () => (
                 >
                     {/* the underscore below the X and the T */}
                     <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
-                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkDark} />
                 </linearGradient>
             </defs>
         </symbol>
@@ -228,7 +228,7 @@ export const Icons = () => (
                     {/* the bottom left branch of the X */}
                     <stop stopColor={TEXTUALIZE_LOGO_COLORS.pinkLight} />
                     <stop offset="0.38" stopColor={TEXTUALIZE_LOGO_COLORS.pink} />
-                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkBlue} />
+                    <stop offset="1" stopColor={TEXTUALIZE_LOGO_COLORS.pinkDark} />
                 </linearGradient>
                 <linearGradient
                     id="paint3_linear_181_383"
