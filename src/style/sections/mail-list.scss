@@ -1,13 +1,15 @@
 $terminal-green: #a9dc76;
 $terminal-yellow: #ffd866;
+$mail-list-border: none; // 2px solid var(--mail-list-border-color)
+$mail-list-box-shadow: 0px 6px 48px rgb(0 0 0 / 40%);
 
 .mail-list {
     background: var(--mail-list-bg);
-    border: 2px solid var(--mail-list-border-color);
+    border: $mail-list-border;
     border-radius: 15px;
     margin: 66px auto 0;
     padding: $space-5 $space-3 $space-3;
-    box-shadow: var(--mail-list-box-shadow);
+    box-shadow: $mail-list-box-shadow; // var(--mail-list-box-shadow);
 
     @media (min-width: $breakpoint-tablet) {
         max-width: 689px;
@@ -54,6 +56,7 @@ $terminal-yellow: #ffd866;
         color: $terminal-green;
         overflow: visible;
         width: 2ch;
+        text-align: center;
     }
 
     &__hint {

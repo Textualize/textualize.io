@@ -6,15 +6,16 @@ interface ProjectsProps {
     projectsData: ProjectData[]
 }
 
-let intersectionObserverInitialised: boolean = false
-
 export const Projects = (props: ProjectsProps): JSX.Element => {
-    React.useEffect(() => {
-        if (intersectionObserverInitialised) {
-            return
-        }
-        initIntersectionObserver()
-    })
+    React.useEffect(
+        () => {
+            const obervers = initProjectBackgroundsIntersectionObservers()
+            return function disconnectObservers() {
+                obervers.forEach((obs) => obs.disconnect())
+            }
+        },
+        [] // only on mount
+    )
 
     return (
         <section className="projects">
@@ -34,7 +35,9 @@ export const Projects = (props: ProjectsProps): JSX.Element => {
     )
 }
 
-function initIntersectionObserver(): void {
+function initProjectBackgroundsIntersectionObservers(): IntersectionObserver[] {
+    const observers: IntersectionObserver[] = []
+
     document.querySelectorAll(".project__editor-back-layout-wrapper").forEach(function (el) {
         const observerProjects = new window.IntersectionObserver(
             function (entries) {
@@ -50,7 +53,8 @@ function initIntersectionObserver(): void {
             }
         )
         observerProjects.observe(el)
+        observers.push(observerProjects)
     })
 
-    intersectionObserverInitialised = true
+    return observers
 }
