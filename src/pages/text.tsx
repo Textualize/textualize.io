@@ -1,13 +1,8 @@
 import React from "react"
-import { Footer } from "../components/footer"
-import { Icons } from "../components/icons"
-import { Nav } from "../components/nav"
 
 const Page = () => (
     <>
-        <Icons />
-        <Nav />
-        <main className="container container--text">
+        <div className="container container--text">
             <h1>H1 Hello, world!</h1>
             <p>
                 Lorem ipsum dolor sit amet, <a href="#">consectetur</a> adipisicing elit. Enim ullam, voluptatibus
@@ -51,8 +46,7 @@ const Page = () => (
                 <li>Lorem ipsum dolor sit amet</li>
                 <li>Lorem ipsum dolor sit amet</li>
             </ol>
-        </main>
-        <Footer />
+        </div>
     </>
 )
 

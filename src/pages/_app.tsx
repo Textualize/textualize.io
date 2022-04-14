@@ -1,6 +1,7 @@
 import React from "react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
+import { Layout } from "../components/layout"
 import * as themeServices from "../services/shared/theme"
 import "../style/index.scss"
 
@@ -25,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;display=swap" rel="stylesheet" />
             </Head>
 
-            <Component {...pageProps} />
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </>
     )
 }

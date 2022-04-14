@@ -1,10 +1,7 @@
 import React from "react"
 import type { GetStaticProps } from "next"
-import { Footer } from "../components/footer"
 import { Hero } from "../components/hero"
-import { Icons } from "../components/icons"
 import { MailList } from "../components/mail-list"
-import { Nav } from "../components/nav"
 import { ProjectsIndex } from "../components/projects-index"
 import type { ProjectData } from "../domain"
 import * as githubBackendServices from "../services/backend/github"
@@ -17,14 +14,9 @@ interface HomePageProps {
 export default function HomePage(props: HomePageProps) {
     return (
         <>
-            <Icons />
-            <Nav />
-            <main>
-                <Hero />
-                <MailList />
-                <ProjectsIndex projectsData={props.projectsData} />
-            </main>
-            <Footer />
+            <Hero />
+            <MailList />
+            <ProjectsIndex projectsData={props.projectsData} />
         </>
     )
 }

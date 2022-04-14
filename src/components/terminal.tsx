@@ -1,4 +1,11 @@
-export const Terminal = ({ tabName }: { tabName?: string }) => {
+import type { ProjectData } from "../domain"
+
+interface TerminalProps {
+    videoUrl: string
+    tabName?: string
+}
+
+export const Terminal = (props: TerminalProps) => {
     return (
         <div className="terminal">
             <div className="terminal__head">
@@ -7,11 +14,11 @@ export const Terminal = ({ tabName }: { tabName?: string }) => {
                     <div className="terminal__dot terminal__dot--yellow"></div>
                     <div className="terminal__dot terminal__dot--green"></div>
                 </div>
-                {tabName && <div className="terminal__tab">{tabName}</div>}
+                {props.tabName ? <div className="terminal__tab">{props.tabName}</div> : null}
             </div>
             <div className="terminal__body">
                 <div className="video">
-                    <video src="/video/test.mp4" className="video__content" autoPlay loop muted playsInline />
+                    <video src={props.videoUrl} className="video__content" autoPlay loop muted playsInline />
                 </div>
             </div>
         </div>
