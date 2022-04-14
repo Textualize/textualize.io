@@ -1,4 +1,5 @@
 import React from "react"
+import { FILTER_URL_HASH_PREFIX } from "../constants"
 import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
 import { PROJECT_NAMES } from "../i18n"
 import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
@@ -15,6 +16,17 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
 
     const [categoriesFilter, setCategoriesFilter] = React.useState<string[]>([])
 
+    React.useEffect(
+        function activateFilterFromUrlOnMount() {
+            if (window?.location?.hash.startsWith(FILTER_URL_HASH_PREFIX)) {
+                const filteredCategory = window.location.hash.replace(FILTER_URL_HASH_PREFIX, "")
+                // N.B. Without the `setTimeout` we get errors popping from the `ǹext/image` components
+                setTimeout(setCategoriesFilter.bind(null, [filteredCategory]), 0)
+            }
+        },
+        [] // only on mount
+    )
+
     const categories = galleryProjectsSharedServices.projectGalleryCategories(galleryItems)
 
     const galleryItemsToDisplay = galleryItems.filter((item) => {
@@ -30,7 +42,6 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
     })
 
     const onClearFiltersClick = (e: React.MouseEvent): void => {
-        e.preventDefault()
         setCategoriesFilter([])
     }
     const onCategoryClick = (category: Category): void => {

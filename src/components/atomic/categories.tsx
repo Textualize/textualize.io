@@ -1,4 +1,5 @@
 import React from "react"
+import { FILTER_URL_HASH_PREFIX } from "../../constants"
 import type { Category } from "../../domain"
 
 export interface CategoriesProps {
@@ -19,7 +20,6 @@ export const Categories = (props: CategoriesProps): JSX.Element => {
     }
 
     const onCategoryClick = (category: Category, e: React.MouseEvent): void => {
-        e.preventDefault()
         props.onCategoryClick?.(category)
     }
 
@@ -43,7 +43,11 @@ export const Categories = (props: CategoriesProps): JSX.Element => {
                 const commonProps = { className: classes.join(" "), key: category }
 
                 return props.onCategoryClick ? (
-                    <a {...commonProps} href="#" onClick={onCategoryClick.bind(null, category)}>
+                    <a
+                        {...commonProps}
+                        href={`${FILTER_URL_HASH_PREFIX}${category}`}
+                        onClick={onCategoryClick.bind(null, category)}
+                    >
                         {categoryContent}
                     </a>
                 ) : (
