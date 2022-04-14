@@ -6,15 +6,17 @@ export const Hero = () => {
     return (
         <section className="container hero">
             <div className="hero__text">
-                <h1 className="hero__headline">                  
+                <h1 className="hero__headline">
                     <span className="u-no-wrap">
                         We ♥ terminals
                         <span className="hero__cursor" />
                     </span>
                 </h1>
                 <p className="hero__desc">
-                   The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever thought.
-                   <br/><br/>
+                    The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
+                    thought.
+                    <br />
+                    <br />
                     <a href="#">Read more...</a>
                 </p>
                 <a href={AppConfig.hiringUrl} className="button button--hero" target="_blank" rel="noreferrer">
