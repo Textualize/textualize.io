@@ -2,10 +2,10 @@ $editor-bg-color: #292929;
 $editor-head-body-separator: none; // invisible separator at the moment
 $editor-body-bg-color: $editor-bg-color;
 $editor-head-bg-color: $editor-bg-color;
-$editor-tab-text-color: #b4b4b4;
+$editor-tab-text-color: rgba(255,255,255,0.5);
 $editor-body-radius: 10px;
 $editor-dot-size: 8px;
-$editor-dot-gap: 7px;
+$editor-dot-gap: 5px;
 
 .editor {
     width: 100%;
@@ -21,7 +21,7 @@ $editor-dot-gap: 7px;
 
     &__dots {
         position: absolute;
-        top: 10px;
+        top: 8px;
         left: $space-3;
         display: flex;
         gap: $editor-dot-gap;
@@ -48,9 +48,9 @@ $editor-dot-gap: 7px;
     &__tab {
         width: 100%;
         font-size: $font-10;
-        font-weight: 600;
+        font-weight: 700;
         text-align: center;
-        padding-top: 5px;
+        padding-top: 4px;
         color: $editor-tab-text-color;
         // font-family: $terminal-font-family;
     }
