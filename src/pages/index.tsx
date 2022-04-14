@@ -1,18 +1,20 @@
-import type { GetStaticProps } from "next"
 import React from "react"
+import type { GetStaticProps } from "next"
 import { Footer } from "../components/footer"
 import { Hero } from "../components/hero"
 import { Icons } from "../components/icons"
 import { MailList } from "../components/mail-list"
 import { Nav } from "../components/nav"
-import { Projects } from "../components/projects"
-import { ProjectData } from "../domain"
-import * as githubServices from "../services/github"
+import { ProjectsIndex } from "../components/projects-index"
+import type { ProjectData } from "../domain"
+import * as githubBackendServices from "../services/backend/github"
+import * as projectsBackendServices from "../services/backend/projects"
 
-interface HomeProps {
+interface HomePageProps {
     projectsData: ProjectData[]
 }
-export default function Home(props: HomeProps) {
+
+export default function HomePage(props: HomePageProps) {
     return (
         <>
             <Icons />
@@ -20,7 +22,7 @@ export default function Home(props: HomeProps) {
             <main>
                 <Hero />
                 <MailList />
-                <Projects projectsData={props.projectsData} />
+                <ProjectsIndex projectsData={props.projectsData} />
             </main>
             <Footer />
         </>
@@ -30,7 +32,8 @@ export default function Home(props: HomeProps) {
 export const getStaticProps: GetStaticProps = async (context) => {
     // N.B. This is only executed server-side, thanks to the magic of Next.js 👌
     // @link https://nextjs.org/docs/api-reference/data-fetching/get-static-props
-    const projects = await githubServices.projectsWithCurrentStarsCounts()
+    const projects = await projectsBackendServices.projects()
+    await githubBackendServices.attachCurrentStarsCountsToRepositories(projects)
 
     return {
         props: { projectsData: projects },

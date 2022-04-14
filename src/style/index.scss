@@ -7,18 +7,21 @@
 // components
 @import "./components/input.scss";
 @import "./components/badge.scss";
-@import "./components/button.scss";
+@import "components/atomic/button";
 @import "./components/container.scss";
-@import "./components/editor.scss";
+@import "./components/terminal";
 @import "./components/video.scss";
 @import "./components/nav.scss";
 @import "./components/logo.scss";
+@import "components/atomic/categories";
 
 // modules
 @import "./sections/hero.scss";
 @import "./sections/mail-list.scss";
-@import "./sections/projects.scss";
+@import "./sections/projects-index.scss";
 @import "./sections/project.scss";
+@import "./sections/gallery-index.scss";
+@import "./sections/gallery-item.scss";
 @import "./sections/footer.scss";
 
 // utilities

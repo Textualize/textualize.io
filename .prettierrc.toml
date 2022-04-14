@@ -4,6 +4,6 @@ tabWidth = 4
 semi = false
 quoteProps = "consistent"
 
-importOrder = ["^React$", "^next(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"]
+importOrder = ["^node:", "^react$", "^next", "<THIRD_PARTY_MODULES>", "^[./]"]
 importOrderSeparation = false
 importOrderSortSpecifiers = true

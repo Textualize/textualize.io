@@ -1,74 +1,64 @@
 import React from "react"
-import { ProjectData } from "../domain"
-import { Editor } from "./editor"
+import type { ProjectData, ProjectId } from "../domain"
+import { Button, ButtonProps } from "./atomic/button"
+import { Terminal } from "./terminal"
 
-interface Props extends ProjectData {
+interface ProjectProps {
+    project: ProjectData
     nth: number
 }
 
-interface ButtonData {
-    text: string
-    url: string | null
-    color: "lilac" | "blue"
-    xlinkHref: string
-}
+const PROJECTS_WITH_GALLERY: ProjectId[] = ["rich"]
 
-export const Project = (props: Props) => {
-    const { headline, stars, desc, codeUrl, docsUrl, nth } = props
+export const Project = (props: ProjectProps) => {
+    const { project, nth } = props
 
-    const buttons: ButtonData[] = [
+    const buttons: ButtonProps[] = [
         {
             text: "Code",
-            url: codeUrl,
+            url: project.codeUrl,
             color: "lilac",
             xlinkHref: "#icon-github",
         },
         {
             text: "Docs",
-            url: docsUrl,
+            url: project.docsUrl,
             color: "blue",
             xlinkHref: "#icon-doc",
         },
     ]
 
+    if (PROJECTS_WITH_GALLERY.includes(project.id)) {
+        buttons.push({
+            text: "Gallery",
+            url: `/projects-using-${project.id}`,
+            color: "blue-light",
+            xlinkHref: "#icon-list",
+        })
+    }
+
     return (
-        <section className="container project">
-            <div className="project__editor-wrapper">
-                <div className="project__editor-back-layout-wrapper">
+        <section className="container project" id={`project-${project.id}`}>
+            <div className="project__terminal-wrapper">
+                <div className="project__terminal-back-layout-wrapper">
                     <div className={`project__back-layout project__back-layout-${nth}`} />
-                    <Editor tabName={headline} />
+                    <Terminal tabName={project.headline} />
                 </div>
             </div>
             <div className="project__text-wrapper">
                 <div className="project__head">
-                    <h3 className="project__headline">{headline}</h3>
+                    <h3 className="project__headline">{project.headline}</h3>
                     <div className="badge">
                         <svg height="1em" width="1em" className="badge__icon">
                             <use xlinkHref="#icon-start" />
                         </svg>
-                        <span className="badge__label">{stars}</span>
+                        <span className="badge__label">{project.stars}</span>
                     </div>
                 </div>
-                <p className="project__desc">{desc}</p>
+                <p className="project__desc">{project.desc}</p>
                 <div className="project__btns">
                     {buttons.map((buttonData) => {
-                        if (!buttonData.url) {
-                            return null
-                        }
-                        return (
-                            <a
-                                href={buttonData.url}
-                                className={`button button--${buttonData.color} u-fx-no-shrink`}
-                                target="_blank"
-                                rel="noreferrer"
-                                key={buttonData.text}
-                            >
-                                <svg height="1em" width="1em">
-                                    <use xlinkHref={buttonData.xlinkHref} />
-                                </svg>
-                                {buttonData.text}
-                            </a>
-                        )
+                        return <Button {...buttonData} key={buttonData.url} />
                     })}
                 </div>
             </div>

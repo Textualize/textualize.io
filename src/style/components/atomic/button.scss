@@ -25,11 +25,9 @@
 
     &--lilac {
         background: var(--button-lilac-bg);
-
         &:hover {
             background-color: var(--button-lilac-bg--hover);
         }
-
         &:active {
             background-color: var(--button-lilac-bg--active);
         }
@@ -37,13 +35,21 @@
 
     &--blue {
         background: var(--button-blue-bg);
-
         &:hover {
             background-color: var(--button-blue-bg--hover);
         }
-
         &:active {
             background-color: var(--button-blue-bg--active);
+        }
+    }
+
+    &--blue-light {
+        background: var(--button-blue-light-bg);
+        &:hover {
+            background-color: var(--button-blue-light-bg--hover);
+        }
+        &:active {
+            background-color: var(--button-blue-light-bg--active);
         }
     }
 

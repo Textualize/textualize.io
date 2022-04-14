@@ -15,6 +15,9 @@ $button-lilac-bg--active: darken($button-lilac-bg, 15%);
 $button-blue-bg: #4970bb;
 $button-blue-bg--hover: darken($button-blue-bg, 5%);
 $button-blue-bg--active: darken($button-blue-bg, 15%);
+$button-blue-light-bg: #6692f2;
+$button-blue-light-bg--hover: darken($button-blue-light-bg, 5%);
+$button-blue-light--active: darken($button-blue-light-bg, 15%);
 
 $button-hero-dark-1: #8652db;
 $button-hero-dark-1--hover: darken($button-hero-dark-1, 5%);
@@ -69,6 +72,9 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     --button-blue-bg: #{$button-blue-bg};
     --button-blue-bg--hover: #{$button-blue-bg--hover};
     --button-blue-bg--active: #{$button-blue-bg--active};
+    --button-blue-light-bg: #{$button-blue-light-bg};
+    --button-blue-light-bg--hover: #{$button-blue-light-bg--hover};
+    --button-blue-light-bg--active: #{$button-blue-light--active};
     --button-hero-bg: linear-gradient(91.54deg, #{$button-hero-dark-1} 0.98%, #{$button-hero-dark-2} 99.04%);
     --button-hero-bg--hover: linear-gradient(
         91.54deg,

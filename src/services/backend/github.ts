@@ -1,10 +1,17 @@
-import { ProjectData, ProjectUrl, RepoId } from "../domain"
-import { humanizeStargazersCount } from "../helpers/conversion-helpers"
-import * as projectServices from "./projects"
+import type { RepoId } from "../../domain"
+import { humanizeStargazersCount } from "../../helpers/conversion-helpers"
 
 const REPO_URL_REGEX = /^https:\/\/github.com\/(?<owner>[^/]+)\/(?<repo>[^/]+)$/
 const REPO_URL_PATTERN = "https://github.com/{owner}/{repo}"
 const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
+
+// Start the app with `DONT_FETCH_DATA=1 npm run dev` to mock GitHub API calls locally
+const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_DATA"])
+
+export interface GitHubRepoRelatedData {
+    codeUrl: string | null // e.g. "https://github.com/Textualize/textual"
+    stars: string | null // e.g. "9.5k",
+}
 
 export interface GitHubRepoStatistics {
     repoId: RepoId
@@ -15,48 +22,47 @@ const gitHubApiHeaders = new Headers({
     Accept: "application/vnd.github.v3+json",
 })
 
-export async function projectsWithCurrentStarsCounts(): Promise<ProjectData[]> {
-    const projectsFromJson = await projectServices.projects()
-
+export async function attachCurrentStarsCountsToRepositories(
+    repoRelatedDataItems: GitHubRepoRelatedData[]
+): Promise<void> {
     // Each promise fetches the GitHub stats for a single repo...
-    const repositoriesStatsPromises = projectsFromJson.map((projectData) => {
-        return repoStatistics(projectData.codeRepoId)
+    const repositoriesStatsPromises = repoRelatedDataItems.map((item) => {
+        const repoId = repoIdFromUrl(item.codeUrl ?? "")
+        return repoStatistics(repoId)
     })
     // ...But we launch them in parallel:
     const repositoriesStatsSettledPromises = await Promise.allSettled(repositoriesStatsPromises)
 
-    // Now we just have to replace the "stars" from the JSON with the ones we got from the GitHub API
+    // Now we just have to replace the "stars" of each object with the ones we got from the GitHub API
     // (but only for successfully fulfilled Promises)
-    return projectsFromJson.map((projectData, index) => {
-        let stars = projectData.stars // our fallback value, as stored in the JSON file
-
+    repoRelatedDataItems.map((item, index) => {
         const matchingRepositoriesStatsSettledPromise = repositoriesStatsSettledPromises[index]
         switch (matchingRepositoriesStatsSettledPromise.status) {
             case "fulfilled":
                 // Replace this value with the dynamically retrieved one:
                 const repoStats = matchingRepositoriesStatsSettledPromise.value
-                stars = humanizeStargazersCount(repoStats.starsCount)
+                const stars = humanizeStargazersCount(repoStats.starsCount)
+                console.debug(`Replacing "${item.stars}" stars with "${stars}" for repo "${item.codeUrl}"`)
+                item.stars = stars
                 break
             case "rejected":
                 console.error(
-                    "Could not fetch GitHub repo stats for repo ",
-                    projectData.codeRepoId,
-                    ": ",
-                    matchingRepositoriesStatsSettledPromise.reason,
-                    ". Fall back to value from JSON: ",
-                    stars
+                    `Could not fetch GitHub stats for repo "${item.codeUrl}": ${matchingRepositoriesStatsSettledPromise.reason}`
                 )
                 break
-        }
-
-        return {
-            ...projectData,
-            stars,
         }
     })
 }
 
 export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatistics> {
+    if (DONT_FETCH_DATA) {
+        console.debug("Returning fake random GitHub repo stats for repo ", repoId, "")
+        return {
+            repoId,
+            starsCount: 200 + Math.round(Math.random() * 10_000),
+        }
+    }
+
     const targetEndpointUrl = repoDataApiEndpointUrl(repoId)
     console.debug("Fetching GitHub repo stats for repo ", repoId, "...")
     const resp = await fetch(targetEndpointUrl, {
@@ -79,9 +85,9 @@ export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatisti
 }
 
 export function repoIdFromUrl(repoUrl: string): RepoId {
-    const regexMatch = REPO_URL_REGEX.exec(repoUrl)
+    const regexMatch = REPO_URL_REGEX.exec(repoUrl ?? "")
     if (!regexMatch) {
-        throw new Error(`Can't extract a repoId from repo URL "${repoUrl}"`)
+        throw new Error(`Not a GitHub repo URL: "${repoUrl}"`)
     }
     // @ts-ignore
     const { owner, repo } = regexMatch.groups

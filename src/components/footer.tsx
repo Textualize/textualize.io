@@ -1,5 +1,5 @@
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
 import { AppConfig } from "../config"
 import { Logo } from "./logo"
 

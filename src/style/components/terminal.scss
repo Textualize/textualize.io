@@ -1,0 +1,65 @@
+$terminal-bg-color: #292929;
+$terminal-head-body-separator: none; // invisible separator at the moment
+$terminal-body-bg-color: $terminal-bg-color;
+$terminal-head-bg-color: $terminal-bg-color;
+$terminal-tab-text-color: rgba(255, 255, 255, 0.5);
+$terminal-body-radius: 10px;
+$terminal-dot-size: 8px;
+$terminal-dot-gap: 5px;
+
+.terminal {
+    width: 100%;
+    border-radius: $terminal-body-radius;
+    overflow: hidden;
+
+    &__head {
+        position: relative;
+        height: $space-7;
+        background-color: $terminal-head-bg-color;
+        padding: 0 $space-4;
+    }
+
+    &__dots {
+        position: absolute;
+        top: 8px;
+        left: $space-3;
+        display: flex;
+        gap: $terminal-dot-gap;
+    }
+
+    &__dot {
+        width: $terminal-dot-size;
+        height: $terminal-dot-size;
+        border-radius: 50%;
+
+        &--red {
+            background-color: #ff5f57;
+        }
+
+        &--yellow {
+            background-color: #febc2e;
+        }
+
+        &--green {
+            background-color: #28c840;
+        }
+    }
+
+    &__tab {
+        width: 100%;
+        font-size: $font-10;
+        font-weight: 700;
+        text-align: center;
+        padding-top: 4px;
+        color: $terminal-tab-text-color;
+        // font-family: $terminal-font-family;
+    }
+
+    &__body {
+        border-top: $terminal-head-body-separator;
+        background-color: $terminal-body-bg-color;
+        padding: $space-1;
+        min-height: 150px;
+        margin-top: -1px; // just to remove the aliasing artefact when transforming or "perspectiving" the terminals 😅
+    }
+}

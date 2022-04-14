@@ -1,6 +1,7 @@
 export type ProjectUrl = string
 
 export interface ProjectData {
+    id: ProjectId
     headline: string
     stars: string
     desc: string
@@ -15,4 +16,27 @@ export interface RepoId {
     // @link https://docs.github.com/en/rest/reference/repos#get-a-repository
     owner: string
     repo: string
+}
+
+export type ProjectId = "textual" | "rich" | "rich-cli"
+
+export type Category = string
+
+export interface ImageProperties {
+    url: string
+    width: number
+    height: number
+}
+
+export interface ProjectGalleryItem {
+    projectId: ProjectId
+    id: string
+    title: string
+    image: ImageProperties | null
+    stars: string | null
+    websiteUrl: string | null
+    codeUrl: string | null
+    docsUrl: string | null
+    categories: Category[]
+    description: string
 }

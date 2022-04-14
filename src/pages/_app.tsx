@@ -1,7 +1,7 @@
+import React from "react"
 import type { AppProps } from "next/app"
 import Head from "next/head"
-import React from "react"
-import * as themeServices from "../services/theme"
+import * as themeServices from "../services/shared/theme"
 import "../style/index.scss"
 
 /* eslint @next/next/no-page-custom-font: "off" */

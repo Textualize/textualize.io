@@ -16,8 +16,12 @@
     "dependencies": {
         "@mdx-js/loader": "^2.1.1",
         "@next/mdx": "^12.1.5",
+        "fast-glob": "^3.2.11",
         "framer-motion": "^6.2.8",
+        "gray-matter": "^4.0.3",
         "humanize-plus": "^1.8.2",
+        "image-size": "^1.0.1",
+        "markdown-it": "^12.3.2",
         "next": "^12.1.4",
         "react": "17.0.2",
         "react-dom": "17.0.2",
@@ -26,6 +30,7 @@
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
         "@types/humanize-plus": "^1.8.0",
+        "@types/markdown-it": "^12.2.3",
         "@types/node": "^17.0.23",
         "@types/react": "^17.0.43",
         "eslint": "8.13.0",
