@@ -3,9 +3,9 @@ export const Terminal = ({ tabName }: { tabName?: string }) => {
         <div className="terminal">
             <div className="terminal__head">
                 <div className="terminal__dots">
-                    <div className="terminal__dot editor__dot--red"></div>
-                    <div className="terminal__dot editor__dot--yellow"></div>
-                    <div className="terminal__dot editor__dot--green"></div>
+                    <div className="terminal__dot terminal__dot--red"></div>
+                    <div className="terminal__dot terminal__dot--yellow"></div>
+                    <div className="terminal__dot terminal__dot--green"></div>
                 </div>
                 {tabName && <div className="terminal__tab">{tabName}</div>}
             </div>

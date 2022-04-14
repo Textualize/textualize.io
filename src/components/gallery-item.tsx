@@ -31,7 +31,7 @@ export const GalleryItem = (props: GalleryItemProps) => {
     }
 
     return (
-        <section className="container gallery-item">
+        <section className="container gallery-item" id={`gallery-item-${item.id}`}>
             <div className="gallery-item__image-wrapper">
                 <div className="gallery-item__image-back-layout-wrapper">
                     {item.image ? (

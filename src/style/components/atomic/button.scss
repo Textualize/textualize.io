@@ -43,13 +43,13 @@
         }
     }
 
-    &--yellow {
-        background: var(--button-yellow-bg);
+    &--blue-light {
+        background: var(--button-blue-light-bg);
         &:hover {
-            background-color: var(--button-yellow-bg--hover);
+            background-color: var(--button-blue-light-bg--hover);
         }
         &:active {
-            background-color: var(--button-yellow-bg--active);
+            background-color: var(--button-blue-light-bg--active);
         }
     }
 

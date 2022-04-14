@@ -32,13 +32,13 @@ export const Project = (props: ProjectProps) => {
         buttons.push({
             text: "Gallery",
             url: `/projects-using-${project.id}`,
-            color: "yellow",
-            xlinkHref: "#icon-doc",
+            color: "blue-light",
+            xlinkHref: "#icon-list",
         })
     }
 
     return (
-        <section className="container project">
+        <section className="container project" id={`project-${project.id}`}>
             <div className="project__terminal-wrapper">
                 <div className="project__terminal-back-layout-wrapper">
                     <div className={`project__back-layout project__back-layout-${nth}`} />

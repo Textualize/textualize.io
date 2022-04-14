@@ -15,7 +15,7 @@
     }
 
     @media (min-width: $breakpoint-desktop) {
-        gap: 140px;
+        gap: 50px;
     }
 
     &__text-wrapper {
@@ -29,6 +29,7 @@
     }
 
     &__image-wrapper {
+        min-width: 40%;
         max-width: 50%;
     }
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 export interface ButtonProps {
     text: string
     url: string | null
-    color: "lilac" | "blue" | "yellow"
+    color: "lilac" | "blue" | "blue-light"
     xlinkHref: string
 }
 export const Button = (props: ButtonProps): JSX.Element | null => {

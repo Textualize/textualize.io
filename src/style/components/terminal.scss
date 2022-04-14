@@ -60,6 +60,6 @@ $terminal-dot-gap: 5px;
         background-color: $terminal-body-bg-color;
         padding: $space-1;
         min-height: 150px;
-        margin-top: -1px; // just to remove the aliasing artefact when transforming or "perspectiving" the editors 😅
+        margin-top: -1px; // just to remove the aliasing artefact when transforming or "perspectiving" the terminals 😅
     }
 }

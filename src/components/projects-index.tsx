@@ -38,7 +38,7 @@ export const ProjectsIndex = (props: ProjectsIndexProps): JSX.Element => {
 function initProjectBackgroundsIntersectionObservers(): IntersectionObserver[] {
     const observers: IntersectionObserver[] = []
 
-    document.querySelectorAll(".project__editor-back-layout-wrapper").forEach(function (el) {
+    document.querySelectorAll(".project__terminal-back-layout-wrapper").forEach(function (el) {
         const projectObserver = new window.IntersectionObserver(
             function (entries) {
                 entries.forEach(function (item) {

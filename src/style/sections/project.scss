@@ -14,7 +14,7 @@ $terminal-width: 589px;
         &:nth-of-type(even) {
             flex-direction: row;
 
-            .project__editor-back-layout-wrapper--visible {
+            .project__terminal-back-layout-wrapper--visible {
                 .project__back-layout {
                     transform: rotate(5deg);
                 }
@@ -151,11 +151,11 @@ $terminal-width: 589px;
         gap: $space-5;
 
         @media (min-width: $breakpoint-tablet) {
-            gap: $space-6;
+            gap: $space-4;
         }
 
         @media (min-width: $breakpoint-desktop) {
-            gap: $space-10;
+            gap: $space-5;
         }
     }
 
@@ -164,11 +164,11 @@ $terminal-width: 589px;
         padding-inline: 1em;
 
         @media (min-width: $breakpoint-tablet) {
-            font-size: $font-20;
+            font-size: $font-14;
         }
 
         @media (min-width: $breakpoint-desktop) {
-            font-size: $font-22;
+            font-size: $font-18;
             padding-inline: 1.3em;
         }
     }
