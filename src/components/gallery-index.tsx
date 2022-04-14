@@ -1,0 +1,77 @@
+import React from "react"
+import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
+import { PROJECT_NAMES } from "../i18n"
+import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
+import { Categories } from "./atomic/categories"
+import { GalleryItem } from "./gallery-item"
+
+interface GalleryIndexProps {
+    projectId: ProjectId
+    galleryItems: ProjectGalleryItem[]
+}
+
+export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
+    const { projectId, galleryItems } = props
+
+    const [categoriesFilter, setCategoriesFilter] = React.useState<string[]>([])
+
+    const categories = galleryProjectsSharedServices.projectGalleryCategories(galleryItems)
+
+    const galleryItemsToDisplay = galleryItems.filter((item) => {
+        if (!categoriesFilter.length) {
+            return true
+        }
+        for (const categoryToDisplay of categoriesFilter) {
+            if (item.categories.includes(categoryToDisplay)) {
+                return true
+            }
+        }
+        return false
+    })
+
+    const onClearFiltersClick = (e: React.MouseEvent): void => {
+        e.preventDefault()
+        setCategoriesFilter([])
+    }
+    const onCategoryClick = (category: Category): void => {
+        setCategoriesFilter([category])
+    }
+
+    return (
+        <section className="gallery-items">
+            <div className="gallery-items__bg" />
+            <div className="container">
+                <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[projectId]}</h2>
+            </div>
+
+            <div className="gallery-items__categories">
+                <div className="container">
+                    We have projects in the following categories:
+                    <Categories
+                        categoriesWithCounts={categories}
+                        onCategoryClick={onCategoryClick}
+                        selectedCategories={categoriesFilter}
+                    />
+                    {categoriesFilter.length ? (
+                        <p className="hint">
+                            <a href="#" onClick={onClearFiltersClick}>
+                                ⨯ Clear filters
+                            </a>
+                        </p>
+                    ) : (
+                        <p className="hint">Click on a category to filter the projects.</p>
+                    )}
+                </div>
+            </div>
+
+            <div className="gallery-items__items">
+                {galleryItemsToDisplay.map((item, i) => (
+                    <React.Fragment key={item.id}>
+                        {i !== 0 && <hr className="container gallery-items__divider" />}
+                        <GalleryItem nth={i + 1} item={item} />
+                    </React.Fragment>
+                ))}
+            </div>
+        </section>
+    )
+}

@@ -1,8 +1,8 @@
-import Link from "next/link"
 import React from "react"
+import Link from "next/link"
 import { FiMoon, FiSun } from "react-icons/fi"
 import { AppConfig } from "../config"
-import * as themeServices from "../services/theme"
+import * as themeServices from "../services/shared/theme"
 import { Logo } from "./logo"
 
 export const Nav = (): JSX.Element => {

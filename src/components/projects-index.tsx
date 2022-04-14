@@ -1,17 +1,17 @@
-import React, { Fragment } from "react"
-import { ProjectData } from "../domain"
+import React from "react"
+import type { ProjectData } from "../domain"
 import { Project } from "./project"
 
-interface ProjectsProps {
+interface ProjectsIndexProps {
     projectsData: ProjectData[]
 }
 
-export const Projects = (props: ProjectsProps): JSX.Element => {
+export const ProjectsIndex = (props: ProjectsIndexProps): JSX.Element => {
     React.useEffect(
         () => {
-            const obervers = initProjectBackgroundsIntersectionObservers()
+            const observers = initProjectBackgroundsIntersectionObservers()
             return function disconnectObservers() {
-                obervers.forEach((obs) => obs.disconnect())
+                observers.forEach((obs) => obs.disconnect())
             }
         },
         [] // only on mount
@@ -25,10 +25,10 @@ export const Projects = (props: ProjectsProps): JSX.Element => {
             </div>
             <div className="projects__items">
                 {props.projectsData.map((project, i) => (
-                    <Fragment key={project.headline}>
+                    <React.Fragment key={project.id}>
                         {i !== 0 && <hr className="container projects__divider" />}
-                        <Project nth={i + 1} {...project} />
-                    </Fragment>
+                        <Project nth={i + 1} project={project} />
+                    </React.Fragment>
                 ))}
             </div>
         </section>
@@ -39,11 +39,11 @@ function initProjectBackgroundsIntersectionObservers(): IntersectionObserver[] {
     const observers: IntersectionObserver[] = []
 
     document.querySelectorAll(".project__editor-back-layout-wrapper").forEach(function (el) {
-        const observerProjects = new window.IntersectionObserver(
+        const projectObserver = new window.IntersectionObserver(
             function (entries) {
                 entries.forEach(function (item) {
                     if (item.isIntersecting) {
-                        el.classList.add("project__editor-back-layout-wrapper--visible")
+                        el.classList.add("project__terminal-back-layout-wrapper--visible")
                     }
                 })
             },
@@ -52,8 +52,8 @@ function initProjectBackgroundsIntersectionObservers(): IntersectionObserver[] {
                 threshold: 1.0,
             }
         )
-        observerProjects.observe(el)
-        observers.push(observerProjects)
+        projectObserver.observe(el)
+        observers.push(projectObserver)
     })
 
     return observers

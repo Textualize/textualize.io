@@ -70,7 +70,7 @@ export const MailList = (): JSX.Element => {
                         <span style={{ color: "#a9dc76", textShadow: "0px 0px 16px #a9dc76" }}>&quot;</span>
                     </p>
                 </form>
-                <p className="mail-list__hint">No spam. Only important updates about Textualize.</p>
+                <p className="hint">No spam. Only important updates about Textualize.</p>
             </div>
         </section>
     )

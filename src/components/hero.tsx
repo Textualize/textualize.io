@@ -1,6 +1,6 @@
 import React from "react"
 import { AppConfig } from "../config"
-import { Editor } from "./editor"
+import { Terminal } from "./terminal"
 
 export const Hero = () => {
     return (
@@ -24,7 +24,7 @@ export const Hero = () => {
                 <div className="hero__terminal-animation">
                     <div className="hero__terminal">
                         <div className="hero__terminal-back-layout" />
-                        <Editor />
+                        <Terminal />
                     </div>
                 </div>
             </div>

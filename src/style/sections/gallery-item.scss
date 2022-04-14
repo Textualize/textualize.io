@@ -1,10 +1,8 @@
-$terminal-width: 589px;
-
-.project {
+.gallery-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: $space-15;
 
     @media (min-width: $breakpoint-tablet) {
@@ -13,76 +11,11 @@ $terminal-width: 589px;
 
         &:nth-of-type(even) {
             flex-direction: row;
-
-            .project__editor-back-layout-wrapper--visible {
-                .project__back-layout {
-                    transform: rotate(5deg);
-                }
-            }
         }
     }
 
     @media (min-width: $breakpoint-desktop) {
         gap: 140px;
-    }
-
-    &__terminal-wrapper {
-        flex-shrink: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-
-        @media (min-width: $breakpoint-tablet) {
-            width: 363px;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            width: $terminal-width;
-        }
-    }
-
-    &__terminal-back-layout-wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 450px;
-
-        @media (min-width: $breakpoint-tablet) {
-            max-width: none;
-            width: 363px;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            width: $terminal-width * 0.666; // because of 1.5 scale
-            transform: scale(1.5);
-        }
-
-        &--visible {
-            .project__back-layout {
-                transform: rotate(-5deg);
-            }
-        }
-    }
-
-    &__back-layout {
-        position: absolute;
-        inset: 0;
-        transition: transform 0.6s ease-in-out 0.3s;
-        z-index: -1;
-        border-radius: 10px;
-        opacity: 0.7;
-
-        &-1 {
-            background: var(--project-back-layout-color-1);
-        }
-
-        &-2 {
-            background: var(--project-back-layout-color-2);
-        }
-
-        &-3 {
-            background: var(--project-back-layout-color-3);
-        }
     }
 
     &__text-wrapper {
@@ -93,6 +26,10 @@ $terminal-width: 589px;
         @media (min-width: $breakpoint-desktop) {
             max-width: none;
         }
+    }
+
+    &__image-wrapper {
+        max-width: 50%;
     }
 
     &__head {
@@ -144,6 +81,10 @@ $terminal-width: 589px;
             font-size: $font-26;
             margin-bottom: $space-10;
         }
+    }
+
+    &__categories {
+        margin: $space-5 0;
     }
 
     &__btns {
