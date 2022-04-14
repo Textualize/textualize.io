@@ -8,7 +8,7 @@ export const Hero = () => {
             <div className="hero__text">
                 <h1 className="hero__headline">
                     <span className="u-no-wrap">
-                        We ♥ terminals
+                        We love terminals
                         <span className="hero__cursor" />
                     </span>
                 </h1>

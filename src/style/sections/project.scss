@@ -67,9 +67,9 @@ $editor-width: 589px;
     &__back-layout {
         position: absolute;
         inset: 0;
-        transition: transform 0.3s ease-in-out 0.3s;
+        transition: transform 0.6s ease-in-out 0.3s;
         z-index: -1;
-        border-radius: 15px;
+        border-radius: 10px;
         opacity: 0.7;
 
         &-1 {
