@@ -1,7 +1,7 @@
 $terminal-green: #a9dc76;
 $terminal-yellow: #ffd866;
 $mail-list-border: none; // 2px solid var(--mail-list-border-color)
-$mail-list-box-shadow: 0px 6px 48px rgb(0 0 0 / 40%);
+$mail-list-box-shadow: 0px 6px 32px rgb(0 0 0 / 30%);
 
 .mail-list {
     background: var(--mail-list-bg);
