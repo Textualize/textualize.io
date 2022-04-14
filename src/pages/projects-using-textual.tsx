@@ -5,12 +5,12 @@ import type { ProjectGalleryItem, ProjectId } from "../domain"
 import * as githubBackendServices from "../services/backend/github"
 import * as galleryProjectsBackendServices from "../services/backend/projects-galleries"
 
-interface ProjectsUsingRichPageProps {
+interface ProjectsUsingTextualPageProps {
     projectId: ProjectId
     galleryItems: ProjectGalleryItem[]
 }
 
-export default function ProjectsUsingRichPage(props: ProjectsUsingRichPageProps) {
+export default function ProjectsUsingTextualPage(props: ProjectsUsingTextualPageProps) {
     return (
         <>
             <GalleryIndex projectId={props.projectId} galleryItems={props.galleryItems} />
@@ -19,7 +19,7 @@ export default function ProjectsUsingRichPage(props: ProjectsUsingRichPageProps)
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const projectId = "rich"
+    const projectId = "textual"
     // N.B. This is only executed server-side, thanks to the magic of Next.js 👌
     // @link https://nextjs.org/docs/api-reference/data-fetching/get-static-props
     const galleryItems = await galleryProjectsBackendServices.projectGallery(projectId)

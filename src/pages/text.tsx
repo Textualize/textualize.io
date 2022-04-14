@@ -1,7 +1,4 @@
 import React from "react"
-import { Footer } from "../components/footer"
-import { Icons } from "../components/icons"
-import { Nav } from "../components/nav"
 
 const Page = () => (
     <>

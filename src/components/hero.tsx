@@ -24,7 +24,7 @@ export const Hero = () => {
                 <div className="hero__terminal-animation">
                     <div className="hero__terminal">
                         <div className="hero__terminal-back-layout" />
-                        <Terminal />
+                        <Terminal videoUrl="/video/test.mp4" />
                     </div>
                 </div>
             </div>
