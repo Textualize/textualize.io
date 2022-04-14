@@ -14,10 +14,7 @@ export const Hero = () => {
                 </h1>
                 <p className="hero__desc">
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
-                    thought.
-                    <br />
-                    <br />
-                    <a href="#">Read more...</a>
+                    thought. <a href="#">Read more...</a>                    
                 </p>
                 <a href={AppConfig.hiringUrl} className="button button--hero" target="_blank" rel="noreferrer">
                     We&apos;re&nbsp;<b> hiring!</b>

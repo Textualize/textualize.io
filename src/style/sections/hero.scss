@@ -10,6 +10,18 @@ $terminal-back-layout-border-radius: 15px;
     gap: $space-10;
     margin-top: $space-16;
 
+    a {
+        text-decoration: None;
+        opacity: 0.6;
+        padding-left:0.5em;
+        font-size: 85%;
+
+        &:hover {
+            text-decoration: underline;
+            opacity: 1;
+        }
+    }
+
     @media (min-width: $breakpoint-tablet) {
         flex-direction: row-reverse;
         align-items: center;
