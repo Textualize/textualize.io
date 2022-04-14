@@ -16,12 +16,7 @@ interface ProjectsUsingRichPageProps {
 export default function ProjectsUsingRichPage(props: ProjectsUsingRichPageProps) {
     return (
         <>
-            <Icons />
-            <Nav />
-            <main>
-                <GalleryIndex projectId={props.projectId} galleryItems={props.galleryItems} />
-            </main>
-            <Footer />
+            <GalleryIndex projectId={props.projectId} galleryItems={props.galleryItems} />
         </>
     )
 }

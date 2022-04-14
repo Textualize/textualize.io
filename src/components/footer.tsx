@@ -24,8 +24,8 @@ export const Footer = (): JSX.Element => {
                     <div className="footer__links">
                         <div className="footer__link_row">
                             <div className="footer__link-head">About</div>
-                            <Link href="/text">
-                                <a className="footer__link">Who we are</a>
+                            <Link href="/what-we-do">
+                                <a className="footer__link">What we do</a>
                             </Link>
                             <a href="#" className="footer__link">
                                 Contact

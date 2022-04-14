@@ -17,14 +17,9 @@ interface HomePageProps {
 export default function HomePage(props: HomePageProps) {
     return (
         <>
-            <Icons />
-            <Nav />
-            <main>
-                <Hero />
-                <MailList />
-                <ProjectsIndex projectsData={props.projectsData} />
-            </main>
-            <Footer />
+            <Hero />
+            <MailList />
+            <ProjectsIndex projectsData={props.projectsData} />
         </>
     )
 }
