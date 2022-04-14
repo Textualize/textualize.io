@@ -35,9 +35,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         props: { projectId, galleryItems },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every hour
-        revalidate: 3_600, // In seconds
     }
 }
