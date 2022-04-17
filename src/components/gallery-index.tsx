@@ -42,8 +42,8 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
     })
 
     const onClearFiltersClick = (e: React.MouseEvent): void => {
-        setCategoriesFilter([]);
-        e.preventDefault();
+        setCategoriesFilter([])
+        e.preventDefault()
     }
     const onCategoryClick = (category: Category): void => {
         setCategoriesFilter([category])
@@ -57,27 +57,22 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
             </div>
 
             <div className="gallery-items__categories">
-                
-                    <Categories
-                        categoriesWithCounts={categories}
-                        onCategoryClick={onCategoryClick}
-                        selectedCategories={categoriesFilter}
-                    />
-                    {categoriesFilter.length ? (
-                        <p className="hint">
-                            <a href="#" onClick={onClearFiltersClick}>
-                                ⨯ Clear filters
-                            </a>
-                        </p>
-                    ) : (
-                        <p className="hint">
-            
-            
-                            <a href="/gallery-instructions">Submit a project to the gallery</a>
-                        </p>
-                    )}
-                
-               
+                <Categories
+                    categoriesWithCounts={categories}
+                    onCategoryClick={onCategoryClick}
+                    selectedCategories={categoriesFilter}
+                />
+                {categoriesFilter.length ? (
+                    <p className="hint">
+                        <a href="#" onClick={onClearFiltersClick}>
+                            ⨯ Clear filters
+                        </a>
+                    </p>
+                ) : (
+                    <p className="hint">
+                        <a href="/gallery-instructions">Submit a project to the gallery</a>
+                    </p>
+                )}
             </div>
 
             <div className="gallery-items__items">
