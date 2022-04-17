@@ -29,16 +29,16 @@
 }
 
 .hint {
-    font-size: $font-12;
+    font-size: $font-10;
     font-weight: 600;
     color: var(--mail-list-hint-color);
     margin: $space-3 0 0;
 
     @media (min-width: $breakpoint-tablet) {
-        font-size: $font-14;
+        font-size: $font-12;
     }
 
     @media (min-width: $breakpoint-desktop) {
-        font-size: $font-16;
+        font-size: $font-14;
     }
 }
