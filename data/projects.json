@@ -11,7 +11,7 @@
             "id": "rich",
             "headline": "Rich",
             "stars": "36k",
-            "desc": "A Python framework for rich text and beautiful formatting in the terminal",
+            "desc": "Beautiful output in the terminal and Jupyter notebook with this powerful Python library. Tables, panels, progress bars, trees, syntax highlighting, pretty printing, and much more.",
             "code": "https://github.com/Textualize/rich",
             "docs": "https://rich.readthedocs.io/en/latest/"
         },
@@ -19,7 +19,7 @@
             "id": "rich-cli",
             "headline": "Rich CLI",
             "stars": "1.5k",
-            "desc": "Syntax highlighting, markdown, JSON, and more, at the command prompt.",
+            "desc": "Rich from the command prompt. Syntax highlight many file-types, with special support for markdown, json, and CSV tables",
             "code": "https://github.com/Textualize/rich-cli"
         }
     ]

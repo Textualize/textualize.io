@@ -24,7 +24,7 @@ export const Hero = () => {
                 <div className="hero__terminal-animation">
                     <div className="hero__terminal">
                         <div className="hero__terminal-back-layout" />
-                        <Terminal videoUrl="/video/test.mp4" />
+                        <Terminal videoUrl="/video/textual.mp4" tabName="Screen-recording of a terminal (no editing)" />
                     </div>
                 </div>
             </div>
