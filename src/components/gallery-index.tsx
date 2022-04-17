@@ -42,7 +42,8 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
     })
 
     const onClearFiltersClick = (e: React.MouseEvent): void => {
-        setCategoriesFilter([])
+        setCategoriesFilter([]);
+        e.preventDefault();
     }
     const onCategoryClick = (category: Category): void => {
         setCategoriesFilter([category])
@@ -56,8 +57,7 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
             </div>
 
             <div className="gallery-items__categories">
-                <div className="container">
-                    We have projects in the following categories:
+                
                     <Categories
                         categoriesWithCounts={categories}
                         onCategoryClick={onCategoryClick}
@@ -70,9 +70,14 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                             </a>
                         </p>
                     ) : (
-                        <p className="hint">Click on a category to filter the projects.</p>
+                        <p className="hint">
+            
+            
+                            <a href="/gallery-instructions">Submit a project to the gallery</a>
+                        </p>
                     )}
-                </div>
+                
+               
             </div>
 
             <div className="gallery-items__items">
