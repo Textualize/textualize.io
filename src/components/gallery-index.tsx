@@ -56,23 +56,25 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                 <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[projectId]}</h2>
             </div>
 
-            <div className="gallery-items__categories">
-                <Categories
-                    categoriesWithCounts={categories}
-                    onCategoryClick={onCategoryClick}
-                    selectedCategories={categoriesFilter}
-                />
-                {categoriesFilter.length ? (
-                    <p className="hint">
-                        <a href="#" onClick={onClearFiltersClick}>
-                            ⨯ Clear filters
-                        </a>
-                    </p>
-                ) : (
-                    <p className="hint">
-                        <a href="/gallery-instructions">Submit a project to the gallery</a>
-                    </p>
-                )}
+            <div className="container">
+                <div className="gallery-items__categories">
+                    <Categories
+                        categoriesWithCounts={categories}
+                        onCategoryClick={onCategoryClick}
+                        selectedCategories={categoriesFilter}
+                    />
+                    {categoriesFilter.length ? (
+                        <p className="hint">
+                            <a href="#" onClick={onClearFiltersClick}>
+                                ⨯ Clear filters
+                            </a>
+                        </p>
+                    ) : (
+                        <p className="hint">
+                            <a href="/gallery-instructions">Submit a project to the gallery</a>
+                        </p>
+                    )}
+                </div>
             </div>
 
             <div className="gallery-items__items">
