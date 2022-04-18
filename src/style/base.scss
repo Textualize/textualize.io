@@ -56,3 +56,8 @@ a {
         color: var(--color--hover);
     }
 }
+
+pre {
+    max-width: 100%;
+    overflow: auto;
+}
