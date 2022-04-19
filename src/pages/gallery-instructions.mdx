@@ -1,0 +1,50 @@
+<div className="container container--text">
+
+# Adding to the Gallery
+
+Follow these instructions to add your project to either the [Textual](/projects-using-textual) or [Rich](/projects-using-rich) gallery pages.
+
+You can add your project by creating a _pull request_ for the [textualize.io repository](https://github.com/textualize/textualize.io). If you aren't familiar with pull requests, don't worry, its not difficult. You will be able to find plenty of help on the web. Here is a [guide to PRs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) from Github.
+
+## Cloning the repository
+
+First clone the [textualize.io repository](https://github.com/textualize/textualize.io), which is our entire website! Feel free to look around.
+
+## Required changes
+
+You will need to add two files: a markdown file and an image. The markdown file should contain a brief description of your project plust meta information (details below). The image should be a screenshot of your project.
+
+## The Markdown file
+
+For a Rich project, add your markdown file to `textualize.io/data/project-galleries/rich`. For a Textual project add your markdown file to `textualize.io/data/project-galleries/textual`. The filename should be the name of your project in lower case, with hyphens preferred over spaces or underscores.
+
+The markdown should also contain a few fields in the _front-matter_ at the beginning of the markdown:
+
+-   `title` The full name of the project
+-   `codeUrl` The URL to the project
+-   `docsUrl` Optional URL to the projects documentation
+-   `categories` A list of categories. Try to re-use one of the existing categories in the gallery if you can. Don't use more than 5 categories, but ideally 3 or less.
+
+Here's an example of a markdown file with gallery front-matter:
+
+```markdown
+---
+title: Scalene
+codeUrl: https://github.com/emeryberger/scalene
+categories: [profiling]
+---
+
+A high-performance, high-precision CPU, GPU, and memory profiler for Python
+```
+
+## The Image
+
+The image should be a PNG file, no larger than 800x600 pixels. Try to use the best compression settings you can. The file should have the same name as your markdown file with the extension `.png`.
+
+For a Rich gallery page, copy that file to `textualize.io/public/project-galleries/rich`. For Textual, copy it to `textualize.io/public/project-galleries/textual`.
+
+## Submit the PR
+
+Submit a PR with the two files as above. Give us a few days to review it, and once merged you should see it on the site soon after.
+
+</div>

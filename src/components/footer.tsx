@@ -27,18 +27,18 @@ export const Footer = (): JSX.Element => {
                             <Link href="/what-we-do">
                                 <a className="footer__link">What we do</a>
                             </Link>
-                            <a href="#" className="footer__link">
-                                Contact
-                            </a>
+                            <Link href="/contact-us">
+                                <a className="footer__link">Contact</a>
+                            </Link>
                         </div>
                         <div className="footer__link_row">
                             <div className="footer__link-head">Legal</div>
-                            <a href="#" className="footer__link">
-                                Privacy Policy
-                            </a>
-                            <a href="#" className="footer__link">
-                                Terms
-                            </a>
+                            <Link href="/privacy">
+                                <a className="footer__link">Privacy Policy</a>
+                            </Link>
+                            <Link href="/privacy">
+                                <a className="footer__link">Terms</a>
+                            </Link>
                         </div>
                     </div>
                     <div className="footer__brand">

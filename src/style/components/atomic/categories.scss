@@ -10,14 +10,15 @@ $category-color: #2a2f3d;
         display: inline-flex;
         height: 26px;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
         align-items: center;
         text-decoration: none;
-
+        padding: 2px;
+        border: 2px solid var(--bg);
         background-color: $category-color;
         color: white;
         border-radius: 13px;
-        font-size: $font-10;
+        font-size: $font-12;
 
         & > *:first-child {
             margin-left: 12px;
@@ -27,11 +28,13 @@ $category-color: #2a2f3d;
         }
 
         &.link {
+            background: var(--button-hero-bg);
             &:hover {
                 color: $color-dark--hover;
             }
             &.selected {
-                box-shadow: 0 0 8px var(--button-blue-bg);
+                // box-shadow: 0 0 8px var(--button-blue-bg);
+                border: 2px solid var(--color);
             }
         }
 
@@ -42,10 +45,10 @@ $category-color: #2a2f3d;
             height: 15px;
             width: 15px;
             padding: 4px;
-            background-color: darken($category-color, 5%);
-            color: white;
+            background-color: rgba(0, 0, 0, 0.2);
             border-radius: 50%;
             font-size: $font-10;
+            font-weight: bold;
         }
     }
 }

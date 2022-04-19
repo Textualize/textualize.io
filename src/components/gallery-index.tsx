@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link"
 import { FILTER_URL_HASH_PREFIX } from "../constants"
 import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
 import { PROJECT_NAMES } from "../i18n"
@@ -55,9 +56,13 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                 <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[projectId]}</h2>
             </div>
 
-            <div className="gallery-items__categories">
-                <div className="container">
-                    We have projects in the following categories:
+            <div className="container">
+                <p className="hint">
+                    <Link href="/gallery-instructions">
+                        <a>Submit a project to the gallery</a>
+                    </Link>
+                </p>
+                <div className="gallery-items__categories">
                     <Categories
                         categoriesWithCounts={categories}
                         onCategoryClick={onCategoryClick}
@@ -69,9 +74,7 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                                 ⨯ Clear filters
                             </a>
                         </p>
-                    ) : (
-                        <p className="hint">Click on a category to filter the projects.</p>
-                    )}
+                    ) : null}
                 </div>
             </div>
 
