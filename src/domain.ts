@@ -5,6 +5,7 @@ export interface ProjectData {
     headline: string
     stars: string
     desc: string
+    videoUrl: string
 
     codeUrl: ProjectUrl
     codeRepoId: RepoId

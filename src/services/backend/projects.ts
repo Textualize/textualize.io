@@ -15,6 +15,7 @@ export async function projects(): Promise<ProjectData[]> {
             headline: rawData.headline,
             stars: rawData.stars,
             desc: rawData.desc,
+            videoUrl: rawData.videoUrl,
             codeUrl: rawData.code,
             codeRepoId: githubBackendServices.repoIdFromUrl(rawData.code),
             docsUrl: rawData.docs ?? null,
