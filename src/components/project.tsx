@@ -37,16 +37,12 @@ export const Project = (props: ProjectProps) => {
         })
     }
 
-    let videoUrl = `/video/${project.id}.mp4`
-    //TODO: remove that line when we have a video for each project
-    //videoUrl = "/video/test.mp4"
-
     return (
         <section className="container project" id={`project-${project.id}`}>
             <div className="project__terminal-wrapper">
                 <div className="project__terminal-back-layout-wrapper">
                     <div className={`project__back-layout project__back-layout-${nth}`} />
-                    <Terminal videoUrl={videoUrl} tabName={project.headline} />
+                    <Terminal videoUrl={project.videoUrl} tabName={project.headline} />
                 </div>
             </div>
             <div className="project__text-wrapper">

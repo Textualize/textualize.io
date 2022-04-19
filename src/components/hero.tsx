@@ -2,7 +2,11 @@ import React from "react"
 import { AppConfig } from "../config"
 import { Terminal } from "./terminal"
 
-export const Hero = () => {
+interface HeroProps {
+    videoUrl: string
+}
+
+export const Hero = (props: HeroProps): JSX.Element => {
     return (
         <section className="container hero">
             <div className="hero__text">
@@ -24,7 +28,7 @@ export const Hero = () => {
                 <div className="hero__terminal-animation">
                     <div className="hero__terminal">
                         <div className="hero__terminal-back-layout" />
-                        <Terminal videoUrl="/video/textual.mp4" tabName="Screen-recording of a terminal (no editing)" />
+                        <Terminal videoUrl={props.videoUrl} tabName="Screen-recording of a terminal (no editing)" />
                     </div>
                 </div>
             </div>

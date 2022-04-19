@@ -12,9 +12,10 @@ interface HomePageProps {
 }
 
 export default function HomePage(props: HomePageProps) {
+    // At the moment the video we display in the "Hero" is the Textual one, but that may change in the future
     return (
         <>
-            <Hero />
+            <Hero videoUrl={props.projectsData[0].videoUrl} />
             <MailList />
             <ProjectsIndex projectsData={props.projectsData} />
         </>
