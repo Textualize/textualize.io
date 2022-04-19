@@ -13,7 +13,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
         <Link href="/what-we-do">
             <a
                 onClick={(_e) => {
-                    trackEvent("what-we-do")
+                    trackEvent("A2PINPR4")
                 }}
             >
                 Read more...
