@@ -117,12 +117,12 @@ $terminal-back-layout-border-radius: 15px;
         width: 100%;
         max-width: 450px;
         padding: 10px;
-        perspective: 750px;
-        perspective-origin: 89% 100%;
 
         @media (min-width: $breakpoint-tablet) {
             width: 365px;
             max-width: none;
+            perspective: 750px;
+            perspective-origin: 89% 100%;
         }
 
         @media (min-width: $breakpoint-desktop) {
