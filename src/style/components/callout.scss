@@ -1,0 +1,16 @@
+.callout {
+    background: var(--ellipsis-bg);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 1em;
+    margin: 0.5em 0;
+    font-size: $font-20;
+    font-weight: 700;
+
+    a {
+        color: white;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+}
