@@ -39,6 +39,7 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
 
     --ellipsis-bg: linear-gradient(93.48deg, #667eea 1.13%, rgba(118, 75, 162, 0) 100.68%);
     --ellipsis-opacity: 0.3;
+    --ellipsis-middle-bg: #333852;
 
     --hero-headline-cursor-color: #b169dd;
     --hero-headline-color: linear-gradient(92.83deg, #9f76e2 2.36%, #b169dd 91.55%);
@@ -97,6 +98,7 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
 
     --ellipsis-bg: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
     --ellipsis-opacity: 0.95;
+    --ellipsis-middle-bg: #7276d1;
 
     --hero-headline-cursor-color: #9c4ecc;
     --hero-headline-color: linear-gradient(92.83deg, #7d5ab7 2.36%, #9c4ecc 91.55%);
