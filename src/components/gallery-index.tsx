@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link"
 import { FILTER_URL_HASH_PREFIX } from "../constants"
 import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
 import { PROJECT_NAMES } from "../i18n"
@@ -71,7 +72,9 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                         </p>
                     ) : (
                         <p className="hint">
-                            <a href="/gallery-instructions">Submit a project to the gallery</a>
+                            <Link href="/gallery-instructions">
+                                <a>Submit a project to the gallery</a>
+                            </Link>
                         </p>
                     )}
                 </div>
