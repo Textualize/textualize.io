@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { FiMoon, FiSun } from "react-icons/fi"
-import { AppConfig } from "../config"
+import { SOCIAL_LINKS } from "../constants"
 import * as themeServices from "../services/shared/theme"
 import { Logo } from "./logo"
 
@@ -20,32 +20,25 @@ export const Nav = (): JSX.Element => {
                 </Link>
                 <div className="nav__links">
                     <ul className="nav__ul">
-                        <li>
-                            <a
-                                href={AppConfig.textualize.urls.twitter}
-                                className="button button--ghost"
-                                aria-label="Twitter"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <svg>
-                                    <use xlinkHref="#icon-twitter" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href={AppConfig.textualize.urls.github}
-                                className="button button--ghost"
-                                aria-label="GitHub"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <svg>
-                                    <use xlinkHref="#icon-github" />
-                                </svg>
-                            </a>
-                        </li>
+                        {Object.entries(SOCIAL_LINKS)
+                            .filter(([_name, linkData]) => linkData.appearsInHeader)
+                            .map(([name, linkData]) => {
+                                return (
+                                    <li key={name}>
+                                        <a
+                                            href={linkData.url}
+                                            className="button button--ghost"
+                                            aria-label={name}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <svg>
+                                                <use xlinkHref={linkData.xlinkHref} />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                )
+                            })}
                     </ul>
                     <div className="nav__divider"></div>
                     <button
