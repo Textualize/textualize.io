@@ -41,6 +41,9 @@ export const Footer = (): JSX.Element => {
                         </div>
                         <div className="footer__link_row">
                             <div className="footer__link-head">Legal</div>
+                            <Link href="/jobs">
+                                <a className="footer__link">Jobs</a>
+                            </Link>
                             <Link href="/privacy">
                                 <a className="footer__link">Privacy Policy</a>
                             </Link>
