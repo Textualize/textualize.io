@@ -1,3 +1,4 @@
+import { Callout } from "../components/callout"
 import { Terminal } from "../components/terminal"
 
 <div className="container container--text">
@@ -6,17 +7,41 @@ import { Terminal } from "../components/terminal"
 
 At Textualize we love the terminal&mdash;and we're not alone.
 
-What motivates us is the realisation that the terminal has more in common with a web browser than it does any other piece of software. Many of us live in the terminal for a large part of the day, because&mdash;like the browser&mdash;the terminal is a platform.
+What motivates us is the realisation that the terminal is a platform. Many developers and technical users live in the terminal for a large part of the day, and would happily do more with it.
+
+<Callout>
+
+Terminal software comes pre-installed on every Apple, Linux, and Windows desktop ever sold.
+
+In a [survey] of 1025 developers, 65% reported having have a terminal open _all day_ .
+
+</Callout>
 
 As ubiquitous as terminals are, there has been surprisingly little innovation for terminal-based user interfaces. The applications developers use day-to-day rarely focus on aesthetics or even basic readability. This is why Will McGugan, our CEO / Founder, wrote the hugely popular [Rich](https://github.com/Textualize/rich) library for Python in 2020. It gave developers the tools to make beautiful command line apps and has since spawned a vibrant ecosystem and clones for other languages ([1] [2] [3]).
 
-While Rich has made a generation of command line applications easier to work with, there is another class of application which we want to focus on. A TUI (Text User Interface) is an application that runs fullscreen within the terminal. Such applications pre-date the desktop and the web, but never really went away. Developers are still building TUI applications using awkward decades old APIs that don't fully exploit the terminal's potential.
+While Rich has made a generation of command line applications easier to work with, there is another class of application which we want to focus on. A TUI (Text User Interface) is an application that runs fullscreen within the terminal. Such applications pre-date the desktop and the web, but never went away.
 
-Our answer to this is [Textual](https://github.com/Textualize/textual), an Open-source framework for building TUI applications with a modern and minimal Python API. By lowering the barriers to building such applications and enhancing their appeal, the TUI can become the de-facto solution for many interfaces needs. Textual applications are as quick and responsive as the TUIs that preceded it, but can be built in a fraction of the time with greatly improved usability and visuals.
+<Callout>
 
-<br />
+29.95% of developers said they anticipate writing a TUI in the next 12 months.
+
+</Callout>
+
+Developers are building TUI applications to this day. And they are prepared to use awkward decades old APIs to do it. The end results integrate tightly with the terminal yet fall well short of what modern terminal software is capable of in terms of both visuals and user experience.
+
+## A New TUI
+
+Our answer to this is [Textual](https://github.com/Textualize/textual), an Open-source framework for building TUI applications with a minimal and modern Python API. Textual applications deploy a number of techniques to create a richer user experience than previous generations of TUIs, but remain as quick and responsive.
+
+By lowering the barriers to building such applications and enhancing their appeal, Textual can become the de-facto solution for many interfaces needs.
+
+## Textual in Action
+
+The following demonstrates a little of what is possible with a Textual TUI. Note the light / dark mode switch a few seconds in.
+
 <Terminal videoUrl="/video/textual.mp4" />
-<br />
+
+## Textual for Everyone
 
 As much as we love TUIs and the terminal as a platform in general, terminal apps are largely restricted to a technical audience. We want to make Textual apps accessible to everyone. To make this possible we are building technology that lets Textual apps run in a web browser (no code changes required).
 
@@ -24,10 +49,13 @@ Such web-facing TUI applications bring advantages over the many technologies dev
 
 While rapid development is compelling in itself, Textual apps have a number of ongoing benefits. With an interface constructed from highly compressible text, opening a web-facing Textual app can be virtually instantaneous, and updates are just as quick&mdash;making them highly suitable for applications that require realtime updates.
 
+## We ♥ Open-source
+
 As excited as we are about this web service, our roots are in the Open-source community, and we don't intend to compromise on that. Rich, Textual, and many of our future projects will continue to be [built in public](https://github.com/textualize), with an Open-source license.
 
 [1]: https://github.com/spectreconsole/spectre.console
 [2]: https://github.com/FedeClaudi/Term.jl
 [3]: https://awilum.github.io/thermage/
+[survey]: https://github.com/Textualize/terminal-survey
 
 </div>
