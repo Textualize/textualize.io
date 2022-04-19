@@ -20,8 +20,13 @@ export const Hero = (props: HeroProps): JSX.Element => {
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
                     thought. <a href="/what-we-do">Read more...</a>
                 </p>
-                <a href={AppConfig.hiringUrl} className="button button--hero" target="_blank" rel="noreferrer">
-                    We&apos;re&nbsp;<b> hiring!</b>
+                <a
+                    href={AppConfig.textualize.urls.discourse}
+                    className="button button--hero"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Join the Community
                 </a>
             </div>
             <div className="hero__terminal-wrapper">
