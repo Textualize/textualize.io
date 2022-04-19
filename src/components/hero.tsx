@@ -1,5 +1,7 @@
 import React from "react"
+import Link from "next/link"
 import { AppConfig } from "../config"
+import { trackEvent } from "../services/frontend/analytics"
 import { Terminal } from "./terminal"
 
 interface HeroProps {
@@ -7,6 +9,18 @@ interface HeroProps {
 }
 
 export const Hero = (props: HeroProps): JSX.Element => {
+    const ReadMoreLink = (
+        <Link href="/what-we-do">
+            <a
+                onClick={(_e) => {
+                    trackEvent("what-we-do")
+                }}
+            >
+                Read more...
+            </a>
+        </Link>
+    )
+
     return (
         <section className="container hero">
             <div className="hero__text">
@@ -18,7 +32,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 </h1>
                 <p className="hero__desc">
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
-                    thought. <a href="/what-we-do">Read more...</a>
+                    thought. {ReadMoreLink}
                 </p>
                 <a href={AppConfig.hiringUrl} className="button button--hero" target="_blank" rel="noreferrer">
                     We&apos;re&nbsp;<b> hiring!</b>
