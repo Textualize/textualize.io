@@ -31,7 +31,7 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 </h1>
                 <p className="hero__desc">
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
-                    thought.
+                    thought
                 </p>
                 <Link href="/what-we-do">
                     <a className="button button--hero">Read more&hellip;</a>
