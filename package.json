@@ -17,6 +17,7 @@
         "@mdx-js/loader": "^2.1.1",
         "@next/mdx": "^12.1.5",
         "fast-glob": "^3.2.11",
+        "fathom-client": "^3.4.1",
         "framer-motion": "^6.2.8",
         "gray-matter": "^4.0.3",
         "humanize-plus": "^1.8.2",
