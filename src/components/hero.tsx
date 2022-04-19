@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import { AppConfig } from "../config"
 import { trackEvent } from "../services/frontend/analytics"
 import { Terminal } from "./terminal"
 
@@ -32,16 +31,11 @@ export const Hero = (props: HeroProps): JSX.Element => {
                 </h1>
                 <p className="hero__desc">
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
-                    thought. {ReadMoreLink}
+                    thought.
                 </p>
-                <a
-                    href={AppConfig.textualize.urls.discourse}
-                    className="button button--hero"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Join the Community
-                </a>
+                <Link href="/what-we-do">
+                    <a className="button button--hero">Read more&hellip;</a>
+                </Link>
             </div>
             <div className="hero__terminal-wrapper">
                 <div className="hero__terminal-animation">
