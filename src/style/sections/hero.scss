@@ -134,7 +134,10 @@ $terminal-back-layout-border-radius: 15px;
         display: flex;
         justify-content: center;
         width: 100%;
-        animation: terminal $terminal-animation-props;
+
+        @media (min-width: $breakpoint-tablet) {
+            animation: terminal $terminal-animation-props;
+        }
     }
 
     &__terminal {
@@ -153,7 +156,10 @@ $terminal-back-layout-border-radius: 15px;
             background-image: var(--hero-back-layout-color);
             transform-origin: left center;
             z-index: -1;
-            animation: terminal-back-layout $terminal-animation-props;
+
+            @media (min-width: $breakpoint-tablet) {
+                animation: terminal-back-layout $terminal-animation-props;
+            }
         }
     }
 }
