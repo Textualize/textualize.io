@@ -1,4 +1,5 @@
 import React from "react"
+import { useInView } from "react-intersection-observer"
 import type { ProjectData, ProjectId } from "../domain"
 import { Button, ButtonProps } from "./atomic/button"
 import { Terminal } from "./terminal"
@@ -12,6 +13,12 @@ const PROJECTS_WITH_GALLERY: ProjectId[] = ["textual", "rich"]
 
 export const Project = (props: ProjectProps) => {
     const { project, nth } = props
+
+    const { ref, inView } = useInView({
+        threshold: 0.9,
+        // Once a project background effect was displayed, we leave it in place:
+        triggerOnce: true,
+    })
 
     const buttons: ButtonProps[] = [
         {
@@ -37,10 +44,15 @@ export const Project = (props: ProjectProps) => {
         })
     }
 
+    const terminalBackLayoutWrapperClassNames = ["project__terminal-back-layout-wrapper"]
+    if (inView) {
+        terminalBackLayoutWrapperClassNames.push("project__terminal-back-layout-wrapper--visible")
+    }
+
     return (
         <section className="container project" id={`project-${project.id}`}>
             <div className="project__terminal-wrapper">
-                <div className="project__terminal-back-layout-wrapper">
+                <div className={terminalBackLayoutWrapperClassNames.join(" ")} ref={ref}>
                     <div className={`project__back-layout project__back-layout-${nth}`} />
                     <Terminal videoUrl={project.videoUrl} tabName={project.headline} />
                 </div>
