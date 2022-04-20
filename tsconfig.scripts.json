@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "scripts-output",
+        "noEmit": false,
+        "moduleResolution": "Node",
+        "sourceMap": false,
+        "module": "ESNext",
+        "target": "ES2022"
+    }
+}
