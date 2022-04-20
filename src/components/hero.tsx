@@ -11,11 +11,12 @@ export const Hero = (props: HeroProps): JSX.Element => {
     const ReadMoreLink = (
         <Link href="/what-we-do">
             <a
+                className="button button--hero"
                 onClick={(_e) => {
                     trackEvent("A2PINPR4")
                 }}
             >
-                Read more...
+                Read more&hellip;
             </a>
         </Link>
     )
@@ -33,15 +34,17 @@ export const Hero = (props: HeroProps): JSX.Element => {
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
                     thought
                 </p>
-                <Link href="/what-we-do">
-                    <a className="button button--hero">Read more&hellip;</a>
-                </Link>
+                {ReadMoreLink}
             </div>
             <div className="hero__terminal-wrapper">
                 <div className="hero__terminal-animation">
                     <div className="hero__terminal">
                         <div className="hero__terminal-back-layout" />
-                        <Terminal videoUrl={props.videoUrl} tabName="Screen-recording of a terminal (no editing)" />
+                        <Terminal
+                            videoUrl={props.videoUrl}
+                            initialInView={true}
+                            tabName="Screen-recording of a terminal (no editing)"
+                        />
                     </div>
                 </div>
             </div>
