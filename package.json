@@ -7,11 +7,13 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "prepare": "husky install",
+        "pre-commit": "lint-staged",
         "lint": "next lint",
         "types:check": "tsc --noEmit",
         "format:check": "prettier --check --ignore-path .gitignore .",
         "format:fix": "prettier --write --ignore-path .gitignore .",
-        "ci:check": "npm run lint && npm run format:check&& npm run types:check",
+        "ci:check": "npm run lint && npm run format:check && npm run types:check",
         "scripts:transpile": "rm -rf scripts-output/ && tsc -p ./tsconfig.scripts.json && echo '{\"type\": \"module\"}' > scripts-output/package.json ",
         "scripts:check-gallery-images-dimensions": "node --es-module-specifier-resolution=node scripts-output/src/scripts/check-gallery-images-dimensions.js"
     },
@@ -40,8 +42,19 @@
         "eslint": "8.13.0",
         "eslint-config-next": "12.1.4",
         "eslint-config-prettier": "^8.5.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.8",
         "prettier": "^2.6.2",
         "sass": "^1.49.9",
         "typescript": "^4.6.3"
+    },
+    "lint-staged": {
+        "*.{js,ts,jsx,tsx}": [
+            "prettier --write",
+            "eslint"
+        ],
+        "*.{json,mdx}": [
+            "prettier --write"
+        ]
     }
 }
