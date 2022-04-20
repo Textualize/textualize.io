@@ -1,6 +1,9 @@
 import { AppConfig } from "./config"
+import type { ProjectId } from "./domain"
 
 export const FILTER_URL_HASH_PREFIX = "#category-"
+
+export const PROJECT_IDS: readonly ProjectId[] = ["textual", "rich", "rich-cli"] as const
 
 interface SocialLink {
     url: string

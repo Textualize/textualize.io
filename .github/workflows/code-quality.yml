@@ -17,11 +17,20 @@ jobs:
               with:
                   node-version: 14
 
-            - name: Cache node_modules
+            - name: "Cache node_modules"
               uses: actions/cache@v2
               with:
                   path: ./node_modules
                   key: node-npm-${{ hashFiles('./package-lock.json') }}
 
-            - run: npm install
-            - run: npm run ci:check
+            - name: "Node.js dependencies install"
+              run: npm install
+
+            - name: "Run main code quality checks"
+              run: npm run ci:check
+
+            - name: "Transpile TypeScript code to JavaScript, so we can run the one in the 'src/scripts' folder"
+              run: npm run scripts:transpile
+
+            - name: "[scripts] Check galleries' images sizes"
+              run: npm run scripts:check-gallery-images-dimensions

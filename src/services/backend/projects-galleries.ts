@@ -21,27 +21,41 @@ const imageSize = promisify(imageSizeSync)
 // (only if we have multiple files uploaded for a single project though, which is unlikely to happen)
 const SUPPORTED_FILE_EXTENSIONS = ["png", "jpg", "jpeg", "gif"] as const
 
-export async function projectGallery(project: ProjectId): Promise<ProjectGalleryItem[]> {
+export interface ProjectGalleryDiscoveryOptions {
+    dataFolderPath?: string
+    imagesFolderPath?: string
+    verbose?: boolean
+}
+
+export async function projectGallery(
+    project: ProjectId,
+    options: ProjectGalleryDiscoveryOptions = {}
+): Promise<ProjectGalleryItem[]> {
     const cachedValue = galleryCache.get(project)
     if (cachedValue) {
         return cachedValue
     }
 
-    console.debug(`Traversing gallery for project "${project}"...`)
+    const folderPath = join(options.dataFolderPath || dataFolderBasePath, project)
+    options.verbose && console.debug(`Traversing gallery folder "${folderPath}" for project "${project}"...`)
 
-    const projectsFiles = await fastGlob("*.mdx", { cwd: join(dataFolderBasePath, project), absolute: true })
+    const projectsFiles = await fastGlob("*.mdx", { cwd: folderPath, absolute: true })
     const galleryProjects = await Promise.all(
-        projectsFiles.map((filePath) => galleryProjectFromMarkdownFilePath(project, filePath))
+        projectsFiles.map((filePath) => galleryProjectFromMarkdownFilePath(project, filePath, options))
     )
 
-    console.debug(`Found ${galleryProjects.length} items for project "${project}"'s gallery.`)
+    options.verbose && console.debug(`Found ${galleryProjects.length} items for project "${project}"'s gallery.`)
 
     galleryCache.set(project, galleryProjects)
 
     return galleryProjects
 }
 
-async function galleryProjectFromMarkdownFilePath(projectId: ProjectId, filePath: string): Promise<ProjectGalleryItem> {
+async function galleryProjectFromMarkdownFilePath(
+    projectId: ProjectId,
+    filePath: string,
+    options: ProjectGalleryDiscoveryOptions
+): Promise<ProjectGalleryItem> {
     const itemId = basename(filePath, ".mdx")
 
     const fileContent = await fs.readFile(filePath)
@@ -49,7 +63,7 @@ async function galleryProjectFromMarkdownFilePath(projectId: ProjectId, filePath
 
     const mainContentHtml = markdownParser.render(matterContent.content)
 
-    const image = await galleryItemImageProperties(projectId, itemId)
+    const image = await galleryItemImageProperties(projectId, itemId, options)
 
     return {
         projectId: projectId,
@@ -65,10 +79,16 @@ async function galleryProjectFromMarkdownFilePath(projectId: ProjectId, filePath
     }
 }
 
-async function galleryItemImageProperties(projectId: ProjectId, itemId: string): Promise<ImageProperties | null> {
+async function galleryItemImageProperties(
+    projectId: ProjectId,
+    itemId: string,
+    options: ProjectGalleryDiscoveryOptions
+): Promise<ImageProperties | null> {
+    const folderPath = options.imagesFolderPath || imagesFolderBasePath
+
     const imageLookupPromises = await Promise.allSettled(
         SUPPORTED_FILE_EXTENSIONS.map(async (fileExt): Promise<[string, string]> => {
-            const imagePath = join(imagesFolderBasePath, projectId, `${itemId}.${fileExt}`)
+            const imagePath = join(folderPath, projectId, `${itemId}.${fileExt}`)
             // N.B. We deliberately let the errors pop here if the file doesn't exist
             const hasImage = (await fs.stat(imagePath)).isFile()
             if (hasImage) {
@@ -87,7 +107,7 @@ async function galleryItemImageProperties(projectId: ProjectId, itemId: string):
     }
 
     if (!imagePath || !fileExt) {
-        console.info(`No images found for item "${itemId}" of project "${projectId}"`)
+        options.verbose && console.info(`No images found for item "${itemId}" of project "${projectId}"`)
         return null
     }
 
@@ -98,7 +118,7 @@ async function galleryItemImageProperties(projectId: ProjectId, itemId: string):
         return null
     }
 
-    console.info(`Found "${fileExt}" image for item "${itemId}" of project "${projectId}"`)
+    options.verbose && console.info(`Found "${fileExt}" image for item "${itemId}" of project "${projectId}"`)
 
     return { url: `/projects-galleries/${projectId}/${itemId}.${fileExt}`, width: size.width, height: size.height }
 }

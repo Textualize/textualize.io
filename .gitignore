@@ -15,6 +15,11 @@
 # production
 /build
 
+# We have command line scripts written in TypeScript, that we transpile to JavaScript
+# before running them with Node (much simpler way to do it than using `ts-node`).
+# They're transpiled into this folder:
+/scripts-output
+
 # misc
 .DS_Store
 
