@@ -30,20 +30,12 @@ export const Footer = (): JSX.Element => {
                             <Link href="/contact-us">
                                 <a className="footer__link">Contact</a>
                             </Link>
-                            <a
-                                href={SOCIAL_LINKS["Discourse"].url}
-                                className="footer__link"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Community
-                            </a>
-                        </div>
-                        <div className="footer__link_row">
-                            <div className="footer__link-head">Legal</div>
                             <Link href="/jobs">
                                 <a className="footer__link">Jobs</a>
                             </Link>
+                        </div>
+                        <div className="footer__link_row">
+                            <div className="footer__link-head">Legal</div>
                             <Link href="/privacy">
                                 <a className="footer__link">Privacy Policy</a>
                             </Link>
