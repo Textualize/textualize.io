@@ -32,10 +32,10 @@ export const Footer = (): JSX.Element => {
                             </Link>
                             <Link href="/jobs">
                                 <a className="footer__link">Jobs</a>
-                            </Link>                            
+                            </Link>
                         </div>
                         <div className="footer__link_row">
-                            <div className="footer__link-head">Legal</div>                            
+                            <div className="footer__link-head">Legal</div>
                             <Link href="/privacy">
                                 <a className="footer__link">Privacy Policy</a>
                             </Link>
