@@ -6,7 +6,7 @@ const REPO_URL_PATTERN = "https://github.com/{owner}/{repo}"
 const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
 
 // Start the app with `DONT_FETCH_DATA=1 npm run dev` to mock GitHub API calls locally
-const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_DATA"])
+const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_GITHUB_STARS_DATA"])
 
 export interface GitHubRepoRelatedData {
     codeUrl: string | null // e.g. "https://github.com/Textualize/textual"
