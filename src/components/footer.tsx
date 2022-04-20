@@ -1,24 +1,24 @@
 import React from "react"
 import Link from "next/link"
+import { useInView } from "react-intersection-observer"
 import { SOCIAL_LINKS } from "../constants"
 import { Logo } from "./logo"
 
 const DISPLAY_SCROLL_HINT = false // set to `true` to re-enable the floating down arrow
 
 export const Footer = (): JSX.Element => {
-    React.useEffect(
-        () => {
-            const oberver = initFooterIntersectionObserver()
-            return function disconnectObserver() {
-                oberver.disconnect()
-            }
-        },
-        [] // only on mount
-    )
+    const { ref, inView } = useInView({
+        threshold: 0.3,
+    })
+
+    const footerClassNames = ["footer"]
+    if (inView) {
+        footerClassNames.push("footer--visible")
+    }
 
     return (
         <div className="footer__wrapper">
-            <footer className="footer">
+            <footer className={footerClassNames.join(" ")} ref={ref}>
                 {DISPLAY_SCROLL_HINT ? <div className="footer__scroll-hint" /> : null}
                 <div className="footer__container container">
                     <div className="footer__links">
@@ -89,23 +89,4 @@ export const Footer = (): JSX.Element => {
             </footer>
         </div>
     )
-}
-
-function initFooterIntersectionObserver(): IntersectionObserver {
-    const footerEl = document.querySelector("footer") as HTMLElement
-
-    const observerFooter = new window.IntersectionObserver(
-        function (entries) {
-            entries.forEach(function (item) {
-                footerEl.classList.toggle("footer--visible", item.isIntersecting)
-            })
-        },
-        {
-            rootMargin: "0px",
-            threshold: 0.3,
-        }
-    )
-    observerFooter.observe(footerEl)
-
-    return observerFooter
 }
