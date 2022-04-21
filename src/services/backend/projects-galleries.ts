@@ -6,9 +6,9 @@ import matter from "gray-matter"
 import imageSizeSync from "image-size"
 import MarkdownIt from "markdown-it"
 import { GALLERY_ITEMS_COUNT_PER_PAGE, PROJECTS_WITH_GALLERY } from "../../constants"
-import codegenRichGallery from "../../data/rich"
-import codegenRichCliGallery from "../../data/rich-cli"
-import codegenTextualGallery from "../../data/textual"
+import codegenRichGallery, { CODEGEN_USED as CODEGEN_USED_RICH } from "../../data/rich"
+import codegenRichCliGallery, { CODEGEN_USED as CODEGEN_USED_RICH_CLI } from "../../data/rich-cli"
+import codegenTextualGallery, { CODEGEN_USED as CODEGEN_USED_TEXTUAL } from "../../data/textual"
 import type { CategoriesWithCount, Category, ImageProperties, ProjectGalleryItem, ProjectId } from "../../domain"
 import { pagesRange } from "../../helpers/pagination-helpers"
 import * as cacheSharedServices from "../shared/cache"
@@ -27,10 +27,10 @@ const imageSize = promisify(imageSizeSync)
 // (only if we have multiple files uploaded for a single project though, which is unlikely to happen)
 const SUPPORTED_FILE_EXTENSIONS = ["png", "jpg", "jpeg", "gif"] as const
 
-const codegenGalleries: Record<ProjectId, ProjectGalleryItem[]> = {
-    "rich": codegenRichGallery,
-    "textual": codegenTextualGallery,
-    "rich-cli": codegenRichCliGallery,
+const codegenGalleries: Record<ProjectId, [boolean, ProjectGalleryItem[]]> = {
+    "rich": [CODEGEN_USED_RICH, codegenRichGallery],
+    "rich-cli": [CODEGEN_USED_RICH_CLI, codegenRichCliGallery],
+    "textual": [CODEGEN_USED_TEXTUAL, codegenTextualGallery],
 }
 
 export interface ProjectGalleryDiscoveryOptions {
@@ -50,14 +50,16 @@ export async function projectGallery(
     }
 
     const codegenForThisGallery = codegenGalleries[projectId]
-    if (codegenForThisGallery.length) {
+    if (codegenForThisGallery[0]) {
         // Our `npm run codegen:galleries` command was run before this Node.js process started,
         // and replaced the content of the TypeScript module.
         // --> let's use this data!
         console.info(
             `Codegen was triggered for "${projectId}"'s gallery, let's use this rather than populating it on the fly.`
         )
-        return codegenForThisGallery
+        const galleryProjects = codegenForThisGallery[1]
+        await cacheSharedServices.set(cacheKey, galleryProjects)
+        return galleryProjects
     }
 
     const folderPath = join(options.dataFolderPath || dataFolderBasePath, projectId)
