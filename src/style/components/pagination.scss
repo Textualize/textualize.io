@@ -1,0 +1,31 @@
+.pagination {
+    margin: $space-2 0;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        gap: $space-3;
+
+        li {
+            list-style: none;
+            display: flex;
+            &.page {
+                background-color: var(--pagination-item-bg);
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+            }
+            &[aria-disabled] {
+                span {
+                    opacity: 0.4;
+                }
+            }
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}

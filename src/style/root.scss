@@ -88,6 +88,8 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     );
     --button-ghost-hover-color: rgba(255, 255, 255, 0.04);
     --button-ghost-active-color: rgba(255, 255, 255, 0.06);
+
+    --pagination-item-bg: rgba(0, 0, 0, 0.2);
 }
 
 :root[light] {
@@ -142,4 +144,6 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     );
     --button-ghost-hover-color: rgba(0, 0, 0, 0.04);
     --button-ghost-active-color: rgba(0, 0, 0, 0.06);
+
+    --pagination-item-bg: rgba(240, 240, 240, 0.9);
 }

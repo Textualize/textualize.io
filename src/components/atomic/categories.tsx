@@ -1,26 +1,23 @@
 import React from "react"
+import Link from "next/link"
 import { FILTER_URL_HASH_PREFIX } from "../../constants"
-import type { Category } from "../../domain"
+import type { CategoriesWithCount, Category } from "../../domain"
 
 export interface CategoriesProps {
-    categoriesWithCounts?: Record<Category, number>
+    categoriesWithCounts?: CategoriesWithCount
     categories?: Category[]
-    selectedCategories?: Category[]
-    onCategoryClick?: (cat: Category) => void
+    selectedCategory?: Category
+    categoryLinkHrefFactory?: (cat: Category) => string
 }
 
 export const Categories = (props: CategoriesProps): JSX.Element => {
     const withCounts = Boolean(props.categoriesWithCounts)
 
-    let categoriesRecord: Record<Category, number> = {}
+    let categoriesRecord: CategoriesWithCount = {}
     if (withCounts) {
         categoriesRecord = props.categoriesWithCounts!
     } else {
         categoriesRecord = Object.fromEntries((props.categories || []).map((cat) => [cat, 0]))
-    }
-
-    const onCategoryClick = (category: Category, e: React.MouseEvent): void => {
-        props.onCategoryClick?.(category)
     }
 
     return (
@@ -34,24 +31,22 @@ export const Categories = (props: CategoriesProps): JSX.Element => {
                 )
 
                 const classes = ["categories-wrapper__category"]
-                if (props.selectedCategories?.includes(category)) {
+                if (props.selectedCategory === category) {
                     classes.push("selected")
                 }
-                if (props.onCategoryClick) {
+                if (props.categoryLinkHrefFactory) {
                     classes.push("link")
                 }
-                const commonProps = { className: classes.join(" "), key: category }
+                const commonProps = { className: classes.join(" ") }
 
-                return props.onCategoryClick ? (
-                    <a
-                        {...commonProps}
-                        href={`${FILTER_URL_HASH_PREFIX}${category}`}
-                        onClick={onCategoryClick.bind(null, category)}
-                    >
-                        {categoryContent}
-                    </a>
+                return props.categoryLinkHrefFactory ? (
+                    <Link href={props.categoryLinkHrefFactory(category)} key={category}>
+                        <a {...commonProps}>{categoryContent}</a>
+                    </Link>
                 ) : (
-                    <span {...commonProps}>{categoryContent}</span>
+                    <span {...commonProps} key={category}>
+                        {categoryContent}
+                    </span>
                 )
             })}
         </div>

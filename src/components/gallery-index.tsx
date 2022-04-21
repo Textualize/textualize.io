@@ -1,59 +1,49 @@
 import React from "react"
 import Link from "next/link"
-import { FILTER_URL_HASH_PREFIX } from "../constants"
 import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
+import { CategoriesWithCount } from "../domain"
+import { pagesRange } from "../helpers/pagination-helpers"
 import { PROJECT_NAMES } from "../i18n"
 import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
+import { projectGalleryPageUrl } from "../services/shared/projects-galleries"
 import { Categories } from "./atomic/categories"
 import { GalleryItem } from "./gallery-item"
+import { Pagination } from "./pagination"
 
 interface GalleryIndexProps {
     projectId: ProjectId
     galleryItems: ProjectGalleryItem[]
+    pagesCount: number
+    currentPage: number
+    selectedCategory: Category
+    galleryCategoriesWithCount: CategoriesWithCount
 }
 
 export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
-    const { projectId, galleryItems } = props
-
-    const [categoriesFilter, setCategoriesFilter] = React.useState<string[]>([])
-
-    React.useEffect(
-        function activateFilterFromUrlOnMount() {
-            if (window?.location?.hash.startsWith(FILTER_URL_HASH_PREFIX)) {
-                const filteredCategory = window.location.hash.replace(FILTER_URL_HASH_PREFIX, "")
-                // N.B. Without the `setTimeout` we get errors popping from the `ǹext/image` components
-                setTimeout(setCategoriesFilter.bind(null, [filteredCategory]), 0)
-            }
+    const galleryPageUrl = React.useCallback(
+        (category: Category, page: number = 1): string => {
+            return galleryProjectsSharedServices.projectGalleryPageUrl({ projectId: props.projectId, page, category })
         },
-        [] // only on mount
+        [props.projectId]
     )
 
-    const categories = galleryProjectsSharedServices.projectGalleryCategories(galleryItems)
+    const categoryLinkHrefFactory = React.useCallback(
+        (category: Category): string => {
+            return galleryPageUrl(category)
+        },
+        [galleryPageUrl]
+    )
 
-    const galleryItemsToDisplay = galleryItems.filter((item) => {
-        if (!categoriesFilter.length) {
-            return true
-        }
-        for (const categoryToDisplay of categoriesFilter) {
-            if (item.categories.includes(categoryToDisplay)) {
-                return true
-            }
-        }
-        return false
-    })
-
-    const onClearFiltersClick = (e: React.MouseEvent): void => {
-        setCategoriesFilter([])
-    }
-    const onCategoryClick = (category: Category): void => {
-        setCategoriesFilter([category])
-    }
+    const pageUrlFactory = galleryPageUrl.bind(null, props.selectedCategory)
+    const pagination = (
+        <Pagination currentPage={props.currentPage} pagesCount={props.pagesCount} pageUrlFactory={pageUrlFactory} />
+    )
 
     return (
         <section className="gallery-items">
             <div className="gallery-items__bg" />
             <div className="container">
-                <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[projectId]}</h2>
+                <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[props.projectId]}</h2>
             </div>
 
             <div className="container">
@@ -62,30 +52,33 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
                         <a>Submit a project to the gallery</a>
                     </Link>
                 </p>
+                {pagination}
                 <div className="gallery-items__categories">
                     <Categories
-                        categoriesWithCounts={categories}
-                        onCategoryClick={onCategoryClick}
-                        selectedCategories={categoriesFilter}
+                        categoriesWithCounts={props.galleryCategoriesWithCount}
+                        selectedCategory={props.selectedCategory}
+                        categoryLinkHrefFactory={categoryLinkHrefFactory}
                     />
-                    {categoriesFilter.length ? (
+                    {props.selectedCategory !== "all" ? (
                         <p className="hint">
-                            <a href="#" onClick={onClearFiltersClick}>
-                                ⨯ Clear filters
-                            </a>
+                            <Link href={galleryPageUrl("all")}>
+                                <a className="clear-filters-button">⨯ Clear filters</a>
+                            </Link>
                         </p>
                     ) : null}
                 </div>
             </div>
 
             <div className="gallery-items__items">
-                {galleryItemsToDisplay.map((item, i) => (
+                {props.galleryItems.map((item, i) => (
                     <React.Fragment key={item.id}>
                         {i !== 0 && <hr className="container gallery-items__divider" />}
                         <GalleryItem nth={i + 1} item={item} />
                     </React.Fragment>
                 ))}
             </div>
+
+            {pagination}
         </section>
     )
 }

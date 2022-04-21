@@ -18,10 +18,6 @@ export interface GitHubRepoStatistics {
     starsCount: number
 }
 
-const gitHubApiHeaders = new Headers({
-    Accept: "application/vnd.github.v3+json",
-})
-
 export async function attachCurrentStarsCountsToRepositories(
     repoRelatedDataItems: GitHubRepoRelatedData[]
 ): Promise<void> {
@@ -64,6 +60,10 @@ export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatisti
     }
 
     const targetEndpointUrl = repoDataApiEndpointUrl(repoId)
+    const gitHubApiHeaders = new Headers({
+        Accept: "application/vnd.github.v3+json",
+    })
+
     console.debug("Fetching GitHub repo stats for repo ", repoId, "...")
     const resp = await fetch(targetEndpointUrl, {
         headers: gitHubApiHeaders,
