@@ -46,18 +46,16 @@ export const getStaticProps: GetStaticProps = async (
     cacheSharedServices.enableDebugMode()
 
     const codegenForThisGallery = await import(`../../../data/${projectId}`)
-    console.debug("codegenForThisGallery.CODEGEN_USED=", codegenForThisGallery.CODEGEN_USED)
     const codegenWasUsed = Boolean(codegenForThisGallery.CODEGEN_USED)
 
     const gallerySegments =
         context.params.gallerySegments && Array.isArray(context.params.gallerySegments)
             ? context.params.gallerySegments
             : []
-    const staticPathsParams = {
+    const props = await galleryProjectsBackendServices.projectGalleryStaticProps({
         projectId,
         gallerySegments,
-    }
-    const props = await galleryProjectsBackendServices.projectGalleryStaticProps(staticPathsParams)
+    })
 
     // Add GitHub stars count for each item - but only if codegen was not used!
     // (when we generate code we attach the GitHub stars count to the generated data)

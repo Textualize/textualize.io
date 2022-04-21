@@ -30,11 +30,13 @@ export default gallery
 async function generateCodeForAllProjectGalleries() {
     console.info("Code generation starts...")
 
-    await Promise.all(
-        PROJECT_IDS.map((projectId) => {
-            return generateCodeForProjectGallery(projectId)
-        })
-    )
+    // We generate projects' galleries data one by one rather than with parallel Promises,
+    // in order to avoid sending too many queries in parallel to the GitHub API:
+    for (const projectId of PROJECT_IDS) {
+        console.debug(`\nStarting code generation for gallery items data of project "${projectId}"...`)
+        await generateCodeForProjectGallery(projectId)
+        console.debug(`Code generation for project "${projectId}" done.\n`)
+    }
 
     console.info("Code generation done.")
 }
@@ -46,6 +48,7 @@ async function generateCodeForProjectGallery(projectId: ProjectId): Promise<void
     }
 
     const galleryItems = await galleryProjectsBackendServices.projectGallery(projectId, galleryDiscoveryOptions)
+    console.debug(`Fetching GitHub stars for the ${galleryItems.length} gallery items of project "${projectId}"...`)
     await githubBackendServices.attachCurrentStarsCountsToRepositories(galleryItems)
 
     await writeTypeScriptDataModule(projectId, galleryItems)

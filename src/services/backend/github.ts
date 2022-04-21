@@ -1,3 +1,4 @@
+import pThrottle from "p-throttle"
 import type { RepoId } from "../../domain"
 import { humanizeStargazersCount } from "../../helpers/conversion-helpers"
 import * as cacheSharedServices from "../shared/cache"
@@ -8,6 +9,9 @@ const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
 
 // Start the app with `DONT_FETCH_DATA= npm run dev` to *not* mock GitHub API calls locally
 const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_GITHUB_STARS_DATA"])
+
+const GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE = 2
+const GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH = 4_000 // in milliseconds
 
 export interface GitHubRepoRelatedData {
     codeUrl: string | null // e.g. "https://github.com/Textualize/textual"
@@ -23,12 +27,23 @@ export async function attachCurrentStarsCountsToRepositories(
     repoRelatedDataItems: GitHubRepoRelatedData[]
 ): Promise<void> {
     // Each promise fetches the GitHub stats for a single repo...
-    const repositoriesStatsPromises = repoRelatedDataItems.map((item) => {
-        const repoId = repoIdFromUrl(item.codeUrl ?? "")
-        return repoStatistics(repoId)
+    const repositoriesStatsPromiseFactories = repoRelatedDataItems.map((item) => {
+        return async function (): Promise<GitHubRepoStatistics> {
+            const repoId = repoIdFromUrl(item.codeUrl ?? "")
+            return repoStatistics(repoId)
+        }
     })
-    // ...But we launch them in parallel:
-    const repositoriesStatsSettledPromises = await Promise.allSettled(repositoriesStatsPromises)
+
+    // ...But we launch them in parallel, with a limited concurrency:
+    const throttle = pThrottle({
+        limit: GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE,
+        interval: GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH,
+    })
+    const repositoriesStatsThrottledPromiseFactories = repositoriesStatsPromiseFactories.map((promise) =>
+        throttle(promise)
+    )
+    const repositoriesStatsThrottledPromises = repositoriesStatsThrottledPromiseFactories.map((factory) => factory())
+    const repositoriesStatsSettledPromises = await Promise.allSettled(repositoriesStatsThrottledPromises)
 
     // Now we just have to replace the "stars" of each object with the ones we got from the GitHub API
     // (but only for successfully fulfilled Promises)
