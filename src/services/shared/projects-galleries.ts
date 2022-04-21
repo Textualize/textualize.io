@@ -5,8 +5,8 @@ export function pagesCount(itemsCount: number): number {
     return Math.ceil(itemsCount / GALLERY_ITEMS_COUNT_PER_PAGE)
 }
 
-export function isProjectId(projectId: string): projectId is ProjectId {
-    return PROJECT_IDS.includes(projectId as any)
+export function isProjectId(projectId: any): projectId is ProjectId {
+    return PROJECT_IDS.includes(projectId)
 }
 
 export function projectGalleryCategories(galleryItems: ProjectGalleryItem[]): CategoriesWithCount {

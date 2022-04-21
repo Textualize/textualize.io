@@ -1,12 +1,13 @@
 import projectsData from "../../../data/projects.json"
 import type { ProjectData, ProjectId } from "../../domain"
+import * as cacheSharedServices from "../shared/cache"
 import * as githubBackendServices from "./github"
 
-let cache: ProjectData[] | null = null
-
 export async function projects(): Promise<ProjectData[]> {
-    if (cache) {
-        return cache
+    const cacheKey = "projects"
+    const cachedValue = await cacheSharedServices.get(cacheKey)
+    if (cachedValue) {
+        return cachedValue
     }
 
     const projects = projectsData["projects"].map((rawData) => {
@@ -22,7 +23,7 @@ export async function projects(): Promise<ProjectData[]> {
         }
     })
 
-    cache = projects
+    await cacheSharedServices.set(cacheKey, projects)
 
     return projects
 }
