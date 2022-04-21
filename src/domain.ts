@@ -21,7 +21,8 @@ export interface RepoId {
 
 export type ProjectId = "textual" | "rich" | "rich-cli"
 
-export type Category = string
+// When a category is "all", we actually don't want a specific category
+export type Category = "all" | string
 
 export interface ImageProperties {
     url: string
@@ -41,3 +42,5 @@ export interface ProjectGalleryItem {
     categories: Category[]
     description: string
 }
+
+export type CategoriesWithCount = { [category: string]: number }

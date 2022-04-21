@@ -1,6 +1,8 @@
 import React from "react"
 import { useInView } from "react-intersection-observer"
-import type { ProjectData, ProjectId } from "../domain"
+import { PROJECTS_WITH_GALLERY } from "../constants"
+import type { ProjectData } from "../domain"
+import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
 import { Button, ButtonProps } from "./atomic/button"
 import { Terminal } from "./terminal"
 
@@ -8,8 +10,6 @@ interface ProjectProps {
     project: ProjectData
     nth: number
 }
-
-const PROJECTS_WITH_GALLERY: ProjectId[] = ["textual", "rich"]
 
 export const Project = (props: ProjectProps) => {
     const { project, nth } = props
@@ -38,7 +38,11 @@ export const Project = (props: ProjectProps) => {
     if (PROJECTS_WITH_GALLERY.includes(project.id)) {
         buttons.push({
             text: "Gallery",
-            url: `/projects-using-${project.id}`,
+            url: galleryProjectsSharedServices.projectGalleryPageUrl({
+                projectId: project.id,
+                category: "all",
+                page: 1,
+            }),
             color: "blue-light",
             xlinkHref: "#icon-list",
         })

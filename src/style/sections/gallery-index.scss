@@ -82,6 +82,10 @@
         @media (min-width: $breakpoint-desktop) {
             gap: 100px;
         }
+
+        .gallery-item:last-child {
+            margin-bottom: $space-12;
+        }
     }
 
     &__divider {
