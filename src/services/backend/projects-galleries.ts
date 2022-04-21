@@ -74,7 +74,7 @@ export async function projectGalleryStaticPathsParams(): Promise<ProjectGalleryS
             // Then, the "/[projectId]/gallery/[page]" and "/[projectId]/gallery/all/[page]" pages:
             params.push(...paginationParamsForProjectAndCategory(projectId, "all", galleryItems.length))
 
-            // ...And then, for _each_ category, the "/[projectId]/gallery/[category]/[page]" pages:
+            // ...And finally, for _each_ category, the "/[projectId]/gallery/[category]/[page]" pages:
             const galleryCategoriesWithCount = projectGalleryCategories(galleryItems)
             for (const [category, categoryItemsCount] of Object.entries(galleryCategoriesWithCount)) {
                 params.push(...paginationParamsForProjectAndCategory(projectId, category, categoryItemsCount))
@@ -144,12 +144,17 @@ function paginationParamsForProjectAndCategory(
 
     const range = pagesRange(pagesCount)
 
+    // A "params" object for "implicit page 1" (when the page is not part of the URL)
+    params.push({ projectId, gallerySegments: [category] })
+
+    // A "params" object for each page
     params.push(
         ...range.map((page) => {
             return { projectId, gallerySegments: [category, String(page)] }
         })
     )
 
+    // And for the "all" category, a "params" object for each page without the category in it
     if (category === "all") {
         params.push(
             ...range.map((page) => {
