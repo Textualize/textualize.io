@@ -1,9 +1,10 @@
 /**
  * Run me with:
- *   $ npm run scripts:transpile && npm run scripts:check-gallery-images-dimensions
+ *   $ npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries
  */
 import { writeFile } from "node:fs/promises"
-import { basename, join } from "node:path"
+import { join } from "node:path"
+import "next/dist/server/node-polyfill-fetch"
 import { PROJECT_IDS } from "../constants"
 import type { ProjectGalleryItem, ProjectId } from "../domain"
 import * as githubBackendServices from "../services/backend/github"
@@ -19,6 +20,8 @@ const CODE_GEN_MODULE_TEMPLATE = `
 // See "src/scripts/generate-data-code-for-galleries.ts" to learn more.
 
 import { ProjectGalleryItem } from "../domain"
+
+export const CODEGEN_USED = true
 
 const gallery: ProjectGalleryItem[] = {GALLERY_DATA}
 export default gallery

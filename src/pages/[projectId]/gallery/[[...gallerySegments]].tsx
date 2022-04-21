@@ -46,7 +46,8 @@ export const getStaticProps: GetStaticProps = async (
     cacheSharedServices.enableDebugMode()
 
     const codegenForThisGallery = await import(`../../../data/${projectId}`)
-    const codegenWasUsed = Boolean(codegenForThisGallery.length)
+    console.debug("codegenForThisGallery.CODEGEN_USED=", codegenForThisGallery.CODEGEN_USED)
+    const codegenWasUsed = Boolean(codegenForThisGallery.CODEGEN_USED)
 
     const gallerySegments =
         context.params.gallerySegments && Array.isArray(context.params.gallerySegments)
