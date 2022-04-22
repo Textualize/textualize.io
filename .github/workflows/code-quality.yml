@@ -6,6 +6,9 @@ on:
     pull_request:
         branches: ["*"]
 
+env:
+    DONT_FETCH_GITHUB_STARS_DATA: "1"
+
 jobs:
     lint:
         runs-on: ubuntu-latest
@@ -29,8 +32,27 @@ jobs:
             - name: "Run main code quality checks"
               run: npm run ci:check
 
+            - name: "Build Next.js project"
+              run: npm run build
+
             - name: "Transpile TypeScript code to JavaScript, so we can run the one in the 'src/scripts' folder"
               run: npm run scripts:transpile
 
             - name: "[scripts] Check galleries' images sizes"
               run: npm run scripts:check-gallery-images-dimensions
+
+            - name: "[e2e] Cypress run"
+              # @link https://github.com/marketplace/actions/cypress-io
+              uses: cypress-io/github-action@v2
+              with:
+                  config: screenshotOnRunFailure=false,video=false
+                  record: false
+                  # Letting this Cypress GitHub Action try to install its dependencies with
+                  # `npm ci` breaks the build, with a rather cryptic error message:
+                  # `npm ERR! Cannot read property 'length' of undefined` ¯\_(ツ)_/¯
+                  # Since we already installed everything we need with our `npm install` command,
+                  # let's bypass this step and run a kind of no-op command (such as `pwd`)
+                  install-command: pwd
+                  start: npm run start
+                  wait-on: "http://localhost:3000/"
+                  wait-on-timeout: 5

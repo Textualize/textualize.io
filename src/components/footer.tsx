@@ -39,7 +39,7 @@ export const Footer = (): JSX.Element => {
                             <Link href="/privacy">
                                 <a className="footer__link">Privacy Policy</a>
                             </Link>
-                            <Link href="/privacy">
+                            <Link href="/terms">
                                 <a className="footer__link">Terms</a>
                             </Link>
                         </div>

@@ -9,6 +9,7 @@
         "build:prod": "npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build",
         "start": "next start",
         "prepare": "husky install",
+        "cypress:open": "cypress open",
         "pre-commit": "lint-staged",
         "lint": "next lint",
         "types:check": "tsc --noEmit",
@@ -42,6 +43,7 @@
         "@types/markdown-it": "^12.2.3",
         "@types/node": "^17.0.23",
         "@types/react": "^17.0.43",
+        "cypress": "^9.5.4",
         "eslint": "8.13.0",
         "eslint-config-next": "12.1.4",
         "eslint-config-prettier": "^8.5.0",
@@ -56,7 +58,7 @@
             "prettier --write",
             "eslint"
         ],
-        "*.{json,mdx}": [
+        "*.{json,mdx,yml}": [
             "prettier --write"
         ]
     }
