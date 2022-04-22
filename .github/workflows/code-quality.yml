@@ -6,6 +6,9 @@ on:
     pull_request:
         branches: ["*"]
 
+env:
+    DONT_FETCH_GITHUB_STARS_DATA: "1"
+
 jobs:
     lint:
         runs-on: ubuntu-latest
@@ -24,13 +27,32 @@ jobs:
                   key: node-npm-${{ hashFiles('./package-lock.json') }}
 
             - name: "Node.js dependencies install"
-              run: npm install
+              # @link https://docs.npmjs.com/cli/v8/commands/npm-ci
+              run: npm ci
 
             - name: "Run main code quality checks"
               run: npm run ci:check
+
+            - name: "Build Next.js project"
+              run: npm run build
 
             - name: "Transpile TypeScript code to JavaScript, so we can run the one in the 'src/scripts' folder"
               run: npm run scripts:transpile
 
             - name: "[scripts] Check galleries' images sizes"
               run: npm run scripts:check-gallery-images-dimensions
+
+            - name: "[e2e] Cypress run"
+              # @link https://github.com/marketplace/actions/cypress-io
+              uses: cypress-io/github-action@v2
+              with:
+                  config: screenshotOnRunFailure=false,video=false
+                  record: false
+
+                  # We already installed our dependencies in a earlier step,
+                  # let's bypass this step and run a kind of no-op command (such as `pwd`)
+                  install-command: pwd
+
+                  start: npm run start
+                  wait-on: "http://localhost:3000/"
+                  wait-on-timeout: 5
