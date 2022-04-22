@@ -1,12 +1,11 @@
 import React from "react"
 import type { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
-import { GetStaticPropsContext, GetStaticPropsResult } from "next/types"
+import { GetStaticPropsResult } from "next/types"
 import { GalleryIndex } from "../../../components/gallery-index"
-import { ProjectId } from "../../../domain"
 import * as githubBackendServices from "../../../services/backend/github"
 import * as galleryProjectsBackendServices from "../../../services/backend/projects-galleries"
-import { ProjectGalleryPageProps, ProjectGalleryStaticPathsParams } from "../../../services/backend/projects-galleries"
+import { ProjectGalleryPageProps } from "../../../services/backend/projects-galleries"
 import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
 
 export default function ProjectGalleryPage(props: galleryProjectsBackendServices.ProjectGalleryPageProps) {

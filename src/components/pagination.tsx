@@ -8,7 +8,7 @@ import { pagesRange } from "../helpers/pagination-helpers"
 export interface PaginationProps {
     currentPage: number
     pagesCount: number
-    pageUrlFactory: (page: number) => string
+    pageUrlFactory: (_page: number) => string
 }
 export const Pagination = (props: PaginationProps): JSX.Element | null => {
     if (props.pagesCount < 2) {
@@ -38,7 +38,7 @@ interface PaginationItemProps {
     itemData: PaginationItemPreviousNextData | PaginationItemPageData
     currentPage: number
     pagesCount: number
-    pageUrlFactory: (page: number) => string
+    pageUrlFactory: (_page: number) => string
 }
 interface PaginationItemPreviousNextData {
     type: "previous" | "next"
