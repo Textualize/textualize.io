@@ -27,7 +27,8 @@ jobs:
                   key: node-npm-${{ hashFiles('./package-lock.json') }}
 
             - name: "Node.js dependencies install"
-              run: npm install
+              # @link https://docs.npmjs.com/cli/v8/commands/npm-ci
+              run: npm ci
 
             - name: "Run main code quality checks"
               run: npm run ci:check
@@ -47,12 +48,11 @@ jobs:
               with:
                   config: screenshotOnRunFailure=false,video=false
                   record: false
-                  # Letting this Cypress GitHub Action try to install its dependencies with
-                  # `npm ci` breaks the build, with a rather cryptic error message:
-                  # `npm ERR! Cannot read property 'length' of undefined` ¯\_(ツ)_/¯
-                  # Since we already installed everything we need with our `npm install` command,
+
+                  # We already installed our dependencies in a earlier step,
                   # let's bypass this step and run a kind of no-op command (such as `pwd`)
                   install-command: pwd
+
                   start: npm run start
                   wait-on: "http://localhost:3000/"
                   wait-on-timeout: 5
