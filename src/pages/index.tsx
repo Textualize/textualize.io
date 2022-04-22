@@ -22,7 +22,7 @@ export default function HomePage(props: HomePageProps) {
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (_context) => {
     // N.B. This is only executed server-side, thanks to the magic of Next.js 👌
     // @link https://nextjs.org/docs/api-reference/data-fetching/get-static-props
     const projects = await projectsBackendServices.projects()

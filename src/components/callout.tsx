@@ -1,5 +1,4 @@
 import React from "react"
-import type { ProjectData } from "../domain"
 
 interface CalloutProps {
     children: React.ReactNode

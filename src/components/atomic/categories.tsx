@@ -1,13 +1,12 @@
 import React from "react"
 import Link from "next/link"
-import { FILTER_URL_HASH_PREFIX } from "../../constants"
 import type { CategoriesWithCount, Category } from "../../domain"
 
 export interface CategoriesProps {
     categoriesWithCounts?: CategoriesWithCount
     categories?: Category[]
     selectedCategory?: Category
-    categoryLinkHrefFactory?: (cat: Category) => string
+    categoryLinkHrefFactory?: (_cat: Category) => string
 }
 
 export const Categories = (props: CategoriesProps): JSX.Element => {

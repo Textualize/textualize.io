@@ -1,8 +1,6 @@
 import { AppConfig } from "./config"
 import type { ProjectId } from "./domain"
 
-export const FILTER_URL_HASH_PREFIX = "#category-"
-
 export const PROJECT_IDS: readonly ProjectId[] = ["textual", "rich", "rich-cli"] as const
 
 export const PROJECTS_WITH_GALLERY: ProjectId[] = ["textual", "rich"]
