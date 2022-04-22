@@ -4,27 +4,28 @@
  */
 import { writeFile } from "node:fs/promises"
 import { join } from "node:path"
+// We import this to be able to use our GitHub service (which relies on Next.js poyfill of `fetch()`)
+// in a non-Next.js context, at build time.
+// Note that this path could of course be broken by future Next.js releases - in which case we'll
+// take the time to manage that polyfilling in a cleaner way :-)
 import "next/dist/server/node-polyfill-fetch"
 import { PROJECT_IDS } from "../constants"
 import type { ProjectGalleryItem, ProjectId } from "../domain"
 import * as githubBackendServices from "../services/backend/github"
 import * as galleryProjectsBackendServices from "../services/backend/projects-galleries"
+import { PROJECT_ROOT_PATH } from "./_helpers"
 
-const projectRootPath = join(new URL(import.meta.url).pathname, "..", "..", "..", "..")
-const dataFolderBasePath = join(projectRootPath, "data", "projects-galleries")
-const imagesFolderBasePath = join(projectRootPath, "public", "projects-galleries")
-const codegenTargetFolderBasePath = join(projectRootPath, "src", "data")
+const dataFolderBasePath = join(PROJECT_ROOT_PATH, "data", "projects-galleries")
+const imagesFolderBasePath = join(PROJECT_ROOT_PATH, "public", "projects-galleries")
+const codegenTargetFolderBasePath = join(PROJECT_ROOT_PATH, "src", "codegen", "data", "project-galleries")
 
 const CODE_GEN_MODULE_TEMPLATE = `
 // /!\\ This module was generated, don't edit it!
 // See "src/scripts/generate-data-code-for-galleries.ts" to learn more.
 
-import { ProjectGalleryItem } from "../domain"
+import { ProjectGalleryItem } from "../../../domain"
 
-export const CODEGEN_USED = true
-
-const gallery: ProjectGalleryItem[] = {GALLERY_DATA}
-export default gallery
+export const gallery: ProjectGalleryItem[] = {GALLERY_DATA}
 `
 
 async function generateCodeForAllProjectGalleries() {

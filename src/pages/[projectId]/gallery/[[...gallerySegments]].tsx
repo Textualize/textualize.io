@@ -45,9 +45,6 @@ export const getStaticProps: GetStaticProps = async (
     const cacheSharedServices = await import("../../../services/shared/cache")
     cacheSharedServices.enableDebugMode()
 
-    const codegenForThisGallery = await import(`../../../data/${projectId}`)
-    const codegenWasUsed = Boolean(codegenForThisGallery.CODEGEN_USED)
-
     const gallerySegments =
         context.params.gallerySegments && Array.isArray(context.params.gallerySegments)
             ? context.params.gallerySegments
@@ -57,13 +54,17 @@ export const getStaticProps: GetStaticProps = async (
         gallerySegments,
     })
 
-    // Add GitHub stars count for each item - but only if codegen was not used!
-    // (when we generate code we attach the GitHub stars count to the generated data)
-    if (!codegenWasUsed) {
-        console.debug(
-            `Codegen was not used for "${projectId}"'s gallery, let's attach GitHub stars count to the data on the fly`
-        )
-        await githubBackendServices.attachCurrentStarsCountsToRepositories(props.galleryItems)
+    if (props.galleryItems.length) {
+        // Add GitHub stars count for each item - but only if codegen was not used!
+        // It's not a very clean way to detect codegen, but let's assume that we don't need to dynamically
+        // fetch the GitHub stars count if our gallery items seem to already have such metrics attached:
+        const codegenWasUsed = Boolean(props.galleryItems[0].stars)
+        if (!codegenWasUsed) {
+            console.debug(
+                `Codegen was not used for "${projectId}"'s gallery, let's attach GitHub stars count to the data on the fly`
+            )
+            await githubBackendServices.attachCurrentStarsCountsToRepositories(props.galleryItems)
+        }
     }
 
     return { props }

@@ -10,8 +10,14 @@ const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
 // Start the app with `DONT_FETCH_DATA= npm run dev` to *not* mock GitHub API calls locally
 const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_GITHUB_STARS_DATA"])
 
-const GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE = 2
-const GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH = 4_000 // in milliseconds
+const GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE = parseInt(process.env["GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE"] || "2")
+const GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH = parseInt(
+    process.env["GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH"] || "4000"
+) // in milliseconds
+
+console.debug(
+    `GitHub API throttling: batch size=${GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE}, pause after each batch=${GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH}`
+)
 
 export interface GitHubRepoRelatedData {
     codeUrl: string | null // e.g. "https://github.com/Textualize/textual"

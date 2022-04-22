@@ -20,12 +20,11 @@
 # They're transpiled into this folder:
 /scripts-output
 
-# Codegen: the following TypeScript modules have a default empty content that
-# is versioned, but we can replace them with a "npm run codegen:*" command.
-# The result of such codegen *should not* be versioned.
-/src/data/rich.ts
-/src/data/rich-cli.ts
-/src/data/textual.ts
+# Codegen: the following folders is where we put generated code via our
+# "npm run codegen:*" commands.
+# The result of such codegen should not be versioned.
+/src/codegen/data/project-galleries/*
+!/src/codegen/data/project-galleries/.gitkeep
 
 # misc
 .DS_Store
