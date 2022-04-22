@@ -6,10 +6,10 @@ import { basename, join } from "node:path"
 import { PROJECT_IDS } from "../constants"
 import type { ProjectId } from "../domain"
 import * as galleryProjectsBackendServices from "../services/backend/projects-galleries"
+import { PROJECT_ROOT_PATH } from "./_helpers"
 
-const projectRootPath = join(new URL(import.meta.url).pathname, "..", "..", "..", "..")
-const dataFolderBasePath = join(projectRootPath, "data", "projects-galleries")
-const imagesFolderBasePath = join(projectRootPath, "public", "projects-galleries")
+const dataFolderBasePath = join(PROJECT_ROOT_PATH, "data", "projects-galleries")
+const imagesFolderBasePath = join(PROJECT_ROOT_PATH, "public", "projects-galleries")
 
 const MAX_SIZE: ImageSize = { width: 800, height: 600 }
 

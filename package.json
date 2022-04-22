@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "build:prod": "npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build",
         "start": "next start",
         "prepare": "husky install",
         "pre-commit": "lint-staged",
@@ -15,7 +16,8 @@
         "format:fix": "prettier --write --ignore-path .gitignore .",
         "ci:check": "npm run lint && npm run format:check && npm run types:check",
         "scripts:transpile": "rm -rf scripts-output/ && tsc -p ./tsconfig.scripts.json && echo '{\"type\": \"module\"}' > scripts-output/package.json ",
-        "scripts:check-gallery-images-dimensions": "node --es-module-specifier-resolution=node scripts-output/src/scripts/check-gallery-images-dimensions.js"
+        "scripts:check-gallery-images-dimensions": "node --es-module-specifier-resolution=node scripts-output/src/scripts/check-gallery-images-dimensions.js",
+        "scripts:generate-data-code-for-galleries": "node --es-module-specifier-resolution=node scripts-output/src/scripts/generate-data-code-for-galleries.js"
     },
     "dependencies": {
         "@mdx-js/loader": "^2.1.1",
@@ -28,6 +30,7 @@
         "image-size": "^1.0.1",
         "markdown-it": "^12.3.2",
         "next": "^12.1.4",
+        "p-throttle": "^5.0.0",
         "react": "17.0.2",
         "react-dom": "17.0.2",
         "react-icons": "^4.3.1",

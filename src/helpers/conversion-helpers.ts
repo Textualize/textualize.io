@@ -1,4 +1,4 @@
-import * as Humanize from "humanize-plus"
+import Humanize from "humanize-plus"
 
 export function humanizeStargazersCount(starsCount: number): string {
     const humanizedRepr = Humanize.compactInteger(starsCount, 1)

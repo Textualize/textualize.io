@@ -1,26 +1,22 @@
 import { promises as fs } from "node:fs"
 import { basename, join } from "node:path"
-import type { ParsedUrlQuery } from "node:querystring"
 import { promisify } from "node:util"
-import { GetStaticPropsContext, GetStaticPropsResult } from "next/types"
 import fastGlob from "fast-glob"
 import matter from "gray-matter"
 import imageSizeSync from "image-size"
 import MarkdownIt from "markdown-it"
-import { GALLERY_ITEMS_COUNT_PER_PAGE, PROJECTS_WITH_GALLERY, PROJECT_IDS } from "../../constants"
+import { GALLERY_ITEMS_COUNT_PER_PAGE, PROJECTS_WITH_GALLERY } from "../../constants"
 import type { CategoriesWithCount, Category, ImageProperties, ProjectGalleryItem, ProjectId } from "../../domain"
 import { pagesRange } from "../../helpers/pagination-helpers"
-import { isProjectId, projectGalleryCategories, projectGalleryForCategory } from "../shared/projects-galleries"
+import * as cacheSharedServices from "../shared/cache"
+import { projectGalleryCategories } from "../shared/projects-galleries"
 import * as galleryProjectsSharedServices from "../shared/projects-galleries"
-import * as githubBackendServices from "./github"
 
 const projectRootPath = join(new URL(import.meta.url).pathname, "..", "..", "..", "..")
 const dataFolderBasePath = join(projectRootPath, "data", "projects-galleries")
 const imagesFolderBasePath = join(projectRootPath, "public", "projects-galleries")
 
 const markdownParser = new MarkdownIt()
-
-const galleryCache = new Map<ProjectId, ProjectGalleryItem[]>()
 
 const imageSize = promisify(imageSizeSync)
 
@@ -35,31 +31,42 @@ export interface ProjectGalleryDiscoveryOptions {
 }
 
 export async function projectGallery(
-    project: ProjectId,
+    projectId: ProjectId,
     options: ProjectGalleryDiscoveryOptions = {}
 ): Promise<ProjectGalleryItem[]> {
-    const cachedValue = galleryCache.get(project)
+    const cacheKey = `project-gallery:${projectId}`
+    const cachedValue = await cacheSharedServices.get(cacheKey)
     if (cachedValue) {
         return cachedValue
     }
 
-    const folderPath = join(options.dataFolderPath || dataFolderBasePath, project)
-    options.verbose && console.debug(`Traversing gallery folder "${folderPath}" for project "${project}"...`)
+    try {
+        // See `src/scripts/generate-data-code-for-galleries.ts` to see what code we generate there
+        const codegenForThisGallery = await import(`../../codegen/data/project-galleries/${projectId}`)
+        const galleryProjects = codegenForThisGallery.gallery
+        await cacheSharedServices.set(cacheKey, galleryProjects)
+        return galleryProjects
+    } catch (err) {
+        // Codegen was not triggered; that's fine, we''ll just compute the data on the fly right away
+    }
+
+    const folderPath = join(options.dataFolderPath || dataFolderBasePath, projectId)
+    options.verbose && console.debug(`Traversing gallery folder "${folderPath}" for project "${projectId}"...`)
 
     const projectsFiles = await fastGlob("*.mdx", { cwd: folderPath, absolute: true })
     const galleryProjects = await Promise.all(
-        projectsFiles.map((filePath) => galleryProjectFromMarkdownFilePath(project, filePath, options))
+        projectsFiles.map((filePath) => galleryProjectFromMarkdownFilePath(projectId, filePath, options))
     )
 
-    options.verbose && console.debug(`Found ${galleryProjects.length} items for project "${project}"'s gallery.`)
+    options.verbose && console.debug(`Found ${galleryProjects.length} items for project "${projectId}"'s gallery.`)
 
-    galleryCache.set(project, galleryProjects)
+    await cacheSharedServices.set(cacheKey, galleryProjects)
 
     return galleryProjects
 }
 
-export interface ProjectGalleryStaticPathsParams extends ParsedUrlQuery {
-    projectId: string
+export interface ProjectGalleryStaticPathsParams {
+    projectId: ProjectId
     gallerySegments: string[]
 }
 export async function projectGalleryStaticPathsParams(): Promise<ProjectGalleryStaticPathsParams[]> {
@@ -96,18 +103,11 @@ export interface ProjectGalleryPageProps {
     galleryCategoriesWithCount: CategoriesWithCount
 }
 
-export async function projectGalleryStaticProps(
-    context: GetStaticPropsContext<ProjectGalleryStaticPathsParams>
-): Promise<GetStaticPropsResult<ProjectGalleryPageProps>> {
-    if (!context.params || !context.params.projectId) {
-        throw new Error("Received unexpected params for a project gallery page")
-    }
-
-    const projectId = context.params.projectId
-    if (!galleryProjectsSharedServices.isProjectId(projectId)) {
-        throw new Error(`Invalid projectId "${projectId}"`)
-    }
-    const [category, page] = galleryCategoryAndPageForSegments(context.params.gallerySegments || [])
+export async function projectGalleryStaticProps({
+    projectId,
+    gallerySegments,
+}: ProjectGalleryStaticPathsParams): Promise<ProjectGalleryPageProps> {
+    const [category, page] = galleryCategoryAndPageForSegments(gallerySegments || [])
 
     // Take all items for this project's gallery, build global stats with it, then paginate it
     const galleryItems = await projectGallery(projectId)
@@ -119,18 +119,13 @@ export async function projectGalleryStaticProps(
     const paginationIndexEnd = paginationIndexStart + GALLERY_ITEMS_COUNT_PER_PAGE
     const paginatedGalleryItems = galleryItemsForThisCategory.slice(paginationIndexStart, paginationIndexEnd)
 
-    // Add GitHub starts count for each item
-    await githubBackendServices.attachCurrentStarsCountsToRepositories(paginatedGalleryItems)
-
     return {
-        props: {
-            projectId,
-            page,
-            pagesCount,
-            category,
-            galleryCategoriesWithCount,
-            galleryItems: paginatedGalleryItems,
-        },
+        projectId,
+        page,
+        pagesCount,
+        category,
+        galleryCategoriesWithCount,
+        galleryItems: paginatedGalleryItems,
     }
 }
 
