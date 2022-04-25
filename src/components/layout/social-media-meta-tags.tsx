@@ -3,7 +3,7 @@ import React from "react"
 // Shared content
 const TITLE = `Textualize.io`
 const DESCRIPTION = `The terminal can be more powerful and beautiful than you ever thought`
-const IMAGE_URL = "https://res.cloudinary.com/textualize-io/image/upload/v1650621291/social%20media%20share%20image.png"
+const IMAGE_URL = "/img/social-share-view.png"
 const SITE_URL = "https://www.textualize.io/"
 // Twitter-specific stuff
 const TWITTER_SITE = "@textualizeio"
