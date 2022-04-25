@@ -1,6 +1,6 @@
 import React from "react"
+import { Icons } from "../icons"
 import { Footer } from "./footer"
-import { Icons } from "./icons"
 import { Nav } from "./nav"
 
 interface LayoutProps {

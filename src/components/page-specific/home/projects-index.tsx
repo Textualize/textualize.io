@@ -1,6 +1,6 @@
 import React from "react"
-import type { ProjectData } from "../domain"
-import { Project } from "./project"
+import type { ProjectData } from "../../../domain"
+import { Project } from "./project-item"
 
 interface ProjectsIndexProps {
     projectsData: ProjectData[]

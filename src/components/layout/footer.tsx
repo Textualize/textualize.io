@@ -1,8 +1,8 @@
 import React from "react"
 import Link from "next/link"
 import { useInView } from "react-intersection-observer"
-import { SOCIAL_LINKS } from "../constants"
-import { Logo } from "./logo"
+import { SOCIAL_LINKS } from "../../constants"
+import { Logo } from "../logo"
 
 const DISPLAY_SCROLL_HINT = false // set to `true` to re-enable the floating down arrow
 
@@ -46,7 +46,11 @@ export const Footer = (): JSX.Element => {
                     </div>
                     <div className="footer__brand">
                         <div>
-                            <Logo isFooter />
+                            <Link href="/">
+                                <a>
+                                    <Logo isFooter />
+                                </a>
+                            </Link>
                         </div>
                         <div className="footer__social-links">
                             {Object.entries(SOCIAL_LINKS)

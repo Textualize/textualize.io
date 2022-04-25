@@ -1,12 +1,12 @@
 import React from "react"
 import Link from "next/link"
-import type { Category, ProjectGalleryItem, ProjectId } from "../domain"
-import { CategoriesWithCount } from "../domain"
-import { PROJECT_NAMES } from "../i18n"
-import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
-import { Categories } from "./atomic/categories"
+import type { Category, ProjectGalleryItem, ProjectId } from "../../../domain"
+import { CategoriesWithCount } from "../../../domain"
+import { PROJECT_NAMES } from "../../../i18n"
+import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
+import { Categories } from "../../atomic/categories"
+import { Pagination } from "../../pagination"
 import { GalleryItem } from "./gallery-item"
-import { Pagination } from "./pagination"
 
 interface GalleryIndexProps {
     projectId: ProjectId

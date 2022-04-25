@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
-import { trackEvent } from "../services/frontend/analytics"
-import { Terminal } from "./terminal"
+import { trackEvent } from "../../../services/frontend/analytics"
+import { Terminal } from "../../terminal"
 
 interface HeroProps {
     videoUrl: string

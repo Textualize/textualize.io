@@ -1,9 +1,9 @@
 import React from "react"
 import Link from "next/link"
 import { FiMoon, FiSun } from "react-icons/fi"
-import { SOCIAL_LINKS } from "../constants"
-import * as themeServices from "../services/shared/theme"
-import { Logo } from "./logo"
+import { SOCIAL_LINKS } from "../../constants"
+import * as themeServices from "../../services/shared/theme"
+import { Logo } from "../logo"
 
 export const Nav = (): JSX.Element => {
     const onThemeTogglerClick = () => {
@@ -13,7 +13,7 @@ export const Nav = (): JSX.Element => {
     return (
         <div className="container">
             <nav className="nav">
-                <Link href="/">
+                <Link href="/src/pages">
                     <a>
                         <Logo />
                     </a>
