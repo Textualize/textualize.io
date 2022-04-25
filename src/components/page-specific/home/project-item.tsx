@@ -1,10 +1,10 @@
 import React from "react"
 import { useInView } from "react-intersection-observer"
-import { PROJECTS_WITH_GALLERY } from "../constants"
-import type { ProjectData } from "../domain"
-import * as galleryProjectsSharedServices from "../services/shared/projects-galleries"
-import { Button, ButtonProps } from "./atomic/button"
-import { Terminal } from "./terminal"
+import { PROJECTS_WITH_GALLERY } from "../../../constants"
+import type { ProjectData } from "../../../domain"
+import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
+import { Button, ButtonProps } from "../../atomic/button"
+import { Terminal } from "../../terminal"
 
 interface ProjectProps {
     project: ProjectData

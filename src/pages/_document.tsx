@@ -1,6 +1,6 @@
 import React from "react"
 import { Head, Html, Main, NextScript } from "next/document"
-import { SocialMediaMetaTags } from "../components/social-media-meta-tags"
+import { SocialMediaMetaTags } from "../components/layout/social-media-meta-tags"
 
 export default function Document() {
     // @link https://nextjs.org/docs/advanced-features/custom-document

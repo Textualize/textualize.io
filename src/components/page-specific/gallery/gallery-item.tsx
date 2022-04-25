@@ -1,8 +1,8 @@
 import React from "react"
 import Image from "next/image"
-import type { ProjectGalleryItem } from "../domain"
-import { Button, ButtonProps } from "./atomic/button"
-import { Categories } from "./atomic/categories"
+import type { ProjectGalleryItem } from "../../../domain"
+import { Button, ButtonProps } from "../../atomic/button"
+import { Categories } from "../../atomic/categories"
 
 interface GalleryItemProps {
     nth: number
