@@ -1,0 +1,14 @@
+# Of course we don't apply Prettier there...
+/node_modules
+
+# Ignore build-related folders too:
+/.next/
+/out/
+/build
+
+# Our own "build" folders:
+/scripts-output
+/src/codegen/
+
+# Don't make submitting projects to the galleries too cumbersome, by skipping Prettier checks there:
+/data/projects-galleries
