@@ -13,7 +13,7 @@ export const Nav = (): JSX.Element => {
     return (
         <div className="container">
             <nav className="nav">
-                <Link href="/src/pages">
+                <Link href="/">
                     <a>
                         <Logo />
                     </a>
