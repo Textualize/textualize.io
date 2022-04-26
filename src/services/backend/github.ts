@@ -42,8 +42,8 @@ export async function attachCurrentStarsCountsToRepositories(
 
     // ...But we launch them in parallel, with a limited concurrency:
     const throttle = pThrottle({
-        limit: GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE,
-        interval: GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH,
+        limit: DONT_FETCH_DATA ? 1000 : GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE,
+        interval: DONT_FETCH_DATA ? 0 : GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH,
     })
     const repositoriesStatsThrottledPromiseFactories = repositoriesStatsPromiseFactories.map((promise) =>
         throttle(promise)
