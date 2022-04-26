@@ -1,3 +1,6 @@
+$fullscreen-icon-size: 24px;
+$fullscreen-icon-opacity: 0.8;
+
 .video {
     position: relative;
 
@@ -10,5 +13,45 @@
     &__content {
         position: absolute;
         inset: 0;
+    }
+
+    &__container {
+        &__fullscreen_bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: $fullscreen-icon-size;
+            opacity: $fullscreen-icon-opacity;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: right;
+            display: none;
+
+            svg {
+                display: inline-block;
+                margin-right: 4px;
+                width: $fullscreen-icon-size;
+                height: $fullscreen-icon-size;
+            }
+        }
+
+        &.fullscreenable.not-fullscreen {
+            cursor: pointer;
+
+            &:hover .video__container__fullscreen_bar {
+                display: block;
+            }
+        }
+        &.fullscreenable.fullscreen {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            background-color: $terminal-bg-color;
+
+            .video__content {
+                position: static;
+            }
+        }
     }
 }

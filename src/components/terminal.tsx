@@ -1,5 +1,5 @@
 import React from "react"
-import { useInView } from "react-intersection-observer"
+import { Video } from "./atomic/video"
 
 interface TerminalProps {
     videoUrl: string
@@ -8,13 +8,6 @@ interface TerminalProps {
 }
 
 export const Terminal = (props: TerminalProps) => {
-    const { ref, inView } = useInView({
-        threshold: 0.1,
-        initialInView: props.initialInView,
-        // Once a video was displayed, we leave it in place:
-        triggerOnce: true,
-    })
-
     return (
         <div className="terminal">
             <div className="terminal__head">
@@ -26,11 +19,7 @@ export const Terminal = (props: TerminalProps) => {
                 {props.tabName ? <div className="terminal__tab">{props.tabName}</div> : null}
             </div>
             <div className="terminal__body">
-                <div className="video" ref={ref}>
-                    {inView ? (
-                        <video src={props.videoUrl} className="video__content" autoPlay loop muted playsInline />
-                    ) : null}
-                </div>
+                <Video videoUrl={props.videoUrl} initialInView={props.initialInView} />
             </div>
         </div>
     )
