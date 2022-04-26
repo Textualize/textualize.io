@@ -270,6 +270,7 @@ export const Icons = () => (
             <path d="M23,7c-1.1,0-2,0.9-2,2c0,1.1,0.9,2,2,2s2-0.9,2-2C25,7.9,24.1,7,23,7z"></path>{" "}
         </symbol>
         <symbol id="icon-fullscreen" stroke="none" fill="currentColor" viewBox="0 0 24 24">
+            {/* source: https://www.svgrepo.com/svg/333963/fullscreen */}
             <path d="M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z" />
         </symbol>
     </svg>

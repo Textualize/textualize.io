@@ -51,7 +51,18 @@ export const Video = (props: VideoProps): JSX.Element => {
         }
     }
 
-    const video = <video src={props.videoUrl} className="video__content" autoPlay loop muted playsInline />
+    const video = (
+        <video
+            src={props.videoUrl}
+            ref={videoElementRef}
+            className="video__content"
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={videoIsFullScreen}
+        />
+    )
 
     const videoWrapper =
         props.withoutFullscreen || !fscreen.fullscreenEnabled ? (
@@ -63,10 +74,10 @@ export const Video = (props: VideoProps): JSX.Element => {
                     "fullscreenable",
                     videoIsFullScreen ? "fullscreen" : "not-fullscreen",
                 ].join(" ")}
-                ref={videoElementRef}
                 onClick={onFullscreenableOnClick}
             >
                 {video}
+
                 <span className="video__container__fullscreen_bar">
                     <svg>
                         <use xlinkHref="#icon-fullscreen" />
