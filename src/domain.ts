@@ -1,4 +1,5 @@
 export type ProjectUrl = string
+export type HtmlString = string
 
 export interface ProjectData {
     id: ProjectId
@@ -40,7 +41,16 @@ export interface ProjectGalleryItem {
     codeUrl: string | null
     docsUrl: string | null
     categories: Category[]
-    description: string
+    description: HtmlString
 }
 
 export type CategoriesWithCount = { [category: string]: number }
+
+export interface TeamMember {
+    id: string
+    name: string
+    role: string
+    imageUrl: string
+    twitterHandle: string
+    description: HtmlString
+}
