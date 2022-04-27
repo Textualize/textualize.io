@@ -3,12 +3,17 @@ import type { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import { GetStaticPropsResult } from "next/types"
 import { GalleryIndex } from "../../../components/page-specific/gallery/gallery-index"
+import { ProjectsDataContext } from "../../../contexts/projects-data"
+import { ProjectData } from "../../../domain"
+import { getCommonStaticProps as commonGetStaticProps } from "../../../helpers/common-static-props"
 import * as githubBackendServices from "../../../services/backend/github"
 import * as galleryProjectsBackendServices from "../../../services/backend/projects-galleries"
-import { ProjectGalleryPageProps } from "../../../services/backend/projects-galleries"
 import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
 
-export default function ProjectGalleryPage(props: galleryProjectsBackendServices.ProjectGalleryPageProps) {
+interface ProjectGalleryPageProps extends galleryProjectsBackendServices.ProjectGalleryPageProps {
+    projectsData: ProjectData[]
+}
+export default function ProjectGalleryPage(props: ProjectGalleryPageProps) {
     const canonicalUrl = galleryProjectsSharedServices.projectGalleryPageUrl(props)
 
     return (
@@ -16,14 +21,16 @@ export default function ProjectGalleryPage(props: galleryProjectsBackendServices
             <Head>
                 <link rel="canonical" href={canonicalUrl} />
             </Head>
-            <GalleryIndex
-                projectId={props.projectId}
-                currentPage={props.page}
-                pagesCount={props.pagesCount}
-                galleryItems={props.galleryItems}
-                selectedCategory={props.category ?? undefined}
-                galleryCategoriesWithCount={props.galleryCategoriesWithCount}
-            />
+            <ProjectsDataContext.Provider value={props.projectsData}>
+                <GalleryIndex
+                    projectId={props.projectId}
+                    currentPage={props.page}
+                    pagesCount={props.pagesCount}
+                    galleryItems={props.galleryItems}
+                    selectedCategory={props.category ?? undefined}
+                    galleryCategoriesWithCount={props.galleryCategoriesWithCount}
+                />
+            </ProjectsDataContext.Provider>
         </>
     )
 }
@@ -66,7 +73,9 @@ export const getStaticProps: GetStaticProps = async (
         }
     }
 
-    return { props }
+    const { props: commonProps } = await commonGetStaticProps(context)
+
+    return { props: { ...commonProps, ...props } }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

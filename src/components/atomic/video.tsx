@@ -1,6 +1,8 @@
 import React from "react"
 import fscreen from "fscreen"
 import { useInView } from "react-intersection-observer"
+import { ProjectsDataContext } from "../../contexts/projects-data"
+import { replaceProjectsRelatedPlaceholders } from "../../helpers/placeholder-helpers"
 
 interface VideoProps {
     videoUrl: string
@@ -18,6 +20,8 @@ export const Video = (props: VideoProps): JSX.Element => {
     const videoElementRef = React.useRef<HTMLVideoElement>(null)
 
     const scrollTopBeforeFullscreen = React.useRef<number>(0)
+
+    const projectsData = React.useContext(ProjectsDataContext)
 
     const onFullScreenChange = React.useCallback(() => {
         setVideoIsFullScreen(
@@ -51,9 +55,12 @@ export const Video = (props: VideoProps): JSX.Element => {
         }
     }
 
+    // We can use placeholders such as "PROJECT_VIDEO_URL:textual" in the video URL:
+    const videoUrl = replaceProjectsRelatedPlaceholders(props.videoUrl, projectsData)
+
     const video = (
         <video
-            src={props.videoUrl}
+            src={videoUrl}
             ref={videoElementRef}
             className="video__content"
             autoPlay

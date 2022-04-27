@@ -1,5 +1,10 @@
 import { Callout } from "../components/callout"
 import { Terminal } from "../components/terminal"
+import { ProjectsDataContext } from "../contexts/projects-data"
+
+export { getCommonStaticProps as getStaticProps } from "../helpers/common-static-props"
+
+<ProjectsDataContext.Provider value={props.projectsData}>
 
 <div className="container container--text">
 
@@ -42,7 +47,7 @@ Our answer to this is [Textual](https://github.com/Textualize/textual), an Open-
 
 The following demonstrates a little of what is possible with a Textual TUI. Note the light / dark mode switch a few seconds in.
 
-<Terminal videoUrl="https://d32lig6y1jobn4.cloudfront.net/textual.mp4" />
+<Terminal videoUrl="[PROJECT_VIDEO_URL:textual]" />
 
 ## Textual for Everyone
 
@@ -62,3 +67,5 @@ As excited as we are about this web service, our roots are in the Open-source co
 [survey]: https://github.com/Textualize/terminal-survey
 
 </div>
+
+</ProjectsDataContext.Provider>
