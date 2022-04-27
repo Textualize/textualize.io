@@ -60,6 +60,16 @@ describe("website smoke tests", () => {
             cy.get(".gallery-item").should("have.length.at.least", 2)
         }
     })
+
+    it("displays About Us", () => {
+        cy.visit("/about-us")
+
+        cy.checkLayoutElements()
+
+        for (const teamMember of ["Will", "Darren", "Olivier"]) {
+            cy.contains(teamMember)
+        }
+    })
 })
 
 export {} // only to make TypeScript happy, because of the `isolatedModules` config

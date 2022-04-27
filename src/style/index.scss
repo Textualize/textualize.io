@@ -19,12 +19,15 @@
 
 // modules
 @import "./sections/hero.scss";
-@import "./sections/mail-list.scss";
-@import "./sections/projects-index.scss";
 @import "./sections/project.scss";
+@import "./sections/footer.scss";
+@import "./sections/mail-list.scss";
+
+// pages
+@import "./sections/projects-index.scss";
 @import "./sections/gallery-index.scss";
 @import "./sections/gallery-item.scss";
-@import "./sections/footer.scss";
+@import "./sections/team.scss";
 
 // utilities
 @import "./utilities/common.scss";

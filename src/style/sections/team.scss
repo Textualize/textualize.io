@@ -1,0 +1,100 @@
+.team {
+    margin: $space-14 0;
+
+    &__member {
+        display: flex;
+        flex-direction: column;
+        gap: $space-6;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-size: $font-20;
+        margin-bottom: $space-18;
+
+        @media (min-width: $breakpoint-tablet) {
+            gap: $space-10;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            flex-direction: row-reverse;
+            &:nth-child(even) {
+                flex-direction: row;
+            }
+        }
+
+        &__data {
+            width: 100%;
+
+            @media (min-width: $breakpoint-tablet) {
+                width: auto;
+                flex-grow: 1;
+            }
+
+            &__main_info {
+                text-align: center;
+                @media (min-width: $breakpoint-tablet) {
+                    text-align: left;
+                }
+            }
+
+            [itemProp="name"] {
+                margin: 0;
+                font-size: $font-28;
+                line-height: 1.2;
+                font-weight: 700;
+                color: #7d5ab7;
+
+                @media (min-width: $breakpoint-tablet) {
+                    font-size: $font-40;
+                }
+
+                @media (min-width: $breakpoint-desktop) {
+                    font-size: $font-50;
+                }
+            }
+
+            [itemProp="description"] {
+                margin-top: $space-8;
+            }
+
+            &__twitter_link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @media (min-width: $breakpoint-tablet) {
+                    justify-content: flex-start;
+                }
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        &__portrait {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            @media (min-width: $breakpoint-tablet) {
+                width: 200px;
+                display: inline-block;
+            }
+
+            &__image-wrapper {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                position: relative;
+                overflow: hidden;
+                border: solid var(--badge-label-color) 1px;
+
+                img {
+                    position: absolute;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
