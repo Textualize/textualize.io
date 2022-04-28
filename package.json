@@ -7,7 +7,9 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "build:prod": "npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build && cat .next/cache/textualize-cache.json",
+        "build:prod": "npm run build:textualize-cache:display && npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build && npm run build:textualize-cache:display",
+        "build:textualize-cache:display": "cat .next/cache/textualize-cache.*.json || true",
+        "build:textualize-cache:clear": "rm -f .next/cache/textualize-cache.*.json || true",
         "start": "next start",
         "prepare": "husky install",
         "cypress:open": "cypress open",

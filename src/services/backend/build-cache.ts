@@ -1,19 +1,22 @@
 /**
  * This is a very simple and naive "across Vercel builds" cache.
- * Pretty inefficient, as we're constantly reading the whole cache content from a JSON file,
+ * Pretty inefficient, as we're constantly reading cache entries JSON files,
  * but still better than querying the GitHub API again and again... :-)
  * We can only store JSON-able data there.
  *
  * @link https://vercel.com/docs/concepts/deployments/build-step#caching
  */
+import { createHash } from "node:crypto"
 import { promises as fs } from "node:fs"
 import { join } from "node:path"
 import { projectRootPath } from "./_helpers"
 
 type CacheKey = string
-type CacheContent = Record<CacheKey, any>
 
-const cacheFilePath = join(projectRootPath, ".next", "cache", "textualize-cache.json")
+const cacheFolderPath = join(projectRootPath, ".next", "cache")
+// Good old md5 will be enough for our needs, since it's not related to security
+// but only used to make our cache keys "file name"-proof.
+const cacheFileHasher = createHash("md5")
 
 const debugMode = { miss: false, hit: false, set: false }
 
@@ -22,38 +25,28 @@ export function enableDebugMode(debug: { miss: boolean; hit: boolean; set: boole
 }
 
 export async function get<T = any>(key: CacheKey, defaultValue: T | null = null): Promise<T | null> {
-    const cacheContent = await wholeCacheContent()
-
-    const value = cacheContent[key]
-    if (value === undefined) {
+    try {
+        const cacheContent = await JSON.parse(await fs.readFile(cacheFilePath(key), "utf8"))
+        debugMode.hit && console.debug(`BuildCache: HIT for key "${key}"`)
+        return cacheContent["value"]
+    } catch (err) {
         debugMode.miss && console.debug(`BuildCache: MISS for key "${key}"`)
         return defaultValue
     }
-    debugMode.hit && console.debug(`BuildCache: HIT for key "${key}"`)
-    return value
 }
 
 export async function set<T = any>(key: CacheKey, value: T): Promise<void> {
     debugMode.set && console.debug(`BuildCache: saving data for key "${key}"`)
-    const cacheContent = await wholeCacheContent()
-    cacheContent[key] = value
-    await saveWholeCacheContent(cacheContent)
+    // N.B. We don't do anything with the "createdAt" key for nw, but it could be useful to
+    // progressively refresh our cache later on.
+    const cacheContent = { value, createAt: new Date().toISOString() }
+    await fs.writeFile(cacheFilePath(key), JSON.stringify(cacheContent) + "\n", "utf8")
 }
 
-async function wholeCacheContent(): Promise<CacheContent> {
-    try {
-        const cacheContentRaw = await fs.readFile(cacheFilePath, "utf8")
-        return JSON.parse(cacheContentRaw)
-    } catch (err) {
-        return {}
-    }
+function cacheFilePath(key: CacheKey): string {
+    return join(cacheFolderPath, `textualize-cache.${cacheKeyAsHash(key)}.json`)
 }
 
-async function saveWholeCacheContent(cacheContent: CacheContent): Promise<void> {
-    try {
-        const cacheContentRaw = JSON.stringify(cacheContent)
-        await fs.writeFile(cacheFilePath, cacheContentRaw, "utf8")
-    } catch (err) {
-        debugMode && console.warn(`Couldn't save the build cache in "${cacheFilePath}": ${err}`)
-    }
+function cacheKeyAsHash(key: CacheKey): string {
+    return cacheFileHasher.copy().update(key).digest("hex")
 }
