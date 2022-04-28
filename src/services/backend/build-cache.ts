@@ -14,7 +14,9 @@ import { projectRootPath } from "./_helpers"
 type CacheKey = string
 
 const cacheFolderPath = join(projectRootPath, ".next", "cache")
-const hash = createHash("sha256")
+// Good old md5 will be enough for our needs, since it's not related to security
+// but only used to make our cache keys "file name"-proof.
+const cacheFileHasher = createHash("md5")
 
 const debugMode = { miss: false, hit: false, set: false }
 
@@ -46,5 +48,5 @@ function cacheFilePath(key: CacheKey): string {
 }
 
 function cacheKeyAsHash(key: CacheKey): string {
-    return hash.copy().update(key).digest("hex")
+    return cacheFileHasher.copy().update(key).digest("hex")
 }
