@@ -47,9 +47,9 @@ export const getStaticProps: GetStaticProps = async (
         throw new Error(`Invalid projectId "${projectId}"`)
     }
 
-    //TODO: remove this once we're confident enough in our static pages generation :-)
-    const cacheSharedServices = await import("../../../services/shared/cache")
-    cacheSharedServices.enableDebugMode()
+    //TODO: remove this once we're confident enough in this cache implementation :-)
+    const buildCacheBackendServices = await import("../../../services/backend/build-cache")
+    buildCacheBackendServices.enableDebugMode({ miss: true, hit: false, set: true })
 
     const gallerySegments =
         context.params.gallerySegments && Array.isArray(context.params.gallerySegments)

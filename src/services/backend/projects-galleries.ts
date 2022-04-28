@@ -11,8 +11,8 @@ import { pagesRange } from "../../helpers/pagination-helpers"
 import * as cacheSharedServices from "../shared/cache"
 import { projectGalleryCategories } from "../shared/projects-galleries"
 import * as galleryProjectsSharedServices from "../shared/projects-galleries"
+import { projectRootPath } from "./_helpers"
 
-const projectRootPath = join(new URL(import.meta.url).pathname, "..", "..", "..", "..")
 const dataFolderBasePath = join(projectRootPath, "data", "projects-galleries")
 const imagesFolderBasePath = join(projectRootPath, "public", "projects-galleries")
 

@@ -1,7 +1,7 @@
 import pThrottle from "p-throttle"
 import type { RepoId } from "../../domain"
 import { humanizeStargazersCount } from "../../helpers/conversion-helpers"
-import * as cacheSharedServices from "../shared/cache"
+import * as buildCacheBackendServices from "../backend/build-cache"
 
 const REPO_URL_REGEX = /^https:\/\/github.com\/(?<owner>[^/]+)\/(?<repo>[^/]+)$/
 const REPO_URL_PATTERN = "https://github.com/{owner}/{repo}"
@@ -12,7 +12,7 @@ const DONT_FETCH_DATA = Boolean(process.env["DONT_FETCH_GITHUB_STARS_DATA"])
 
 const GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE = parseInt(process.env["GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE"] || "2")
 const GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH = parseInt(
-    process.env["GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH"] || "4000"
+    process.env["GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH"] || "100"
 ) // in milliseconds
 
 console.debug(
@@ -73,7 +73,7 @@ export async function attachCurrentStarsCountsToRepositories(
 
 export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatistics> {
     const cacheKey = `github-repo-statistics:${repoId.owner}/${repoId.repo}`
-    const cachedValue = await cacheSharedServices.get(cacheKey)
+    const cachedValue = await buildCacheBackendServices.get(cacheKey)
     if (cachedValue) {
         return cachedValue
     }
@@ -105,7 +105,7 @@ export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatisti
         }
     }
 
-    await cacheSharedServices.set(cacheKey, result)
+    await buildCacheBackendServices.set(cacheKey, result)
 
     return result
 }

@@ -7,10 +7,10 @@ type CacheKey = string
 
 const cacheStore = new Map<CacheKey, any>()
 
-let debugMode: boolean = false
+const debugMode = { miss: false, hit: false, set: false }
 
-export function enableDebugMode(): void {
-    debugMode = true
+export function enableDebugMode(debug: { miss: boolean; hit: boolean; set: boolean }): void {
+    Object.assign(debugMode, debug)
 }
 
 export async function has(key: CacheKey): Promise<boolean> {
@@ -20,14 +20,15 @@ export async function has(key: CacheKey): Promise<boolean> {
 export async function get<T = any>(key: CacheKey, defaultValue: T | null = null): Promise<T | null> {
     const value = cacheStore.get(key)
     if (value === undefined) {
-        debugMode && console.debug(`Cache: MISS for key "${key}"`)
+        debugMode.miss && console.debug(`Cache: MISS for key "${key}"`)
         return defaultValue
     }
-    debugMode && console.debug(`Cache: HIT for key "${key}"`)
+    debugMode.hit && console.debug(`Cache: HIT for key "${key}"`)
     return value
 }
 
 export async function set<T = any>(key: CacheKey, value: T): Promise<void> {
+    debugMode.set && console.debug(`Cache: saving data for key "${key}"`)
     cacheStore.set(key, value)
 }
 
