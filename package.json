@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "build:prod": "npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build",
+        "build:prod": "npm run scripts:transpile && npm run scripts:generate-data-code-for-galleries && next build && cat .next/cache/textualize-cache.json",
         "start": "next start",
         "prepare": "husky install",
         "cypress:open": "cypress open",
