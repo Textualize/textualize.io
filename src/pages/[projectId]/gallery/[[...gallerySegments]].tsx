@@ -6,6 +6,7 @@ import { GalleryIndex } from "../../../components/page-specific/gallery/gallery-
 import { ProjectsDataContext } from "../../../contexts/projects-data"
 import { ProjectData } from "../../../domain"
 import { getCommonStaticProps as commonGetStaticProps } from "../../../helpers/common-static-props"
+import { absoluteUrl } from "../../../helpers/url-helpers"
 import * as githubBackendServices from "../../../services/backend/github"
 import * as galleryProjectsBackendServices from "../../../services/backend/projects-galleries"
 import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
@@ -14,7 +15,7 @@ interface ProjectGalleryPageProps extends galleryProjectsBackendServices.Project
     projectsData: ProjectData[]
 }
 export default function ProjectGalleryPage(props: ProjectGalleryPageProps) {
-    const canonicalUrl = galleryProjectsSharedServices.projectGalleryPageUrl(props)
+    const canonicalUrl = absoluteUrl(galleryProjectsSharedServices.projectGalleryPageUrl(props))
 
     return (
         <>

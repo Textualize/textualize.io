@@ -1,6 +1,7 @@
 // One setting per line: makes it easy to replace a setting at deployment time with a `sed` command
 // (note that we could also rely on `process.env` and env vars prefixed with `NEXT_PUBLIC_`)
 export const AppConfig = {
+    absoluteUrl: process.env["NEXT_PUBLIC_ABSOLUTE_URL"] || "",
     fathom: {
         trackingCode: process.env["NEXT_PUBLIC_FATHOM_TRACKING_CODE"] || "",
         includedDomains: (process.env["NEXT_PUBLIC_FATHOM_INCLUDED_DOMAINS"] || "").split(","),
