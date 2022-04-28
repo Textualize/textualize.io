@@ -1,4 +1,4 @@
-import { isServerSideRendering } from "./rendering-context"
+import { isServerSideRendering } from "../../helpers/runtime-helpers"
 
 export function initTheme(): void {
     if (isServerSideRendering()) {
