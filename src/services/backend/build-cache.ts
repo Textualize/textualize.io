@@ -15,10 +15,10 @@ type CacheContent = Record<CacheKey, any>
 
 const cacheFilePath = join(projectRootPath, ".next", "cache", "textualize-cache.json")
 
-let debugMode: boolean = true
+const debugMode = { miss: false, hit: false, set: false }
 
-export function enableDebugMode(): void {
-    debugMode = true
+export function enableDebugMode(debug: { miss: boolean; hit: boolean; set: boolean }): void {
+    Object.assign(debugMode, debug)
 }
 
 export async function get<T = any>(key: CacheKey, defaultValue: T | null = null): Promise<T | null> {
@@ -26,15 +26,15 @@ export async function get<T = any>(key: CacheKey, defaultValue: T | null = null)
 
     const value = cacheContent[key]
     if (value === undefined) {
-        debugMode && console.debug(`BuildCache: MISS for key "${key}"`)
+        debugMode.miss && console.debug(`BuildCache: MISS for key "${key}"`)
         return defaultValue
     }
-    debugMode && console.debug(`BuildCache: HIT for key "${key}"`)
+    debugMode.hit && console.debug(`BuildCache: HIT for key "${key}"`)
     return value
 }
 
 export async function set<T = any>(key: CacheKey, value: T): Promise<void> {
-    debugMode && console.debug(`BuildCache: saving data for key "${key}"`)
+    debugMode.set && console.debug(`BuildCache: saving data for key "${key}"`)
     const cacheContent = await wholeCacheContent()
     cacheContent[key] = value
     await saveWholeCacheContent(cacheContent)
