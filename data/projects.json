@@ -3,7 +3,7 @@
         {
             "id": "textual",
             "headline": "Textual",
-            "stars": "9k",
+            "stars": "10k",
             "desc": "Build amazing TUIs (Text User Interfaces) with this innovative Python framework",
             "code": "https://github.com/Textualize/textual",
             "videoUrl": "https://d32lig6y1jobn4.cloudfront.net/textual.mp4"
@@ -11,7 +11,7 @@
         {
             "id": "rich",
             "headline": "Rich",
-            "stars": "36k",
+            "stars": "37k",
             "desc": "Beautiful output in the terminal and Jupyter notebook with this powerful Python library. Tables, panels, progress bars, trees, syntax highlighting, pretty printing, and much more.",
             "code": "https://github.com/Textualize/rich",
             "docs": "https://rich.readthedocs.io/en/latest/",
@@ -20,7 +20,7 @@
         {
             "id": "rich-cli",
             "headline": "Rich CLI",
-            "stars": "1.5k",
+            "stars": "1.7k",
             "desc": "Rich from the command prompt. Syntax highlight many file-types, with special support for markdown, json, and CSV tables",
             "code": "https://github.com/Textualize/rich-cli",
             "videoUrl": "https://d32lig6y1jobn4.cloudfront.net/rich-cli.mp4"
