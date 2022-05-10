@@ -3,7 +3,7 @@ import type { RepoId } from "../../domain"
 import { humanizeStargazersCount } from "../../helpers/conversion-helpers"
 import * as buildCacheBackendServices from "../backend/build-cache"
 
-const REPO_URL_REGEX = /^https:\/\/github.com\/(?<owner>[^/]+)\/(?<repo>[^/]+)$/
+const REPO_URL_REGEX = /^https:\/\/github.com\/(?<owner>[^/]+)\/(?<repo>[^/]+)\/?$/
 const REPO_URL_PATTERN = "https://github.com/{owner}/{repo}"
 const GET_REPO_API_URL_PATTERN = "https://api.github.com/repos/{owner}/{repo}"
 
