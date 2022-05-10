@@ -2,7 +2,7 @@
     "private": true,
     "name": "Textualize.io",
     "engines": {
-        "node": "14.x"
+        "node": "16.x"
     },
     "scripts": {
         "dev": "next dev",
