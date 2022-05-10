@@ -105,7 +105,13 @@ export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatisti
         }
     }
 
-    await buildCacheBackendServices.set(cacheKey, result)
+    try {
+        await buildCacheBackendServices.set(cacheKey, result)
+    } catch (err) {
+        // This will happen when we refresh values after the deployment for example,
+        // as Vercel serverless functions seem to not have the `.next/cache` folder mounted.
+        console.info(`Could not save repoStatistics results for cache key "${cacheKey}": `, err)
+    }
 
     return result
 }
