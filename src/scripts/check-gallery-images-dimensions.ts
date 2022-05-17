@@ -3,6 +3,7 @@
  *   $ npm run scripts:transpile && npm run scripts:check-gallery-images-dimensions
  */
 import { basename, join } from "node:path"
+import * as core from "@actions/core"
 import { PROJECT_IDS } from "../constants"
 import type { ProjectId } from "../domain"
 import * as galleryProjectsBackendServices from "../services/backend/projects-galleries"
@@ -12,6 +13,8 @@ const dataFolderBasePath = join(PROJECT_ROOT_PATH, "data", "projects-galleries")
 const imagesFolderBasePath = join(PROJECT_ROOT_PATH, "public", "projects-galleries")
 
 const MAX_SIZE: ImageSize = { width: 800, height: 600 }
+
+const IS_CI = Boolean(process.env["CI"] === "true")
 
 interface ImageSize {
     width: number
@@ -39,8 +42,41 @@ async function checkGalleryImagesDimensions() {
     }
 
     if (hasErrors) {
-        process.exit(1)
+        if (IS_CI) {
+            await reportErrorsToGitHubActionsSummary(results)
+            core.setFailed(`Action failed because of too large image(s)`)
+        } else {
+            process.exit(1)
+        }
     }
+}
+
+async function reportErrorsToGitHubActionsSummary(results: ImageTooLargeError[][]): Promise<void> {
+    const dimensionDisplay = (dimension: number, maxValue: Number): string => {
+        return `${dimension} ${dimension > maxValue ? ":x:" : ":heavy_check_mark:"}`
+    }
+
+    await core.summary
+        .addHeading("Too large images detected")
+        .addTable([
+            [
+                { data: "File", header: true },
+                { data: "Width", header: true },
+                { data: "Height", header: true },
+            ],
+            ...results
+                .map((galleryErrors) => {
+                    return galleryErrors.map((error) => {
+                        return [
+                            error.path,
+                            dimensionDisplay(error.size.width, MAX_SIZE.width),
+                            dimensionDisplay(error.size.height, MAX_SIZE.height),
+                        ]
+                    })
+                })
+                .flat(),
+        ])
+        .write()
 }
 
 async function checkGalleryImagesDimensionsForProject(projectId: ProjectId): Promise<ImageTooLargeError[]> {

@@ -42,6 +42,7 @@
         "react-intersection-observer": "^8.34.0"
     },
     "devDependencies": {
+        "@actions/core": "^1.8.2",
         "@trivago/prettier-plugin-sort-imports": "^3.2.0",
         "@types/fscreen": "^1.0.1",
         "@types/humanize-plus": "^1.8.0",
