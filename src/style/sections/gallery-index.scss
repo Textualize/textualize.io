@@ -87,11 +87,4 @@
             margin-bottom: $space-12;
         }
     }
-
-    &__divider {
-        flex-shrink: 0;
-        border: none;
-        height: 1px;
-        background: var(--projects-divider-color);
-    }
 }

@@ -70,7 +70,7 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
             <div className="gallery-items__items">
                 {props.galleryItems.map((item, i) => (
                     <React.Fragment key={item.id}>
-                        {i !== 0 && <hr className="container gallery-items__divider" />}
+                        {i !== 0 && <hr className="container items__divider" />}
                         <GalleryItem nth={i + 1} item={item} />
                     </React.Fragment>
                 ))}

@@ -8,13 +8,10 @@
         align-items: flex-start;
         justify-content: space-between;
         font-size: $font-20;
-        margin-bottom: $space-18;
-
-        @media (min-width: $breakpoint-tablet) {
-            gap: $space-10;
-        }
+        margin: $space-12 0;
 
         @media (min-width: $breakpoint-desktop) {
+            gap: $space-10;
             flex-direction: row-reverse;
             &:nth-child(even) {
                 flex-direction: row;
@@ -24,14 +21,14 @@
         &__data {
             width: 100%;
 
-            @media (min-width: $breakpoint-tablet) {
+            @media (min-width: $breakpoint-desktop) {
                 width: auto;
                 flex-grow: 1;
             }
 
             &__main_info {
                 text-align: center;
-                @media (min-width: $breakpoint-tablet) {
+                @media (min-width: $breakpoint-desktop) {
                     text-align: left;
                 }
             }
@@ -61,7 +58,7 @@
                 justify-content: center;
                 align-items: center;
 
-                @media (min-width: $breakpoint-tablet) {
+                @media (min-width: $breakpoint-desktop) {
                     justify-content: flex-start;
                 }
 
@@ -77,7 +74,7 @@
             display: flex;
             justify-content: center;
 
-            @media (min-width: $breakpoint-tablet) {
+            @media (min-width: $breakpoint-desktop) {
                 width: 200px;
                 display: inline-block;
             }
@@ -88,7 +85,7 @@
                 border-radius: 50%;
                 position: relative;
                 overflow: hidden;
-                border: solid var(--badge-label-color) 1px;
+                border: solid var(--badge-label-color) 2px;
 
                 img {
                     position: absolute;

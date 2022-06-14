@@ -7,8 +7,11 @@ interface TeamProps {
 export const Team = (props: TeamProps): JSX.Element => {
     return (
         <div className="team">
-            {props.members.map((member) => (
-                <Member member={member} key={member.id} />
+            {props.members.map((member, i) => (
+                <React.Fragment key={member.id}>
+                    {i !== 0 && <hr className="container items__divider" />}
+                    <Member member={member} />
+                </React.Fragment>
             ))}
         </div>
     )

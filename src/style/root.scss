@@ -49,14 +49,15 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     --mail-list-hint-color: #c1c1c1;
     --mail-list-box-shadow: none;
 
-    --projects-bg-gradient: linear-gradient(93.48deg, #667eea 1.13%, rgba(118, 75, 162, 0) 100.68%);
-    --projects-bg-opacity: 0.3;
-    --projects-divider-color: linear-gradient(
+    --container-divider-color: linear-gradient(
         90deg,
         rgba(84, 44, 144, 0) 0%,
         #542c91 52.08%,
         rgba(84, 44, 144, 0) 100%
     );
+
+    --projects-bg-gradient: linear-gradient(93.48deg, #667eea 1.13%, rgba(118, 75, 162, 0) 100.68%);
+    --projects-bg-opacity: 0.3;
 
     --project-headline-color: linear-gradient(92.83deg, #9f76e2 2.36%, #b169dd 91.55%);
     --project-back-layout-color-1: linear-gradient(90deg, rgba(151, 149, 240, 0.7) 0%, rgba(251, 200, 212, 0.7) 100%);
@@ -110,14 +111,15 @@ $button-hero-light-2--active: darken($button-hero-light-2, 15%);
     --mail-list-hint-color: #c1c1c1;
     --mail-list-box-shadow: none;
 
-    --projects-bg-gradient: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
-    --projects-bg-opacity: 0.95;
-    --projects-divider-color: linear-gradient(
+    --container-divider-color: linear-gradient(
         90deg,
         rgba(236, 229, 248, 0) 0%,
         #dbc4ff 52.08%,
         rgba(236, 229, 248, 0) 100%
     );
+
+    --projects-bg-gradient: linear-gradient(93.48deg, #667eea 1.13%, #764ba2 100.68%);
+    --projects-bg-opacity: 0.95;
 
     --project-headline-color: linear-gradient(92.83deg, #7d5ab7 2.36%, #9c4ecc 91.55%);
     --project-back-layout-color-1: linear-gradient(90deg, #9795f0 0%, #fbc8d4 100%);
