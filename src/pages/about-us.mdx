@@ -1,0 +1,11 @@
+import { Team } from "../components/page-specific/abous-us/team"
+
+export { getTeamMembersStaticProps as getStaticProps } from "../services/backend/about-us"
+
+<div className="container container--text">
+
+# About us
+
+<Team members={props.teamMembers} />
+  
+</div>

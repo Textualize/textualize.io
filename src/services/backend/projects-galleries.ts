@@ -201,11 +201,11 @@ async function galleryProjectFromMarkdownFilePath(
     const itemId = basename(filePath, ".mdx")
 
     const fileContent = await fs.readFile(filePath)
-    const matterContent = matter(fileContent)
+    const { content, data } = matter(fileContent)
 
-    const mainContentHtml = markdownParser.render(matterContent.content)
+    const mainContentHtml = markdownParser.render(content)
 
-    const categories = ((matterContent.data["categories"] ?? []) as string[]).map((category) => category.toLowerCase())
+    const categories = ((data["categories"] ?? []) as string[]).map((category) => category.toLowerCase())
     const image = await galleryItemImageProperties(projectId, itemId, options)
 
     return {
@@ -213,11 +213,11 @@ async function galleryProjectFromMarkdownFilePath(
         id: itemId,
         image,
         description: mainContentHtml,
-        title: matterContent.data["title"],
+        title: data["title"],
         categories: categories,
-        codeUrl: matterContent.data["codeUrl"] ?? null,
-        websiteUrl: matterContent.data["websiteUrl"] ?? null,
-        docsUrl: matterContent.data["docsUrl"] ?? null,
+        codeUrl: data["codeUrl"] ?? null,
+        websiteUrl: data["websiteUrl"] ?? null,
+        docsUrl: data["docsUrl"] ?? null,
         stars: null, // will be set with `attachCurrentStarsCountsToRepositories()`
     }
 }

@@ -13,4 +13,11 @@
             max-width: 830px;
         }
     }
+
+    &.items__divider {
+        flex-shrink: 0;
+        border: none;
+        height: 1px;
+        background: var(--container-divider-color);
+    }
 }
