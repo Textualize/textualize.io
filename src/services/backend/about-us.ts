@@ -1,16 +1,13 @@
 import { promises as fs } from "node:fs"
 import { basename, join } from "node:path"
-import { GetStaticProps } from "next"
 import fastGlob from "fast-glob"
 import matter from "gray-matter"
-import MarkdownIt from "markdown-it"
 import type { TeamMember } from "../../domain"
+import { renderMarkdown } from "../../helpers/markdown-helpers"
 import * as cacheSharedServices from "../shared/cache"
 import { projectRootPath } from "./_helpers"
 
 const dataFolderBasePath = join(projectRootPath, "data", "about-us")
-
-const markdownParser = new MarkdownIt()
 
 export interface TeamMembersDiscoveryOptions {
     dataFolderPath?: string
@@ -37,18 +34,13 @@ export async function teamMembers(options: TeamMembersDiscoveryOptions = {}): Pr
     return teamMembers
 }
 
-export const getTeamMembersStaticProps: GetStaticProps<{ teamMembers: TeamMember[] }> = async (_content) => {
-    const members = await teamMembers()
-    return { props: { teamMembers: members } }
-}
-
 async function teamMemberFromMarkdownFilePath(filePath: string): Promise<TeamMember> {
     const memberId = basename(filePath, ".mdx")
 
     const fileContent = await fs.readFile(filePath)
     const { content, data } = matter(fileContent)
 
-    const mainContentHtml = markdownParser.render(content)
+    const mainContentHtml = renderMarkdown(content)
 
     return {
         id: memberId,

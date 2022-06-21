@@ -1,11 +1,11 @@
 import React from "react"
-import type { GetStaticProps } from "next"
+import type { GetStaticProps } from "next/types"
 import { MailList } from "../components/mail-list"
 import { Hero } from "../components/page-specific/home/hero"
 import { ProjectsIndex } from "../components/page-specific/home/projects-index"
 import { ProjectsDataContext } from "../contexts/projects-data"
 import type { ProjectData } from "../domain"
-import { getCommonStaticProps as commonGetStaticProps } from "../helpers/common-static-props"
+import { getCommonStaticProps as commonGetStaticProps } from "../services/nextjs-bridge/common-static-props"
 
 interface HomePageProps {
     projectsData: ProjectData[]

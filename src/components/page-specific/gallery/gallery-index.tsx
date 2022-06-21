@@ -38,10 +38,10 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
     )
 
     return (
-        <section className="gallery-items">
-            <div className="gallery-items__bg" />
+        <section className="gallery-items page__content_container">
+            <div className="page__headline__bg" />
             <div className="container">
-                <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[props.projectId]}</h2>
+                <h2 className="page__headline">Projects using {PROJECT_NAMES[props.projectId]}</h2>
             </div>
 
             <div className="container">

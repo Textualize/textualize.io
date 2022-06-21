@@ -7,6 +7,8 @@ export const PROJECTS_WITH_GALLERY: ProjectId[] = ["textual", "rich"]
 
 export const GALLERY_ITEMS_COUNT_PER_PAGE = 5
 
+export const BLOG_ITEMS_COUNT_PER_PAGE = 5
+
 interface SocialLink {
     url: string
     xlinkHref: string

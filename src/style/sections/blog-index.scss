@@ -1,9 +1,4 @@
-.gallery-items {
-    &__categories {
-        margin: $space-3 0;
-        padding: $space-7 0;
-    }
-
+.blog-items {
     &__items {
         display: flex;
         flex-direction: column;

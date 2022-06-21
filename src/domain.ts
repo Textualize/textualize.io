@@ -1,5 +1,6 @@
 export type ProjectUrl = string
 export type HtmlString = string
+export type ISODate = string
 
 export interface ProjectData {
     id: ProjectId
@@ -53,4 +54,11 @@ export interface TeamMember {
     imageUrl: string
     twitterHandle: string
     description: HtmlString
+}
+
+export interface BlogPost {
+    slug: string
+    title: string
+    date: ISODate
+    content: string
 }

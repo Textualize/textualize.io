@@ -9,7 +9,7 @@ interface ProjectsIndexProps {
 export const ProjectsIndex = (props: ProjectsIndexProps): JSX.Element => {
     return (
         <section className="projects">
-            <div className="projects__bg" />
+            <div className="page__headline__bg" />
             <div className="container">
                 <h2 className="projects__headline">Projects</h2>
             </div>

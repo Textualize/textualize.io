@@ -1,0 +1,44 @@
+.blog-item-container {
+    // Wraps `.blog-item` on "/blog/posts/[slug]" pages
+    position: relative;
+}
+
+.blog-item {
+    &__title {
+        font-size: $font-26;
+        font-weight: bold;
+    }
+
+    &__date {
+        font-size: $font-18;
+        font-style: italic;
+    }
+
+    &__content {
+        font-size: $font-16;
+        margin-bottom: $space-6;
+
+        @media (min-width: $breakpoint-tablet) {
+            margin-bottom: $space-8;
+        }
+
+        @media (min-width: $breakpoint-desktop) {
+            font-size: $font-26;
+            margin-bottom: $space-10;
+        }
+
+        h1,
+        h2 {
+            display: none; // we shouldn't use h1 or h2 titles in our blog posts' content
+        }
+
+        h3,
+        h4,
+        h5,
+        h6 {
+            // Smaller titles are normalised, as we likely don't need multiple levels of titles:
+            font-size: $font-20;
+            font-weight: bold;
+        }
+    }
+}

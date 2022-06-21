@@ -1,7 +1,7 @@
-import { GetStaticPropsContext } from "next"
-import type { ProjectData } from "../domain"
-import * as githubBackendServices from "../services/backend/github"
-import * as projectsBackendServices from "../services/backend/projects"
+import type { GetStaticPropsContext } from "next/types"
+import type { ProjectData } from "../../domain"
+import * as githubBackendServices from "../backend/github"
+import * as projectsBackendServices from "../backend/projects"
 
 interface CommonStaticProps {
     projectsData: ProjectData[]
