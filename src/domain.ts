@@ -61,4 +61,6 @@ export interface BlogPost {
     title: string
     date: ISODate
     content: string
+    excerpt: string
+    readingTime: number // in minutes
 }

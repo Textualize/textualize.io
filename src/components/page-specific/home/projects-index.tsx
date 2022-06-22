@@ -11,7 +11,7 @@ export const ProjectsIndex = (props: ProjectsIndexProps): JSX.Element => {
         <section className="projects">
             <div className="page__headline__bg" />
             <div className="container">
-                <h2 className="projects__headline">Projects</h2>
+                <h2 className="page__headline">Projects</h2>
             </div>
             <div className="projects__items">
                 {props.projectsData.map((project, i) => (

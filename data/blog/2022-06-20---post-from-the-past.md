@@ -1,5 +1,5 @@
 ---
-title: I'm a blog post from the past
+title: "I'm a blog post from the past"
 ---
 
 #### lorem ipsum

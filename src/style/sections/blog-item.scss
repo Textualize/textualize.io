@@ -11,7 +11,6 @@
 
     &__date {
         font-size: $font-18;
-        font-style: italic;
     }
 
     &__content {
@@ -19,11 +18,11 @@
         margin-bottom: $space-6;
 
         @media (min-width: $breakpoint-tablet) {
+            font-size: $font-18;
             margin-bottom: $space-8;
         }
 
         @media (min-width: $breakpoint-desktop) {
-            font-size: $font-26;
             margin-bottom: $space-10;
         }
 

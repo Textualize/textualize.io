@@ -3,12 +3,16 @@ import { basename, join } from "node:path"
 import fastGlob from "fast-glob"
 import { inPlaceSort } from "fast-sort"
 import matter from "gray-matter"
+import readingTime from "reading-time"
+import stripTags from "striptags"
 import type { BlogPost } from "../../domain"
-import { renderMarkdown } from "../../helpers/markdown-helpers"
+import { renderMarkdownWithDangerouslyKeptHtml } from "../../helpers/markdown-helpers"
 import * as cacheSharedServices from "../shared/cache"
 import { projectRootPath } from "./_helpers"
 
 const dataFolderBasePath = join(projectRootPath, "data", "blog")
+
+const BLOG_ARTICLE_EXCERPT_SEPARATOR = "<!-- end excerpt -->"
 
 export interface BlogPostsDiscoveryOptions {
     dataFolderPath?: string
@@ -25,7 +29,7 @@ export async function blogPosts(options: BlogPostsDiscoveryOptions = {}): Promis
     const folderPath = options.dataFolderPath || dataFolderBasePath
     options.verbose && console.debug(`Traversing blog posts folder "${folderPath}"...`)
 
-    const blogPostsFiles = await fastGlob("*.mdx", { cwd: folderPath, absolute: true })
+    const blogPostsFiles = await fastGlob("*.md", { cwd: folderPath, absolute: true })
     const blogPosts = await Promise.all(blogPostsFiles.map((filePath) => blogPostFromMarkdownFilePath(filePath)))
 
     options.verbose && console.debug(`Found ${blogPosts.length} blog posts.`)
@@ -48,7 +52,7 @@ export async function blogPostFromSlug(slug: string): Promise<BlogPost | undefin
 }
 
 async function blogPostFromMarkdownFilePath(filePath: string): Promise<BlogPost> {
-    const fileBaseName = basename(filePath, ".mdx")
+    const fileBaseName = basename(filePath, ".md")
     const fileBaseNameMatch = fileBaseName.match(/^(\d{4}-\d{2}-\d{2})---([a-z0-9-]+)$/)
     if (!fileBaseNameMatch) {
         throw new Error(`Invalid blog post file name "${fileBaseName}" (should be YYYY-MM-DD---slug.mdx)`)
@@ -56,14 +60,21 @@ async function blogPostFromMarkdownFilePath(filePath: string): Promise<BlogPost>
     const [_, date, slug] = fileBaseNameMatch
 
     const fileContent = await fs.readFile(filePath)
-    const { content, data } = matter(fileContent)
+    const { content, excerpt, data } = matter(fileContent, {
+        excerpt: true,
+        excerpt_separator: BLOG_ARTICLE_EXCERPT_SEPARATOR,
+    })
 
-    const mainContentHtml = renderMarkdown(content)
+    const excerptHtml = renderMarkdownWithDangerouslyKeptHtml(excerpt || "").trim()
+    const mainContentHtml = renderMarkdownWithDangerouslyKeptHtml(content).trim()
+    const mainContentReadingTime = readingTime(stripTags(mainContentHtml)).minutes
 
     return {
         slug,
         date,
         title: data.title,
         content: mainContentHtml,
+        excerpt: excerptHtml,
+        readingTime: mainContentReadingTime,
     }
 }

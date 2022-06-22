@@ -19,7 +19,7 @@ export const BlogIndex = (props: BlogIndexProps): JSX.Element => {
             <div className="container">
                 <div className="blog-items__items">
                     {props.currentPagePosts.map((post) => {
-                        return <BlogItem post={post} displayTitle={true} key={post.slug} />
+                        return <BlogItem post={post} displayTitle={true} onlyExcerpt={true} key={post.slug} />
                     })}
                 </div>
             </div>

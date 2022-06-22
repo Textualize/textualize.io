@@ -1,5 +1,5 @@
 ---
-title: I'm a blog post last year
+title: "I'm a blog post last year"
 ---
 
 #### lorem ipsum
