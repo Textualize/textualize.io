@@ -46,8 +46,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     // @link https://nextjs.org/docs/basic-features/data-fetching/get-static-paths
     const pathsParams = await blogNextBridgeServices.blogPostsStaticPathsParams()
 
-    console.debug("Blog paths params=", pathsParams)
-
     return {
         paths: pathsParams.map((params) => {
             // N.B. Creating new params this way makes TypeScript happy,

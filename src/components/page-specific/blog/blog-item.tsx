@@ -12,13 +12,8 @@ interface BlogItemProps {
 
 export const BlogItem = (props: BlogItemProps): JSX.Element => {
     const hasExcerpt = Boolean(props.post.excerpt)
-    const content = props.onlyExcerpt
-        ? hasExcerpt
-            ? // We fall back to displaying the full content if no excerpt was defined
-              // for this blog post:
-              props.post.excerpt
-            : props.post.content
-        : props.post.content
+    // We fall back to displaying the full content if no excerpt was defined for this blog post:
+    const content = props.onlyExcerpt && hasExcerpt ? props.post.excerpt : props.post.content
     const postUrl = blogSharedServices.blogPostPageUrl(props.post)
 
     return (
