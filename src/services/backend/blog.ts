@@ -14,6 +14,8 @@ const dataFolderBasePath = join(projectRootPath, "data", "blog")
 
 const BLOG_ARTICLE_EXCERPT_SEPARATOR = "<!-- end excerpt -->"
 
+const BLOG_ARTICLE_DEFAULT_AUTHOR = "Will McGugan"
+
 export interface BlogPostsDiscoveryOptions {
     dataFolderPath?: string
     verbose?: boolean
@@ -71,8 +73,10 @@ async function blogPostFromMarkdownFilePath(filePath: string): Promise<BlogPost>
 
     return {
         slug,
-        date,
         title: data.title,
+        date,
+        lastModifiedDate: data.lastModifiedDate || null,
+        author: data.author || BLOG_ARTICLE_DEFAULT_AUTHOR,
         content: mainContentHtml,
         excerpt: excerptHtml,
         readingTime: mainContentReadingTime,

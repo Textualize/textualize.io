@@ -11,45 +11,51 @@ interface BlogItemProps {
 }
 
 export const BlogItem = (props: BlogItemProps): JSX.Element => {
-    const hasExcerpt = Boolean(props.post.excerpt)
+    const post = props.post
+
+    const hasExcerpt = Boolean(post.excerpt)
     // We fall back to displaying the full content if no excerpt was defined for this blog post:
-    const content = props.onlyExcerpt && hasExcerpt ? props.post.excerpt : props.post.content
+    const content = props.onlyExcerpt && hasExcerpt ? post.excerpt : post.content
+
     const postUrl = blogSharedServices.blogPostPageUrl(props.post)
+    const postTitle = post.title
+    const postPublicationDate = new Date(post.date)
+    const readingTime = Math.round(post.readingTime)
 
     return (
-        <article className="container blog-item" id={`blog-post-${props.post.slug}`}>
-            {props.displayTitle ? (
-                <h3 className="blog-item__title">
+        <>
+            <article className="container blog-item" id={`blog-post-${post.slug}`}>
+                {props.displayTitle ? (
+                    <h3 className="blog-item__title">
+                        <Link href={postUrl}>
+                            <a>{postTitle}</a>
+                        </Link>
+                    </h3>
+                ) : null}
+                {props.onlyExcerpt ? null : (
+                    <p className="breadcrumb">
+                        ❰{" "}
+                        <Link href={blogPageUrl()}>
+                            <a>Back to blog index</a>
+                        </Link>
+                    </p>
+                )}
+                <p className="blog-item__date">🗓 Posted on {formatBlogPostDate(postPublicationDate)}</p>
+                {hasExcerpt && post.readingTime > 1 ? (
+                    <div className="blog-item__reading_time">🕰 Reading time: {readingTime} minutes</div>
+                ) : null}
+                <div className="blog-item__content" dangerouslySetInnerHTML={{ __html: content }} />
+                {props.onlyExcerpt && hasExcerpt ? (
                     <Link href={postUrl}>
-                        <a>{props.post.title}</a>
+                        <a>Read more</a>
                     </Link>
-                </h3>
-            ) : null}
-            {props.onlyExcerpt ? null : (
-                <p className="breadcrumb">
-                    ❰{" "}
-                    <Link href={blogPageUrl()}>
-                        <a>Back to blog index</a>
-                    </Link>
-                </p>
-            )}
-            <p className="blog-item__date">🗓 Posted on {formatDate(new Date(props.post.date))}</p>
-            {hasExcerpt && props.post.readingTime > 1 ? (
-                <div className="blog-item__reading_time">
-                    🕰 Reading time: {Math.round(props.post.readingTime)} minutes{" "}
-                </div>
-            ) : null}
-            <div className="blog-item__content" dangerouslySetInnerHTML={{ __html: content }} />
-            {props.onlyExcerpt && hasExcerpt ? (
-                <Link href={postUrl}>
-                    <a>Read more</a>
-                </Link>
-            ) : null}
-        </article>
+                ) : null}
+            </article>
+        </>
     )
 }
 
-function formatDate(date: Date): string {
+function formatBlogPostDate(date: Date): string {
     const thisYear = new Date().getFullYear() === date.getFullYear()
     if (!thisYear) {
         return date.toLocaleDateString("short")

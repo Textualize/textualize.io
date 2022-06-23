@@ -60,6 +60,8 @@ export interface BlogPost {
     slug: string
     title: string
     date: ISODate
+    lastModifiedDate: ISODate | null
+    author: string
     content: string
     excerpt: string
     readingTime: number // in minutes
