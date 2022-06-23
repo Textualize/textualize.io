@@ -55,26 +55,7 @@ export const Footer = (): JSX.Element => {
                                 </a>
                             </Link>
                         </div>
-                        <div className="footer__social-links">
-                            {Object.entries(SOCIAL_LINKS)
-                                .filter(([_name, linkData]) => linkData.appearsInFooter)
-                                .map(([name, linkData]) => {
-                                    return (
-                                        <a
-                                            href={linkData.url}
-                                            aria-label={name}
-                                            className="footer__social-link"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            key={name}
-                                        >
-                                            <svg className="footer__social-link-icon">
-                                                <use xlinkHref={linkData.xlinkHref} />
-                                            </svg>
-                                        </a>
-                                    )
-                                })}
-                        </div>
+                        <FooterLinks />
                         <strong translate="no" className="footer__copyright">
                             © Textualize Inc.
                         </strong>
@@ -86,6 +67,41 @@ export const Footer = (): JSX.Element => {
                     </div>
                 </div>
             </footer>
+        </div>
+    )
+}
+
+const FooterLinks = (_props: {}): JSX.Element => {
+    return (
+        <div className="footer__social-links">
+            {Object.entries(SOCIAL_LINKS)
+                .filter(([_name, linkData]) => linkData.appearsInFooter)
+                .map(([name, linkData]) => {
+                    const isExternalLink = linkData.url.startsWith("http")
+
+                    const anchorProperties = isExternalLink
+                        ? {
+                              href: linkData.url,
+                              target: "_blank",
+                              rel: "noreferrer",
+                          }
+                        : {}
+                    const anchorElement = (
+                        <a aria-label={name} className="footer__social-link" key={name} {...anchorProperties}>
+                            <svg className="footer__social-link-icon">
+                                <use xlinkHref={linkData.xlinkHref} />
+                            </svg>
+                        </a>
+                    )
+
+                    return isExternalLink ? (
+                        anchorElement
+                    ) : (
+                        <Link href={linkData.url} scroll key={name}>
+                            {anchorElement}
+                        </Link>
+                    )
+                })}
         </div>
     )
 }

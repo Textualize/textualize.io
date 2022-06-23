@@ -7,14 +7,13 @@ import readingTime from "reading-time"
 import stripTags from "striptags"
 import type { BlogPost } from "../../domain"
 import { renderMarkdownWithDangerouslyKeptHtml } from "../../helpers/markdown-helpers"
+import * as metadata from "../../metadata"
 import * as cacheSharedServices from "../shared/cache"
 import { projectRootPath } from "./_helpers"
 
 const dataFolderBasePath = join(projectRootPath, "data", "blog")
 
-const BLOG_ARTICLE_EXCERPT_SEPARATOR = "<!-- end excerpt -->"
-
-const BLOG_ARTICLE_DEFAULT_AUTHOR = "Will McGugan"
+const BLOG_POST_EXCERPT_SEPARATOR = "<!-- end excerpt -->"
 
 export interface BlogPostsDiscoveryOptions {
     dataFolderPath?: string
@@ -41,6 +40,7 @@ export async function blogPosts(options: BlogPostsDiscoveryOptions = {}): Promis
         throw new Error("Duplicate blog post slugs detected")
     }
 
+    // Blog articles are sorted from most recently published to oldest ones:
     inPlaceSort(blogPosts).desc("date")
 
     await cacheSharedServices.set(cacheKey, blogPosts)
@@ -64,7 +64,7 @@ async function blogPostFromMarkdownFilePath(filePath: string): Promise<BlogPost>
     const fileContent = await fs.readFile(filePath)
     const { content, excerpt, data } = matter(fileContent, {
         excerpt: true,
-        excerpt_separator: BLOG_ARTICLE_EXCERPT_SEPARATOR,
+        excerpt_separator: BLOG_POST_EXCERPT_SEPARATOR,
     })
 
     const excerptHtml = renderMarkdownWithDangerouslyKeptHtml(excerpt || "").trim()
@@ -76,7 +76,7 @@ async function blogPostFromMarkdownFilePath(filePath: string): Promise<BlogPost>
         title: data.title,
         date,
         lastModifiedDate: data.lastModifiedDate || null,
-        author: data.author || BLOG_ARTICLE_DEFAULT_AUTHOR,
+        author: data.author || metadata.BLOG_POST_DEFAULT_AUTHOR,
         content: mainContentHtml,
         excerpt: excerptHtml,
         readingTime: mainContentReadingTime,

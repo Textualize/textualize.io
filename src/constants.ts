@@ -34,4 +34,10 @@ export const SOCIAL_LINKS: { [name: string]: SocialLink } = {
         appearsInHeader: true,
         appearsInFooter: false,
     },
+    Blog: {
+        url: "/blog", // self-hosted :-)
+        xlinkHref: "#icon-blog",
+        appearsInHeader: false,
+        appearsInFooter: true,
+    },
 } as const

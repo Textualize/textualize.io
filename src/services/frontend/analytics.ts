@@ -3,7 +3,7 @@ import * as Fathom from "fathom-client"
 import { AppConfig } from "../../config"
 import { isServerSideRendering } from "../../helpers/runtime-helpers"
 
-// This type is defined in the `@types/react` package, but not exported, so we have to duplicate it here: 😔
+// This type is defined in the `@types/react` package, but not exported - so we have to duplicate it here: 😔
 type UseEffectDestructor = () => void
 
 const noOpDestructor = (): void => {}

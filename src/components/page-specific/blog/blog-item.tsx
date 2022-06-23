@@ -1,6 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { BlogPost } from "../../../domain"
+import { formatBlogPostDate } from "../../../helpers/date-helpers"
 import * as blogSharedServices from "../../../services/shared/blog"
 import { blogPageUrl } from "../../../services/shared/blog"
 
@@ -36,7 +37,7 @@ export const BlogItem = (props: BlogItemProps): JSX.Element => {
                     <p className="breadcrumb">
                         ❰{" "}
                         <Link href={blogPageUrl()}>
-                            <a>Back to blog index</a>
+                            <a>Blog index</a>
                         </Link>
                     </p>
                 )}
@@ -53,12 +54,4 @@ export const BlogItem = (props: BlogItemProps): JSX.Element => {
             </article>
         </>
     )
-}
-
-function formatBlogPostDate(date: Date): string {
-    const thisYear = new Date().getFullYear() === date.getFullYear()
-    if (!thisYear) {
-        return date.toLocaleDateString("short")
-    }
-    return date.toLocaleDateString(undefined, { month: "short", day: "numeric" })
 }
