@@ -43,6 +43,7 @@ export interface ProjectGalleryItem {
     docsUrl: string | null
     categories: Category[]
     description: HtmlString
+    longDescription: HtmlString | null
 }
 
 export type CategoriesWithCount = { [category: string]: number }

@@ -33,6 +33,25 @@ export async function projectGalleryStaticPathsParams(): Promise<ProjectGalleryS
     return pathParams.flat()
 }
 
+export interface ProjectGalleryItemStaticPathsParams {
+    projectId: ProjectId
+    itemId: string
+}
+export async function projectGalleryItemStaticPathsParams(): Promise<ProjectGalleryItemStaticPathsParams[]> {
+    const pathParams = await Promise.all(
+        PROJECTS_WITH_GALLERY.map(async (projectId): Promise<ProjectGalleryItemStaticPathsParams[]> => {
+            const galleryItems = await galleryProjectsBackendServices.projectGallery(projectId)
+            const params: ProjectGalleryItemStaticPathsParams[] = galleryItems.map((item) => {
+                return { projectId, itemId: item.id }
+            })
+
+            return params
+        })
+    )
+
+    return pathParams.flat()
+}
+
 export interface ProjectGalleryPageProps {
     projectId: ProjectId
     page: number

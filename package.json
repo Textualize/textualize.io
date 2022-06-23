@@ -37,6 +37,7 @@
         "humanize-plus": "^1.8.2",
         "image-size": "^1.0.1",
         "markdown-it": "^12.3.2",
+        "markdown-it-for-inline": "^0.1.1",
         "next": "^12.1.6",
         "p-throttle": "^5.0.0",
         "react": "17.0.2",

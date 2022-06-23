@@ -73,6 +73,15 @@ export async function attachCurrentStarsCountsToRepositories(
     })
 }
 
+export async function attachCurrentStarsCountsToRepository(repoRelatedData: GitHubRepoRelatedData): Promise<void> {
+    if (!repoRelatedData.codeUrl) {
+        return
+    }
+    const repoId = repoIdFromUrl(repoRelatedData.codeUrl)
+    const repoStats = await repoStatistics(repoId)
+    repoRelatedData.stars = humanizeStargazersCount(repoStats.starsCount)
+}
+
 export async function repoStatistics(repoId: RepoId): Promise<GitHubRepoStatistics> {
     const cacheKey = `github-repo-statistics:${repoId.owner}/${repoId.repo}`
     const cachedValue = await buildCacheBackendServices.get(cacheKey)

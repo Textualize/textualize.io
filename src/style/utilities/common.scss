@@ -59,6 +59,10 @@
     color: #ffffff;
     margin: 74px 0 106px;
 
+    &__caption {
+        font-size: $font-18;
+    }
+
     @media (min-width: $breakpoint-tablet) {
         font-size: $font-48;
         margin: 80px 0 100px;

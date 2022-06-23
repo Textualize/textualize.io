@@ -7,6 +7,7 @@ import imageSizeSync from "image-size"
 import type { ImageProperties, ProjectGalleryItem, ProjectId } from "../../domain"
 import { renderMarkdown } from "../../helpers/markdown-helpers"
 import * as cacheSharedServices from "../shared/cache"
+import * as galleryProjectsSharedServices from "../shared/projects-galleries"
 import { projectRootPath } from "./_helpers"
 
 const dataFolderBasePath = join(projectRootPath, "data", "projects-galleries")
@@ -47,7 +48,7 @@ export async function projectGallery(
     const folderPath = join(options.dataFolderPath || dataFolderBasePath, projectId)
     options.verbose && console.debug(`Traversing gallery folder "${folderPath}" for project "${projectId}"...`)
 
-    const projectsFiles = await fastGlob("*.mdx", { cwd: folderPath, absolute: true })
+    const projectsFiles = await fastGlob("*.md", { cwd: folderPath, absolute: true })
     const galleryProjects = await Promise.all(
         projectsFiles.map((filePath) => galleryProjectFromMarkdownFilePath(projectId, filePath, options))
     )
@@ -59,17 +60,38 @@ export async function projectGallery(
     return galleryProjects
 }
 
+export async function projectGalleryPageUrlForItem(projectId: ProjectId, itemId: string): Promise<string> {
+    const galleryItems = await projectGallery(projectId)
+    const page = projectGalleryPageNumberForItem(galleryItems, itemId)
+
+    return galleryProjectsSharedServices.projectGalleryPageUrl({
+        projectId,
+        category: "all",
+        page,
+    })
+}
+
+function projectGalleryPageNumberForItem(galleryItems: ProjectGalleryItem[], itemId: string): number {
+    for (let i = 0, j = galleryItems.length; i < j; i++) {
+        if (galleryItems[i].id === itemId) {
+            return i + 1 // because page numbers start at 1
+        }
+    }
+    throw new Error(`Can't find page number for item "${itemId}"`)
+}
+
 async function galleryProjectFromMarkdownFilePath(
     projectId: ProjectId,
     filePath: string,
     options: ProjectGalleryDiscoveryOptions
 ): Promise<ProjectGalleryItem> {
-    const itemId = basename(filePath, ".mdx")
+    const itemId = basename(filePath, ".md")
 
     const fileContent = await fs.readFile(filePath)
     const { content, data } = matter(fileContent)
 
-    const mainContentHtml = renderMarkdown(content)
+    const descriptionHtml = renderMarkdown(data["description"].trim())
+    const mainContentHtml = renderMarkdown(content.trim())
 
     const categories = ((data["categories"] ?? []) as string[]).map((category) => category.toLowerCase())
     const image = await galleryItemImageProperties(projectId, itemId, options)
@@ -78,7 +100,8 @@ async function galleryProjectFromMarkdownFilePath(
         projectId: projectId,
         id: itemId,
         image,
-        description: mainContentHtml,
+        description: descriptionHtml,
+        longDescription: mainContentHtml || null,
         title: data["title"],
         categories: categories,
         codeUrl: data["codeUrl"] ?? null,

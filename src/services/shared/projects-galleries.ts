@@ -33,13 +33,26 @@ export function projectGalleryForCategory(
     return galleryItems.filter((item) => item.categories.includes(category))
 }
 
-export function projectGalleryPageUrl(kwargs: { projectId: ProjectId; category: Category; page: number }): string {
-    const canonicalUrlSegments = [kwargs.projectId, "gallery"]
-    if (kwargs.category !== "all") {
-        canonicalUrlSegments.push(encodeURIComponent(kwargs.category))
+export function projectGalleryPageUrl({
+    projectId,
+    category,
+    page,
+}: {
+    projectId: ProjectId
+    category: Category
+    page: number
+}): string {
+    const canonicalUrlSegments = [projectId, "gallery"]
+    if (category !== "all") {
+        canonicalUrlSegments.push(encodeURIComponent(category))
     }
-    if (kwargs.page > 1) {
-        canonicalUrlSegments.push(String(kwargs.page))
+    if (page > 1) {
+        canonicalUrlSegments.push(String(page))
     }
+    return "/" + canonicalUrlSegments.join("/")
+}
+
+export function projectGalleryItemPageUrl(item: ProjectGalleryItem): string {
+    const canonicalUrlSegments = [item.projectId, "gallery", "projects", item.id]
     return "/" + canonicalUrlSegments.join("/")
 }

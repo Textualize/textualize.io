@@ -1,6 +1,8 @@
 import React from "react"
 import Image from "next/image"
+import Link from "next/link"
 import type { ProjectGalleryItem } from "../../../domain"
+import { projectGalleryItemPageUrl } from "../../../services/shared/projects-galleries"
 import { Button, ButtonProps } from "../../atomic/button"
 import { Categories } from "../../atomic/categories"
 
@@ -58,6 +60,13 @@ export const GalleryItem = (props: GalleryItemProps) => {
                     ) : null}
                 </div>
                 <div className="gallery-item__desc" dangerouslySetInnerHTML={{ __html: item.description }} />
+                {item.longDescription ? (
+                    <div>
+                        <Link href={projectGalleryItemPageUrl(item)}>
+                            <a>Read more</a>
+                        </Link>
+                    </div>
+                ) : null}
                 <div className="gallery-item__categories">
                     <Categories categories={item.categories} />
                 </div>

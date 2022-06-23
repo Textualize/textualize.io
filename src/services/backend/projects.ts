@@ -27,3 +27,7 @@ export async function projects(): Promise<ProjectData[]> {
 
     return projects
 }
+
+export async function projectById(id: ProjectId): Promise<ProjectData> {
+    return (await projects()).find((project) => project.id === id)!
+}
