@@ -27,7 +27,7 @@ export default function ProjectGalleryItemPage(props: ProjectGalleryItemPageProp
                     <div className="page__headline__main">
                         <span className="project-name">{item.title}</span>
                         {item.stars ? (
-                            <div className="badge">
+                            <div className="badge no-transparency">
                                 <svg height="1em" width="1em" className="badge__icon">
                                     <use xlinkHref="#icon-start" />
                                 </svg>

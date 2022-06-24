@@ -11,6 +11,10 @@
     font-weight: 700;
     color: #754aba;
 
+    &.no-transparency {
+        background-color: var(--badge-non-transparent-background-color);
+    }
+
     &__icon {
         flex-shrink: 0;
     }
