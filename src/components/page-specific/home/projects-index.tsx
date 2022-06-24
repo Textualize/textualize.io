@@ -16,7 +16,7 @@ export const ProjectsIndex = (props: ProjectsIndexProps): JSX.Element => {
             <div className="projects__items">
                 {props.projectsData.map((project, i) => (
                     <React.Fragment key={project.id}>
-                        {i !== 0 && <hr className="container items__divider" />}
+                        {i !== 0 ? <hr className="container items__divider" /> : null}
                         <Project nth={i + 1} project={project} />
                     </React.Fragment>
                 ))}

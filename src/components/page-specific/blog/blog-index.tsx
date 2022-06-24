@@ -18,9 +18,12 @@ export const BlogIndex = (props: BlogIndexProps): JSX.Element => {
 
             <div className="container">
                 <div className="blog-items__items">
-                    {props.currentPagePosts.map((post) => {
-                        return <BlogItem post={post} displayTitle={true} onlyExcerpt={true} key={post.slug} />
-                    })}
+                    {props.currentPagePosts.map((post, i) => (
+                        <React.Fragment key={post.slug}>
+                            {i !== 0 ? <hr className="container items__divider" /> : null}
+                            <BlogItem post={post} displayTitle={true} onlyExcerpt={true} />
+                        </React.Fragment>
+                    ))}
                 </div>
             </div>
         </section>
