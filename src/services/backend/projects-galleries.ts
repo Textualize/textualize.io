@@ -4,6 +4,7 @@ import { promisify } from "node:util"
 import fastGlob from "fast-glob"
 import matter from "gray-matter"
 import imageSizeSync from "image-size"
+import { GALLERY_ITEMS_COUNT_PER_PAGE } from "../../constants"
 import type { ImageProperties, ProjectGalleryItem, ProjectId } from "../../domain"
 import { renderMarkdown } from "../../helpers/markdown-helpers"
 import * as cacheSharedServices from "../shared/cache"
@@ -74,7 +75,7 @@ export async function projectGalleryPageUrlForItem(projectId: ProjectId, itemId:
 function projectGalleryPageNumberForItem(galleryItems: ProjectGalleryItem[], itemId: string): number {
     for (let i = 0, j = galleryItems.length; i < j; i++) {
         if (galleryItems[i].id === itemId) {
-            return i + 1 // because page numbers start at 1
+            return Math.ceil(i / GALLERY_ITEMS_COUNT_PER_PAGE)
         }
     }
     throw new Error(`Can't find page number for item "${itemId}"`)

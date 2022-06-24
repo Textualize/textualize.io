@@ -1,7 +1,14 @@
 ---
 title: skedulord
 codeUrl: https://github.com/koaning/skedulord
-categories: [utilities, wordflows]
+categories:
+  - utilities
+  - wordflows
+description: |
+
+  A tool that automates scheduling and logging of cronjobs, with a retry mechanic,
+  simple logging configuration and like-able user interfaces to make cron just a bit more fun to work with.
+
 ---
 
 Skedulord is a tool that automates scheduling and logging of cronjobs. It adds a retry mechanic,

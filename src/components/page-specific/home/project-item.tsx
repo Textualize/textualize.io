@@ -72,7 +72,7 @@ export const Project = (props: ProjectProps) => {
                     </div>
                 </div>
                 <p className="project__desc">{project.desc}</p>
-                <div className="project__btns">
+                <div className="project__btns item-btns">
                     {buttons.map((buttonData) => {
                         return <Button {...buttonData} key={buttonData.url} />
                     })}

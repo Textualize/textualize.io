@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import type { ProjectGalleryItem } from "../../../domain"
 import { projectGalleryItemPageUrl } from "../../../services/shared/projects-galleries"
-import { Button, ButtonProps } from "../../atomic/button"
 import { Categories } from "../../atomic/categories"
+import { GalleryItemButtons } from "./gallery-item-buttons"
 
 interface GalleryItemProps {
     nth: number
@@ -13,24 +13,6 @@ interface GalleryItemProps {
 
 export const GalleryItem = (props: GalleryItemProps) => {
     const { item } = props
-
-    const buttons: ButtonProps[] = []
-    if (item.codeUrl) {
-        buttons.push({
-            text: "Code",
-            url: item.codeUrl,
-            color: "lilac",
-            xlinkHref: "#icon-github",
-        })
-    }
-    if (item.docsUrl) {
-        buttons.push({
-            text: "Docs",
-            url: item.docsUrl,
-            color: "blue",
-            xlinkHref: "#icon-doc",
-        })
-    }
 
     return (
         <section className="container gallery-item" id={`gallery-item-${item.id}`}>
@@ -61,7 +43,8 @@ export const GalleryItem = (props: GalleryItemProps) => {
                 </div>
                 <div className="gallery-item__desc" dangerouslySetInnerHTML={{ __html: item.description }} />
                 {item.longDescription ? (
-                    <div>
+                    <div className="gallery-item__read-more">
+                        ❱{" "}
                         <Link href={projectGalleryItemPageUrl(item)}>
                             <a>Read more</a>
                         </Link>
@@ -70,11 +53,7 @@ export const GalleryItem = (props: GalleryItemProps) => {
                 <div className="gallery-item__categories">
                     <Categories categories={item.categories} />
                 </div>
-                <div className="gallery-item__btns">
-                    {buttons.map((buttonData) => {
-                        return <Button {...buttonData} key={buttonData.url} />
-                    })}
-                </div>
+                <GalleryItemButtons item={item} additionalCssClasses={["item-btns"]} />
             </div>
         </section>
     )

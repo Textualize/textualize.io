@@ -11,9 +11,6 @@
 
         .project-name {
             white-space: nowrap;
-            //display: inline-flex;
-            //margin: 0 $space-4;
-            //min-width: 50px;
         }
     }
 
@@ -27,8 +24,8 @@
         }
 
         &__image-wrapper {
-            min-width: 40%;
-            max-width: 60%;
+            min-width: 20%;
+            max-width: 50%;
             margin: $space-8 auto;
         }
 
@@ -54,31 +51,8 @@
             margin: $space-5 0;
         }
 
-        &__btns {
-            display: flex;
-            gap: $space-5;
-
-            @media (min-width: $breakpoint-tablet) {
-                gap: $space-6;
-            }
-
-            @media (min-width: $breakpoint-desktop) {
-                gap: $space-10;
-            }
-        }
-
-        .button {
-            gap: $space-3;
-            padding-inline: 1em;
-
-            @media (min-width: $breakpoint-tablet) {
-                font-size: $font-20;
-            }
-
-            @media (min-width: $breakpoint-desktop) {
-                font-size: $font-22;
-                padding-inline: 1.3em;
-            }
+        .gallery-item__btns {
+            justify-content: center;
         }
     }
 }

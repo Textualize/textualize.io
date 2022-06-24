@@ -1,7 +1,11 @@
 ---
 title: TextTacToe
 codeUrl: https://github.com/JoseAndresMedina/TextTacToe
-categories: [games]
+categories:
+  - games
+description: |-
+
+  A simple tictactoe TUI.
+
 ---
 
-A simple tictactoe TUI.

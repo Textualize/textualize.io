@@ -158,18 +158,4 @@ $terminal-width: 589px;
             gap: $space-5;
         }
     }
-
-    .button {
-        gap: $space-3;
-        padding-inline: 1em;
-
-        @media (min-width: $breakpoint-tablet) {
-            font-size: $font-14;
-        }
-
-        @media (min-width: $breakpoint-desktop) {
-            font-size: $font-18;
-            padding-inline: 1.3em;
-        }
-    }
 }

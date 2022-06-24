@@ -36,7 +36,7 @@ export default function ProjectGalleryItemPage(props: ProjectGalleryItemPageProp
                         ) : null}
                     </div>
                     <p className="page__headline__caption">
-                        uses{" "}
+                        A project using{" "}
                         <a href={props.project.codeUrl} target="_blank" rel="noreferrer">
                             {PROJECT_NAMES[item.projectId]}
                         </a>
