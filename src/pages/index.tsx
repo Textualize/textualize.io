@@ -1,6 +1,6 @@
 import React from "react"
 import type { GetStaticProps } from "next/types"
-import { BlogSummary } from "../components/blog-summary"
+// import { BlogSummary } from "../components/blog-summary"
 import { MailList } from "../components/mail-list"
 import { Hero } from "../components/page-specific/home/hero"
 import { ProjectsIndex } from "../components/page-specific/home/projects-index"
@@ -16,11 +16,11 @@ interface HomePageProps {
 
 export default function HomePage(props: HomePageProps) {
     // At the moment the video we display in the "Hero" is the Textual one, but that may change in the future
+    // <BlogSummary lastBlogPost={props.lastBlogPost} />
     return (
         <>
             <ProjectsDataContext.Provider value={props.projectsData}>
                 <Hero videoUrl={props.projectsData[0].videoUrl} />
-                <BlogSummary lastBlogPost={props.lastBlogPost} />
                 <MailList />
                 <ProjectsIndex projectsData={props.projectsData} />
             </ProjectsDataContext.Provider>

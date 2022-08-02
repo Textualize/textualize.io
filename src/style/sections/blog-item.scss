@@ -4,6 +4,15 @@
 }
 
 .blog-item {
+    max-width: 800px;
+    p {
+        opacity: 85%;
+    }
+    
+    pre {
+        margin: 1em 0;
+    }
+
     &__title {
         font-size: $font-26;
         font-weight: bold;
