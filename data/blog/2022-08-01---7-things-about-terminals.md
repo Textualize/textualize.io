@@ -2,7 +2,7 @@
 title: "7 things I've learned building a modern TUI framework"
 ---
 
-I've be working on [Textual](https://github.com/Textualize/textual) for over a year now. Here's a few things I've discovered (or re-discovered) regarding working with terminals in Python, and software development in general.
+I've be working on [Textual](https://github.com/Textualize/textual) for over a year now. Here's a few things I've discovered (or re-discovered) regarding terminals in Python, and software development in general.
 
 &mdash; Will McGugan (CEO / Founder) [@willmcgugan](https://twitter.com/willmcgugan)
 
