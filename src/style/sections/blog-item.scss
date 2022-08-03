@@ -1,6 +1,10 @@
 .blog-item-container {
     // Wraps `.blog-item` on "/blog/posts/[slug]" pages
     position: relative;
+
+    h2 {
+        text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    }
 }
 
 .blog-item {
