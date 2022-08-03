@@ -36,7 +36,7 @@ In Textual the layout process creates a "render map". Basically a mapping of the
 
 I discovered that I could take the symmetric difference of two ItemsView objects, which gave me the items which were either a) new, or b) had changed. Precisely what I needed, but done at the C level. In Textual this is used to get the modified regions of the screen when a CSS property changes, so we can make optimized updates.
 
-For those who prefer to see the code, the following gist demonstrates the technique.
+The following gist demonstrates the technique.
 
 <script src="https://gist.github.com/willmcgugan/61993ecf362a298bebfae10f49dea906.js"></script>
 
@@ -44,11 +44,11 @@ For those who prefer to see the code, the following gist demonstrates the techni
 
 Perhaps not surprising given that `lru_cache` is literally designed to speed up your code, but `@lru_cache` is _fast_. I was surprised how fast it was.
 
-If you aren't familiar with `lru_cache` it is a decorator which you will find in the `functools` module in the standard library. Add it to a method and it will cache the return value of a function. If you set the `maxsize` parameter it will ensure your cache doesn't grow indefinitely.
+If you aren't familiar with `lru_cache` it is a decorator found in the `functools` module in the standard library. Add it to a method and it will cache the return value of a function. If you set the `maxsize` parameter it will ensure your cache doesn't grow indefinitely.
 
-I was looking in to [the implementation](https://github.com/python/cpython/blob/main/Lib/functools.py#L566) of lru_cache in the CPython repos and I figured I could beat it. Spoiler: I couldn't. It turns out there was a [C version](https://github.com/python/cpython/blob/main/Modules/_functoolsmodule.c#L992) which makes it very fast for both cache hits and cache misses.
+I was looking in to [the implementation](https://github.com/python/cpython/blob/main/Lib/functools.py#L566) of lru_cache in the CPython repos and I figured I could beat it. Spoiler: I couldn't. It turns out CPython uses this [C version](https://github.com/python/cpython/blob/main/Modules/_functoolsmodule.c#L992) which is very fast for both cache hits and misses.
 
-Knowing it is that fast convinced me to lower the barrier to use `@lru_cache`. There are a number of small functions in Textual, that are not exactly slow, but called a large number of times. Many of them were highly cacheable and judicious use of `@lru_cache` provided a significant win. Typically a `maxsize` of around 1000-4000 was enough to ensure that the majority calls were cache hits.
+Knowing this convinced me to lower the barrier to using `@lru_cache`. There are a number of small functions in Textual, that are not exactly slow, but called a large number of times. Many of them were highly cacheable and judicious use of `@lru_cache` provided a significant win. Typically a `maxsize` of around 1000-4000 was enough to ensure that the majority calls were cache hits.
 
 Here's an example of the kind of function that benefited from caching. This method combines two rectangular regions in to a single region that fits both. You can see it doesn't do a great deal of work, but it was called 1000s of times.
 
