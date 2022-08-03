@@ -12,8 +12,8 @@ A modern terminal emulator is a remarkably sophisticated piece of software. The 
 
 But it is possible to achieve smooth animation as you can see from the following screencast. So what trick(s) are we pulling?
 
-<div style="text-align:center; margin: 1em 0;">
-    <iframe width="560" height="364" style="margin: 20px;" src="https://www.youtube.com/embed/k5m3CQT9yDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="youtube">
+    <iframe  width="auto" src="https://www.youtube.com/embed/k5m3CQT9yDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 There are a few factors which reduce flicker in the terminal. The first is the terminal emulator that you are using. Modern terminals use hardware-accelerated rendering and will synchronize updates with your display to reduce flicker. Although in my experience there are other factors which have a greater impact on reducing flicker than your choice of emulator. Even on older terminals, you can generally get flicker-free animation with this _one little trick_ (actually three).
