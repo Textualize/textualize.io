@@ -50,7 +50,7 @@ I was looking in to [the implementation](https://github.com/python/cpython/blob/
 
 Knowing this convinced me to lower the barrier to using `@lru_cache`. There are a number of small functions in Textual, that are not exactly slow, but called a large number of times. Many of them were highly cacheable and judicious use of `@lru_cache` provided a significant win. Typically a `maxsize` of around 1000-4000 was enough to ensure that the majority calls were cache hits.
 
-Here's an example of the kind of function that benefited from caching. This method combines two rectangular regions in to a single region that fits both. You can see it doesn't do a great deal of work, but it was called 1000s of times.
+Here's an example of the kind of function that benefited from caching. This method calculates where two rectangular regions overlap. You can see it doesn't do a great deal of work, but it was called 1000s of times.
 
 <script src="https://gist.github.com/willmcgugan/8d161a6b1104aa2b79b6656893d4055d.js"></script>
 
@@ -139,6 +139,6 @@ It's a mess for sure, but in practice it's not that bad. Sticking to the emoji i
 
 ### Textualize is hiring
 
-Help us build a TUI framework that will eat some of the browser's lunch.
+Help us build a TUI framework that will eat some of the browser's lunch. See [Jobs](https://www.textualize.io/jobs).
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I&#39;m hiring for Textualize again. We&#39;re looking for <a href="https://twitter.com/hashtag/Python?src=hash&amp;ref_src=twsrc%5Etfw">#Python</a> developer(s) to join us.<br><br>🐍 Very strong (technical) Python skills <br>🥇Web experience<br>🥈Experience with at least one other language<br>🥉Good API design skills<br><br>Retweets appreciated!</p>&mdash; Will McGugan (@willmcgugan) <a href="https://twitter.com/willmcgugan/status/1547521362260115456?ref_src=twsrc%5Etfw">July 14, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
