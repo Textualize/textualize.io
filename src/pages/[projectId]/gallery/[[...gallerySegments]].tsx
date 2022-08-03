@@ -1,17 +1,16 @@
 import React from "react"
-import type { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
-import { GetStaticPropsResult } from "next/types"
+import type { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next/types"
 import { GalleryIndex } from "../../../components/page-specific/gallery/gallery-index"
 import { ProjectsDataContext } from "../../../contexts/projects-data"
 import { ProjectData } from "../../../domain"
-import { getCommonStaticProps as commonGetStaticProps } from "../../../helpers/common-static-props"
 import { absoluteUrl } from "../../../helpers/url-helpers"
 import * as githubBackendServices from "../../../services/backend/github"
-import * as galleryProjectsBackendServices from "../../../services/backend/projects-galleries"
+import { getCommonStaticProps as commonGetStaticProps } from "../../../services/nextjs-bridge/common-static-props"
+import * as galleryProjectsNextBridgeServices from "../../../services/nextjs-bridge/projects-galleries"
 import * as galleryProjectsSharedServices from "../../../services/shared/projects-galleries"
 
-interface ProjectGalleryPageProps extends galleryProjectsBackendServices.ProjectGalleryPageProps {
+interface ProjectGalleryPageProps extends galleryProjectsNextBridgeServices.ProjectGalleryPageProps {
     projectsData: ProjectData[]
 }
 export default function ProjectGalleryPage(props: ProjectGalleryPageProps) {
@@ -40,23 +39,19 @@ export const getStaticProps: GetStaticProps = async (
     context
 ): Promise<GetStaticPropsResult<ProjectGalleryPageProps>> => {
     if (!context.params || !context.params.projectId) {
-        throw new Error("Received unexpected params for a project gallery page")
+        return { notFound: true }
     }
 
     const projectId = context.params.projectId
     if (!galleryProjectsSharedServices.isProjectId(projectId)) {
-        throw new Error(`Invalid projectId "${projectId}"`)
+        return { notFound: true }
     }
-
-    //TODO: remove this once we're confident enough in this cache implementation :-)
-    const buildCacheBackendServices = await import("../../../services/backend/build-cache")
-    buildCacheBackendServices.enableDebugMode({ miss: true, hit: false, set: true })
 
     const gallerySegments =
         context.params.gallerySegments && Array.isArray(context.params.gallerySegments)
             ? context.params.gallerySegments
             : []
-    const props = await galleryProjectsBackendServices.projectGalleryStaticProps({
+    const props = await galleryProjectsNextBridgeServices.projectGalleryStaticProps({
         projectId,
         gallerySegments,
     })
@@ -81,9 +76,7 @@ export const getStaticProps: GetStaticProps = async (
 
 export const getStaticPaths: GetStaticPaths = async () => {
     // @link https://nextjs.org/docs/basic-features/data-fetching/get-static-paths
-    const pathsParams = await galleryProjectsBackendServices.projectGalleryStaticPathsParams()
-
-    console.debug("Gallery paths params=", pathsParams)
+    const pathsParams = await galleryProjectsNextBridgeServices.projectGalleryStaticPathsParams()
 
     return {
         paths: pathsParams.map((params) => {

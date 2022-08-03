@@ -38,10 +38,10 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
     )
 
     return (
-        <section className="gallery-items">
-            <div className="gallery-items__bg" />
+        <section className="gallery-items page__content_container">
+            <div className="page__headline__bg" />
             <div className="container">
-                <h2 className="gallery-items__headline">Projects using {PROJECT_NAMES[props.projectId]}</h2>
+                <h2 className="page__headline">Projects using {PROJECT_NAMES[props.projectId]}</h2>
             </div>
 
             <div className="container">
@@ -70,7 +70,7 @@ export const GalleryIndex = (props: GalleryIndexProps): JSX.Element => {
             <div className="gallery-items__items">
                 {props.galleryItems.map((item, i) => (
                     <React.Fragment key={item.id}>
-                        {i !== 0 && <hr className="container items__divider" />}
+                        {i !== 0 ? <hr className="container items__divider" /> : null}
                         <GalleryItem nth={i + 1} item={item} />
                     </React.Fragment>
                 ))}

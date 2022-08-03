@@ -15,9 +15,11 @@ const GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH = parseInt(
     process.env["GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH"] || "100"
 ) // in milliseconds
 
-console.debug(
-    `GitHub API throttling: batch size=${GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE}, pause after each batch=${GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH}`
-)
+if (!DONT_FETCH_DATA) {
+    console.debug(
+        `GitHub API throttling: batch size=${GITHUB_API_CONCURRENT_CALLS_BATCH_SIZE}, pause after each batch=${GITHUB_API_PAUSE_DURATION_AFTER_EACH_BATCH}`
+    )
+}
 
 export interface GitHubRepoRelatedData {
     codeUrl: string | null // e.g. "https://github.com/Textualize/textual"

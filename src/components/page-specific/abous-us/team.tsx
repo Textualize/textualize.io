@@ -9,7 +9,7 @@ export const Team = (props: TeamProps): JSX.Element => {
         <div className="team">
             {props.members.map((member, i) => (
                 <React.Fragment key={member.id}>
-                    {i !== 0 && <hr className="container items__divider" />}
+                    {i !== 0 ? <hr className="container items__divider" /> : null}
                     <Member member={member} />
                 </React.Fragment>
             ))}

@@ -19,3 +19,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The UI is made with React and TypeScript, compiled to static web pages thanks to [Next.js](https://nextjs.org/),
 and hosted on [Vercel](https://vercel.com/).
+
+## Run prettier
+
+Run the following before committing:
+
+```
+npm run format:fix
+```

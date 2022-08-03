@@ -1,6 +1,4 @@
-.projects {
-    position: relative;
-
+.blog-items {
     &__items {
         display: flex;
         flex-direction: column;
@@ -11,8 +9,11 @@
         }
 
         @media (min-width: $breakpoint-desktop) {
-            gap: 190px;
-            margin-top: 160px;
+            gap: 100px;
+        }
+
+        .gallery-item:last-child {
+            margin-bottom: $space-12;
         }
     }
 }

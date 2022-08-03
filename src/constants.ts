@@ -7,6 +7,8 @@ export const PROJECTS_WITH_GALLERY: ProjectId[] = ["textual", "rich"]
 
 export const GALLERY_ITEMS_COUNT_PER_PAGE = 5
 
+export const BLOG_ITEMS_COUNT_PER_PAGE = 5
+
 interface SocialLink {
     url: string
     xlinkHref: string
@@ -31,5 +33,11 @@ export const SOCIAL_LINKS: { [name: string]: SocialLink } = {
         xlinkHref: "#icon-discourse",
         appearsInHeader: true,
         appearsInFooter: false,
+    },
+    Blog: {
+        url: "/blog", // self-hosted :-)
+        xlinkHref: "#icon-blog",
+        appearsInHeader: false,
+        appearsInFooter: true,
     },
 } as const

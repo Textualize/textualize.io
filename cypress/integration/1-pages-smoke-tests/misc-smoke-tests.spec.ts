@@ -24,7 +24,7 @@ describe("website smoke tests", () => {
         cy.visit("/")
 
         cy.checkLayoutElements()
-        cy.contains("We love terminals")
+        cy.contains("Move at terminal velocity")
 
         for (const projectId of PROJECT_IDS) {
             cy.get(`#project-${projectId}`).as("projectBlock")

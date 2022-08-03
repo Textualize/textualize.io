@@ -26,13 +26,13 @@ export const Hero = (props: HeroProps): JSX.Element => {
             <div className="hero__text">
                 <h1 className="hero__headline">
                     <span className="u-no-wrap">
-                        We love terminals
+                        Move at terminal velocity
                         <span className="hero__cursor" />
                     </span>
                 </h1>
                 <p className="hero__desc">
                     The terminal can be more <strong>powerful</strong> and <strong>beautiful</strong> than you ever
-                    thought
+                    thought.
                 </p>
                 {ReadMoreLink}
             </div>
