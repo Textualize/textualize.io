@@ -8,7 +8,7 @@ I'm happy to announce the release of [Textual 0.2.0](https://github.com/Textuali
     <iframe width="auto" src="https://www.youtube.com/embed/FSaI_qJGvAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-We've been working in a Git branch since the beginning of the year because the CSS was such a significant change to Textual's architecture and we didn't want to leave the main version in a state of flux. Fortunately the API has reached point where we don't anticipate it changing significantly between updates.
+We've been working in a Git branch since the beginning of the year because we didn't want to leave the main version in a state of flux while we made significant changes to Textual's architecture. Fortunately the API has reached point where we don't anticipate it changing significantly between updates.
 
 The API stability means we finally have [documentation](https://textual.textualize.io/) which we are very proud of! We draw our inspiration from such projects as Django and FastAPI.
 
@@ -20,6 +20,6 @@ I'd like to thank the [Textualize team](https://www.textualize.io/about-us) for 
 
 I'd also like to thank the beta testers who have helped us identify and fix issues in the last few weeks.
 
-&mdash; Will McGugan
+&mdash; [Will McGugan](https://twitter.com/willmcgugan)
+
 CEO / Founder / Head code-monkey
-[@willmcgugan](https://twitter.com/willmcgugan)
