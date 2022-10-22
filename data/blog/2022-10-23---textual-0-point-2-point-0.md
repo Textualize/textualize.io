@@ -2,7 +2,7 @@
 title: "We've released Textual 0.2.0"
 ---
 
-I'm happy to announce the release of [Textual 0.2.0](https://github.com/Textualize/textual). The headline feature of this version is CSS support, but frankly there are a lot more additional features and improvements than a *minor* version might suggest. The following video demonstrates a few of those features:
+I'm happy to announce the release of [Textual 0.2.0](https://github.com/Textualize/textual). The headline feature of this version is CSS support, but frankly there are a lot more additional features and improvements than a _minor_ version might suggest. The following video demonstrates a few of those features:
 
 <div class="youtube">
     <iframe width="auto" src="https://www.youtube.com/embed/FSaI_qJGvAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
