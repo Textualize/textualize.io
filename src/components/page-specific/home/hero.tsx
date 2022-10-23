@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import { trackEvent } from "../../../services/frontend/analytics"
+// import { trackEvent } from "../../../services/frontend/analytics"
 import { Terminal } from "../../terminal"
 
 interface HeroProps {
@@ -8,16 +8,22 @@ interface HeroProps {
 }
 
 export const Hero = (props: HeroProps): JSX.Element => {
+    // const ReadMoreLink = (
+    //     <Link href="/what-we-do">
+    //         <a
+    //             className="button button--hero"
+    //             onClick={(_e) => {
+    //                 trackEvent("A2PINPR4")
+    //             }}
+    //         >
+    //             Read more&hellip;
+    //         </a>
+    //     </Link>
+    // )
+
     const ReadMoreLink = (
-        <Link href="/what-we-do">
-            <a
-                className="button button--hero"
-                onClick={(_e) => {
-                    trackEvent("A2PINPR4")
-                }}
-            >
-                Read more&hellip;
-            </a>
+        <Link href="/blog/posts/textual-0-point-2-point-0">
+            <a className="button button--hero">Textual 0.2.0 released!</a>
         </Link>
     )
 
