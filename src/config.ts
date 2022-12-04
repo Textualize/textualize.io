@@ -11,8 +11,7 @@ export const AppConfig = {
     textualize: {
         urls: {
             twitter: "https://twitter.com/textualizeio",
-            github: "https://github.com/Textualize",
-            discourse: "https://community.textualize.io/",
+            github: "https://github.com/Textualize"
         },
     },
 }

@@ -27,7 +27,7 @@
 Cypress.Commands.add("checkLayoutElements", () => {
     // Header:
     cy.get("svg.logo")
-    for (const externalSite of ["Twitter", "GitHub", "Discourse"]) {
+    for (const externalSite of ["Twitter", "GitHub"]) {
         cy.get(`nav a.button[aria-label="${externalSite}"]`)
     }
     // Footer:

@@ -28,12 +28,6 @@ export const SOCIAL_LINKS: { [name: string]: SocialLink } = {
         appearsInHeader: true,
         appearsInFooter: true,
     },
-    Discourse: {
-        url: AppConfig.textualize.urls.discourse,
-        xlinkHref: "#icon-discourse",
-        appearsInHeader: true,
-        appearsInFooter: false,
-    },
     Blog: {
         url: "/blog", // self-hosted :-)
         xlinkHref: "#icon-blog",
