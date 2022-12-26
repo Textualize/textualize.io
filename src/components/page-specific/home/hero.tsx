@@ -22,8 +22,8 @@ export const Hero = (props: HeroProps): JSX.Element => {
     // )
 
     const ReadMoreLink = (
-        <Link href="/blog/posts/textual-0-point-2-point-0">
-            <a className="button button--hero">Textual 0.2.0 released!</a>
+        <Link href="https://textual.textualize.io/blog/2022/12/11/version-060/">
+            <a className="button button--hero">Textual 0.6.0 released!</a>
         </Link>
     )
 
