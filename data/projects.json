@@ -4,7 +4,7 @@
             "id": "textual",
             "headline": "Textual",
             "stars": "14k",
-            "desc": "Build amazing TUIs (Text User Interfaces) with this innovative Python framework",
+            "desc": "Build amazing TUIs (Text User Interfaces) with this innovative Python framework.",
             "code": "https://github.com/Textualize/textual",
             "docs": "https://textual.textualize.io/",
             "videoUrl": "https://d32lig6y1jobn4.cloudfront.net/textual.mp4"
@@ -22,7 +22,7 @@
             "id": "rich-cli",
             "headline": "Rich CLI",
             "stars": "2.3k",
-            "desc": "Rich from the command prompt. Syntax highlight many file-types, with special support for markdown, json, and CSV tables",
+            "desc": "Rich from the command prompt. Syntax highlight many file-types, with special support for markdown, json, and CSV tables.",
             "code": "https://github.com/Textualize/rich-cli",
             "videoUrl": "https://d32lig6y1jobn4.cloudfront.net/rich-cli.mp4"
         }
